@@ -257,32 +257,16 @@
             </main>
         </div>
 
-        <!-- BLOG VIEW (SEO & Telegram Bot Integration Ready) -->
+        <!-- BLOG VIEW (Dynamic JSON Read Ready) -->
         <div id="view-blog" class="hidden max-w-4xl mx-auto px-4 py-10 w-full space-y-8">
             <div class="space-y-3">
                 <span class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold border border-indigo-500/30">Artikel & Tips Gaming</span>
                 <h2 class="text-3xl font-black text-white">Jura Blog & Update Game</h2>
-                <p class="text-slate-400 text-sm">Informasi seputar game HTML5 terbaru, tips bermain, dan ulasan ringan. Konten di halaman ini di sinkronisasi otomatis via bot telegram Anda untuk mendongkrak SEO Google AdSense!</p>
+                <p class="text-slate-400 text-sm">Informasi seputar game HTML5 terbaru, tips bermain, dan ulasan ringan. Konten disinkronisasi secara otomatis dari file <code class="text-indigo-400">articles.json</code>!</p>
             </div>
             
             <div id="blog-articles-list" class="space-y-6">
-                <!-- Sample Telegram / Automated Article 1 -->
-                <article class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl space-y-3 shadow-lg">
-                    <span class="text-xs text-indigo-400 font-semibold">28 Agustus 2026 • Tips Gaming</span>
-                    <h3 class="text-xl font-bold text-white">Mengapa Game HTML5 Menjadi Tren Utama Gaming Tanpa Install?</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">
-                        Tanpa perlu membuang ruang penyimpanan gigabyte di smartphone atau PC Anda, game HTML5 menawarkan pengalaman bermain instan dengan teknologi browser modern. Di Jura Game, kami mengurasi game kualitas tinggi yang dapat dimainkan seketika kapanpun Anda memiliki waktu luang.
-                    </p>
-                </article>
-
-                <!-- Sample Telegram / Automated Article 2 -->
-                <article class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl space-y-3 shadow-lg">
-                    <span class="text-xs text-indigo-400 font-semibold">27 Agustus 2026 • Panduan AdSense</span>
-                    <h3 class="text-xl font-bold text-white">Cara Menikmati Koleksi Game Puzzle Terbaik di Jura Game</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">
-                        Kategori puzzle selalu menjadi favorit karena mampu mengasah otak sekaligus merilekskan pikiran. Temukan berbagai judul game puzzle 3D dan logika terbaru minggu ini langsung di menu kategori portal kami.
-                    </p>
-                </article>
+                <!-- Dynamically populated via articles.json -->
             </div>
         </div>
 
@@ -297,7 +281,7 @@
         </div>
     </div>
 
-    <!-- ==================== FOOTER (LENGKAP & SEO READY) ==================== -->
+    <!-- ==================== FOOTER ==================== -->
     <footer class="border-t border-slate-800 bg-slate-900/90 backdrop-blur-md mt-16 py-12 px-4 sm:px-6 lg:px-8 text-slate-400 text-xs space-y-8">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
             <!-- Col 1: Brand -->
@@ -493,9 +477,7 @@
                     <h3 class="text-xl font-bold text-white mb-2">Kebijakan Privasi untuk Jura Game</h3>
                     <p>Di Jura Game, yang dapat diakses melalui portal kami, privasi pengunjung adalah salah satu prioritas utama kami. Dokumen Kebijakan Privasi ini berisi jenis informasi yang dikumpulkan dan dicatat oleh Jura Game serta bagaimana kami menggunakannya.</p>
                     <h4 class="text-lg font-bold text-white mt-4 mb-1">File Log (Log Files)</h4>
-                    <p>Jura Game mengikuti prosedur standar menggunakan file log. File-file ini mencatat pengunjung ketika mereka mengunjungi situs web. Semua perusahaan hosting melakukan ini dan merupakan bagian dari analisis layanan hosting. Informasi yang dikumpulkan oleh file log mencakup alamat Protokol Internet (IP), jenis browser, Penyedia Layanan Internet (ISP), tanggal dan waktu, halaman merujuk/keluar, dan mungkin jumlah klik.</p>
-                    <h4 class="text-lg font-bold text-white mt-4 mb-1">Google DoubleClick DART Cookie</h4>
-                    <p>Google adalah salah satu vendor pihak ketiga di situs kami. Google juga menggunakan cookie, yang dikenal sebagai cookie DART, untuk menayangkan iklan kepada pengunjung situs web kami berdasarkan kunjungan mereka ke www.website.com dan situs lain di internet.</p>
+                    <p>Jura Game mengikuti prosedur standar menggunakan file log. File-file ini mencatat pengunjung ketika mereka mengunjungi situs web. Semua perusahaan hosting melakukan ini dan merupakan bagian dari analisis layanan hosting.</p>
                 `
             },
             terms: {
@@ -503,9 +485,6 @@
                 content: `
                     <h3 class="text-xl font-bold text-white mb-2">Syarat dan Ketentuan Penggunaan</h3>
                     <p>Selamat datang di Jura Game! Syarat dan ketentuan ini menggariskan aturan dan regulasi untuk penggunaan Situs Web Jura Game.</p>
-                    <p>Dengan mengakses situs web ini, kami menganggap Anda menerima syarat dan ketentuan ini. Jangan teruskan menggunakan Jura Game jika Anda tidak menyetujui semua syarat dan ketentuan yang menyatakan di halaman ini.</p>
-                    <h4 class="text-lg font-bold text-white mt-4 mb-1">Lisensi</h4>
-                    <p>Kecuali dinyatakan lain, Jura Game dan/atau pemberi lisensinya memiliki hak kekayaan intelektual atas semua materi di Jura Game. Semua hak kekayaan intelektual dilindungi undang-undang.</p>
                 `
             },
             about: {
@@ -513,7 +492,6 @@
                 content: `
                     <h3 class="text-xl font-bold text-white mb-2">Tentang Jura Game</h3>
                     <p>Jura Game adalah platform direktori game HTML5 online gratis terdepan yang dirancang untuk memberikan hiburan cepat tanpa memerlukan proses instalasi aplikasi atau unduhan berat.</p>
-                    <p>Kami berkomitmen untuk mengkurasi game kasual terbaik mulai dari aksi, teka-teki, balapan, hingga arcade agar dapat diakses dengan mulus oleh jutaan pemain di seluruh dunia langsung dari perangkat seluler maupun komputer desktop.</p>
                 `
             },
             contact: {
@@ -522,7 +500,6 @@
                     <h3 class="text-xl font-bold text-white mb-2">Hubungi Tim Jura Game</h3>
                     <p>Jika Anda memiliki pertanyaan, saran, atau kendala terkait penayangan game di portal kami, jangan ragu untuk menghubungi tim dukungan kami.</p>
                     <p class="mt-3">Email resmi: <strong class="text-indigo-400">support@juragame.com</strong></p>
-                    <p>Telegram Channel Bot Admin: <strong class="text-indigo-400">@JuraGameBotAdmin</strong></p>
                 `
             }
         };
@@ -532,6 +509,7 @@
 
         let allGamesData = [];
         let filteredGames = [];
+        let articlesData = [];
         let displayedCount = 18;
         const itemsPerPage = 18;
         let currentCategory = 'ALL';
@@ -542,7 +520,80 @@
             renderSkeletons(12);
             renderCategories('ALL');
             fetchGames();
+            fetchArticles();
             setupPWA();
+        }
+
+        /* ==================== BLOG / ARTICLES FETCHER ==================== */
+        async function fetchArticles() {
+            const blogList = document.getElementById('blog-articles-list');
+            if (!blogList) return;
+
+            // Skeleton loading state
+            blogList.innerHTML = `
+                <div class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl space-y-3 animate-pulse">
+                    <div class="h-4 bg-slate-800 rounded w-1/4"></div>
+                    <div class="h-6 bg-slate-800 rounded w-3/4"></div>
+                    <div class="h-4 bg-slate-800 rounded w-full"></div>
+                    <div class="h-4 bg-slate-800 rounded w-5/6"></div>
+                </div>
+            `;
+
+            try {
+                // Fetch articles.json (tambahkan timestamp parameter untuk cegah browser caching)
+                const response = await fetch('articles.json?t=' + Date.now());
+                if (!response.ok) throw new Error('File articles.json tidak ditemukan');
+                articlesData = await response.json();
+                renderArticles();
+            } catch (error) {
+                console.warn('Gagal memuat articles.json:', error);
+                blogList.innerHTML = `
+                    <div class="bg-slate-900/80 border border-slate-800 p-8 rounded-2xl text-center space-y-4">
+                        <i data-lucide="book-open-check" class="w-12 h-12 text-indigo-400/60 mx-auto"></i>
+                        <h3 class="text-lg font-bold text-white">Belum ada artikel</h3>
+                        <p class="text-slate-400 text-xs">Pastikan file <code class="text-indigo-400">articles.json</code> sudah diupload ke repositori GitHub Anda.</p>
+                        <button onclick="fetchArticles()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-xl text-xs font-bold transition">
+                            Coba Muat Ulang
+                        </button>
+                    </div>
+                `;
+                if (window.lucide) lucide.createIcons();
+            }
+        }
+
+        function renderArticles() {
+            const blogList = document.getElementById('blog-articles-list');
+            if (!blogList) return;
+
+            if (!Array.isArray(articlesData) || articlesData.length === 0) {
+                blogList.innerHTML = `<div class="text-slate-400 text-sm text-center py-8">Belum ada artikel yang dipublikasikan.</div>`;
+                return;
+            }
+
+            blogList.innerHTML = articlesData.map(article => {
+                const dateCategory = [article.date, article.category].filter(Boolean).join(' • ');
+                const formattedContent = (article.content || '')
+                    .split('\n')
+                    .filter(p => p.trim() !== '')
+                    .map(p => `<p class="leading-relaxed">${p}</p>`)
+                    .join('');
+
+                return `
+                    <article class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl space-y-3 shadow-lg hover:border-slate-700/80 transition-all">
+                        <div class="flex items-center justify-between text-xs text-indigo-400 font-semibold">
+                            <span>${dateCategory}</span>
+                            ${article.author ? `<span class="text-slate-500 font-normal">Oleh: ${article.author}</span>` : ''}
+                        </div>
+                        <h3 class="text-xl font-bold text-white">${article.title || 'Artikel Tanpa Judul'}</h3>
+                        ${article.image ? `<img src="${article.image}" alt="${article.title}" loading="lazy" class="w-full max-h-72 object-cover rounded-xl my-3 border border-slate-800">` : ''}
+                        <div class="text-slate-300 text-sm space-y-2">
+                            ${formattedContent}
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            if (window.lucide) lucide.createIcons();
         }
 
         function switchView(viewName) {
@@ -554,6 +605,7 @@
                 document.getElementById('view-home').classList.remove('hidden');
             } else if (viewName === 'blog') {
                 document.getElementById('view-blog').classList.remove('hidden');
+                if (articlesData.length === 0) fetchArticles();
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -668,13 +720,27 @@
             try {
                 const response = await fetch(apiUrl);
                 if (!response.ok) throw new Error('Network error');
+                
                 const data = await response.json();
-                allGamesData = Array.isArray(data) ? data : [];
+                
+                // Pengecekan ketat agar data yang masuk selalu berupa array list game
+                if (Array.isArray(data) && data.length > 0) {
+                    allGamesData = data;
+                } else if (data && typeof data === 'object' && Array.isArray(data.games) && data.games.length > 0) {
+                    allGamesData = data.games;
+                } else {
+                    throw new Error('Data bukan berbentuk array');
+                }
+
             } catch (error) {
+                console.warn('Gagal memuat API, memuat game cadangan...', error);
                 allGamesData = [
                     { id: "1", title: "Nexus 3D Puzzle", category: "Puzzle", description: "A futuristic 3D puzzle game testing your logic and alignment skills.", thumb: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&q=80", url: "https://html5.gamemonetize.co/t2g02eck3p4xyck3xc247ti5nuwl8gaf/" },
                     { id: "2", title: "Crash Racing Pro", category: "Racing", description: "Extreme high-speed racing simulation with amazing tracks and physics.", thumb: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&q=80", url: "https://html5.gamemonetize.co/sghhzevs4m8qtb1mgjjryhl1dur7nxvh/" },
-                    { id: "3", title: "Super Grotto Shooter", category: "Shooting", description: "Action-packed shooter adventure inside mysterious alien caves.", thumb: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&q=80", url: "https://html5.gamemonetize.co/7y3k24fp7z5jjun4841k3m7btov33b4y/" }
+                    { id: "3", title: "Super Grotto Shooter", category: "Shooting", description: "Action-packed shooter adventure inside mysterious alien caves.", thumb: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&q=80", url: "https://html5.gamemonetize.co/7y3k24fp7z5jjun4841k3m7btov33b4y/" },
+                    { id: "4", title: "Zombie Apoc Survival", category: "Zombie", description: "Survive the endless waves of zombies.", thumb: "https://images.unsplash.com/photo-1506544777-64cfbe1142df?w=500&q=80", url: "https://html5.gamemonetize.co/t2g02eck3p4xyck3xc247ti5nuwl8gaf/" },
+                    { id: "5", title: "Arcade Retro King", category: "Arcade", description: "Classic retro arcade action.", thumb: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=500&q=80", url: "https://html5.gamemonetize.co/sghhzevs4m8qtb1mgjjryhl1dur7nxvh/" },
+                    { id: "6", title: "Soccer Penalty Pro", category: "Sports", description: "Score the winning penalty.", thumb: "https://images.unsplash.com/photo-1508344928928-7137b29de218?w=500&q=80", url: "https://html5.gamemonetize.co/7y3k24fp7z5jjun4841k3m7btov33b4y/" }
                 ];
             }
             
@@ -717,41 +783,46 @@
         }
 
         function createGameCardHtml(game, isHorizontal = false) {
-            const escapeTitle = game.title ? game.title.replace(/'/g, "\\'") : 'Game';
+            const escapeTitle = game.title ? game.title.replace(/'/g, "\\'").replace(/"/g, '&quot;') : 'Game';
             const cardWidth = isHorizontal ? 'flex-shrink-0 w-36 sm:w-44' : '';
+            const category = game.category || 'Arcade';
+            const thumb = game.thumb || 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&q=80';
             
             return `
                 <div class="game-card group cursor-pointer space-y-2 ${cardWidth}" 
-                     onclick="openGame('${game.url}', '${escapeTitle}', '${game.category || 'General'}', '${game.thumb}', '${encodeURIComponent(game.description || '')}')">
+                     onclick="openGame('${game.url}', '${escapeTitle}', '${category}', '${thumb}', '${encodeURIComponent(game.description || '')}')">
                     <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 group-hover:border-indigo-500/80 group-hover:shadow-lg group-hover:shadow-indigo-500/20 transition-all duration-300">
-                        <img src="${game.thumb}" alt="${game.title}" loading="lazy" class="w-full h-full object-cover">
+                        <img src="${thumb}" alt="${escapeTitle}" loading="lazy" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-3">
                             <span class="px-3 py-1.5 rounded-xl bg-indigo-600 text-white text-xs font-bold flex items-center gap-1 shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform">
                                 <i data-lucide="play" class="w-3.5 h-3.5 fill-white"></i> Play
                             </span>
                         </div>
                         <span class="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-slate-900/85 backdrop-blur text-[10px] font-semibold text-slate-300 border border-slate-700/80">
-                            ${game.category || 'Arcade'}
+                            ${category}
                         </span>
                     </div>
                     <div>
-                        <h4 class="text-xs sm:text-sm font-bold text-slate-200 group-hover:text-indigo-400 truncate transition-colors" title="${game.title}">${game.title}</h4>
+                        <h4 class="text-xs sm:text-sm font-bold text-slate-200 group-hover:text-indigo-400 truncate transition-colors" title="${escapeTitle}">${escapeTitle}</h4>
                     </div>
                 </div>
             `;
         }
 
         function createSidebarGameHtml(game) {
-            const escapeTitle = game.title ? game.title.replace(/'/g, "\\'") : 'Game';
+            const escapeTitle = game.title ? game.title.replace(/'/g, "\\'").replace(/"/g, '&quot;') : 'Game';
+            const thumb = game.thumb || 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&q=80';
+            const category = game.category || 'Arcade';
+
             return `
                 <div class="group cursor-pointer flex items-center gap-3 p-2 bg-slate-800/50 hover:bg-slate-800 rounded-xl border border-transparent hover:border-slate-700 transition-all"
-                     onclick="openGame('${game.url}', '${escapeTitle}', '${game.category || 'General'}', '${game.thumb}', '${encodeURIComponent(game.description || '')}')">
+                     onclick="openGame('${game.url}', '${escapeTitle}', '${category}', '${thumb}', '${encodeURIComponent(game.description || '')}')">
                     <div class="relative overflow-hidden rounded-xl w-14 h-14 flex-shrink-0 bg-slate-900 border border-slate-700">
-                        <img src="${game.thumb}" alt="${game.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        <img src="${thumb}" alt="${escapeTitle}" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                     </div>
                     <div class="overflow-hidden">
-                        <h5 class="text-xs font-bold text-slate-200 truncate group-hover:text-indigo-400 transition-colors">${game.title}</h5>
-                        <span class="text-[10px] text-indigo-400 font-medium block mt-0.5">${game.category || 'Arcade'}</span>
+                        <h5 class="text-xs font-bold text-slate-200 truncate group-hover:text-indigo-400 transition-colors">${escapeTitle}</h5>
+                        <span class="text-[10px] text-indigo-400 font-medium block mt-0.5">${category}</span>
                     </div>
                 </div>
             `;
