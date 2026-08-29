@@ -9,7 +9,6 @@
     <meta name="description" content="Kumpulan artikel terbaru seputar game HTML5, tips bermain, ulasan game gratis, dan panduan gaming tanpa install dari Jura Game.">
     <meta name="keywords" content="blog game, tips gaming, ulasan game gratis, berita game html5, portal game gratis">
     <meta name="author" content="Admin Jura Game">
-    <link rel="canonical" href="https://juragame.com/blog/">
 
     <!-- Google AdSense Auto Ads Script (Ganti ca-pub-1234567890123456 dengan ID AdSense Anda saat pendaftaran) -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234567890123456" crossorigin="anonymous"></script>
@@ -40,26 +39,41 @@
 </head>
 <body class="min-h-screen flex flex-col relative overflow-x-hidden">
 
-    <!-- Background Pattern (Matching Main Site) -->
+    <!-- ==================== ANIMATED BACKGROUND (UNIFIED) ==================== -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
         <div class="absolute inset-0 bg-[#020617]"></div>
-        <div class="absolute top-[-10%] right-[-5%] w-[40vw] h-[40vw] bg-indigo-600/10 rounded-full filter blur-[120px]"></div>
+        <div class="absolute top-[-15%] left-[-10%] w-[55vw] h-[55vw] bg-indigo-600/25 rounded-full filter blur-[120px]"></div>
+        <div class="absolute top-[35%] right-[-15%] w-[50vw] h-[50vw] bg-pink-600/20 rounded-full filter blur-[140px]"></div>
+        <div class="absolute bottom-[-10%] left-[20%] w-[45vw] h-[45vw] bg-purple-600/20 rounded-full filter blur-[130px]"></div>
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
     </div>
 
-    <!-- Header -->
-    <header class="glass sticky top-0 z-40">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <a href="../index.html" class="flex items-center gap-2 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-600/30 group-hover:scale-105 transition-transform duration-300">
-                    <i data-lucide="gamepad-2" class="w-6 h-6"></i>
+    <!-- Header (UNIFIED BRANDING LOGO & COMPACT NAV) -->
+    <header class="glass sticky top-0 z-40 border-b border-indigo-500/10">
+        <div class="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 py-3 flex justify-between items-center gap-2">
+            
+            <a href="../index.html" class="flex items-center gap-2 sm:gap-2.5 cursor-pointer group flex-shrink-0">
+                <div class="relative flex items-center justify-center">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl blur-sm opacity-70 group-hover:opacity-100 transition duration-300"></div>
+                    <div class="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-900 border border-slate-700/80 flex items-center justify-center text-white shadow-xl group-hover:scale-105 transition-transform duration-300">
+                        <i data-lucide="gamepad-2" class="w-5 h-5 text-indigo-400 group-hover:text-pink-400 transition-colors"></i>
+                        <span class="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500"></span>
+                        </span>
+                    </div>
                 </div>
-                <span class="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">Jura game</span>
+                <div class="flex items-center gap-1">
+                    <h1 class="text-lg sm:text-2xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">
+                        Jura<span class="text-pink-500">Game</span>
+                    </h1>
+                    <span class="px-1 py-0.5 text-[8px] sm:text-[9px] font-black tracking-wider uppercase bg-gradient-to-r from-indigo-600 to-pink-600 text-white rounded-md shadow-sm border border-indigo-400/30">BLOG</span>
+                </div>
             </a>
             
-            <a href="../index.html" class="px-4 py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 text-xs font-bold flex items-center gap-2 shadow-sm">
+            <a href="../index.html" class="px-3 py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 text-xs font-bold flex items-center gap-1.5 shadow-sm hover:border-indigo-500/50">
                 <i data-lucide="arrow-left" class="w-4 h-4 text-indigo-400"></i>
-                Kembali ke Portal
+                <span class="hidden sm:inline">Kembali ke Portal</span>
             </a>
         </div>
     </header>
@@ -85,12 +99,70 @@
             <span class="text-xs text-slate-500 uppercase font-bold tracking-widest">Ruang Iklan Banner (AdSense Ready)</span>
         </div>
 
-        <!-- Articles Grid (DINAMIS — otomatis dari articles.json) -->
-        <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Loading state -->
-            <div class="col-span-full text-center py-12 text-slate-500 text-sm">
-                Memuat artikel...
-            </div>
+        <!-- Articles Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Article Card 1 -->
+            <article class="article-card bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl overflow-hidden shadow-xl hover:border-indigo-500/50 transition-all duration-300 flex flex-col">
+                <a href="game-html5-tanpa-install.html" class="block aspect-[16/9] overflow-hidden bg-slate-800 relative">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80" alt="Mengapa Game HTML5 Menjadi Tren" class="w-full h-full object-cover transition-transform duration-500">
+                    <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-slate-900/90 text-indigo-300 text-[10px] font-bold border border-slate-700/80 backdrop-blur-md">
+                        Tips Gaming
+                    </span>
+                </a>
+                <div class="p-6 flex flex-col flex-grow space-y-4">
+                    <div class="text-[11px] text-slate-400 font-semibold flex items-center gap-2">
+                        <i data-lucide="calendar" class="w-3.5 h-3.5"></i> 28 Agustus 2026
+                    </div>
+                    <a href="game-html5-tanpa-install.html" class="block group">
+                        <h2 class="text-lg font-bold text-white group-hover:text-indigo-400 transition-colors line-clamp-2">
+                            Mengapa Game HTML5 Menjadi Tren Utama Gaming Tanpa Install?
+                        </h2>
+                    </a>
+                    <p class="text-slate-400 text-sm line-clamp-3 flex-grow">
+                        Simak alasan mengapa game HTML5 berbasis browser semakin disukai. Tanpa instalasi, cepat, dan hemat penyimpanan di smartphone dan PC Anda.
+                    </p>
+                    <a href="game-html5-tanpa-install.html" class="inline-flex items-center gap-1 text-xs font-bold text-indigo-400 hover:text-indigo-300 transition-colors w-fit pt-2">
+                        Baca Selengkapnya <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Article Card 2 (Tanpa Gambar Cover - Teks Saja) -->
+            <article class="article-card bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl overflow-hidden shadow-xl hover:border-indigo-500/50 transition-all duration-300 flex flex-col">
+                <div class="p-6 flex flex-col flex-grow space-y-4">
+                    <div class="flex justify-between items-center">
+                        <div class="text-[11px] text-slate-400 font-semibold flex items-center gap-2">
+                            <i data-lucide="calendar" class="w-3.5 h-3.5"></i> 25 Agustus 2026
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-slate-800 text-amber-300 text-[10px] font-bold border border-slate-700/80">
+                            Review Game
+                        </span>
+                    </div>
+                    <a href="review-puzzle-game.html" class="block group">
+                        <h2 class="text-lg font-bold text-white group-hover:text-indigo-400 transition-colors line-clamp-2">
+                            5 Game Puzzle Terbaik di Jura Game yang Wajib Anda Coba
+                        </h2>
+                    </a>
+                    <p class="text-slate-400 text-sm line-clamp-4 flex-grow">
+                        Kategori puzzle selalu menjadi favorit karena mampu mengasah otak sekaligus merilekskan pikiran. Temukan berbagai judul game puzzle 3D dan logika terbaru minggu ini yang bisa langsung dimainkan.
+                    </p>
+                    <a href="review-puzzle-game.html" class="inline-flex items-center gap-1 text-xs font-bold text-indigo-400 hover:text-indigo-300 transition-colors w-fit pt-2">
+                        Baca Selengkapnya <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Template Tambahan untuk Bot -->
+            <!-- Bot Telegram Anda cukup menambahkan blok <article>...</article> baru di bawah ini setiap ada post baru -->
+
+        </div>
+        
+        <!-- Pagination (Opsional) -->
+        <div class="flex justify-center pt-8">
+            <button class="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl text-white text-sm font-semibold transition-all">
+                Muat Artikel Lama
+            </button>
         </div>
 
     </main>
@@ -107,65 +179,7 @@
     </footer>
 
     <script>
-        // Ambil daftar artikel dari database articles.json
-        fetch('../articles.json')
-            .then(r => r.json())
-            .then(articles => {
-                const grid = document.getElementById('articles-grid');
-                if (!articles || articles.length === 0) {
-                    grid.innerHTML = '<p class="col-span-full text-center py-12 text-slate-500 text-sm">Belum ada artikel.</p>';
-                    return;
-                }
-                // Urutkan terbaru dulu (jaga-jaga)
-                grid.innerHTML = articles.map(a => {
-                    const slug = a.slug || '';
-                    const href = slug + '.html';
-                    const cover = a.cover_image || '';
-                    const category = a.category || 'Blog';
-                    const excerpt = (a.excerpt || (a.body || '').replace(/[*#_]/g, '').slice(0, 160)).trim();
-                    const imgBlock = cover ? `
-                <a href="${href}" class="block aspect-[16/9] overflow-hidden bg-slate-800 relative">
-                    <img src="${cover}" alt="${a.title}" class="w-full h-full object-cover transition-transform duration-500" loading="lazy">
-                    <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-slate-900/90 text-indigo-300 text-[10px] font-bold border border-slate-700/80 backdrop-blur-md">
-                        ${category}
-                    </span>
-                </a>` : `
-                <div class="pt-6 px-6 flex justify-end">
-                    <span class="px-3 py-1 rounded-full bg-slate-800 text-amber-300 text-[10px] font-bold border border-slate-700/80">
-                        ${category}
-                    </span>
-                </div>`;
-                    return `
-            <article class="article-card bg-slate-900/80 backdrop-blur border border-slate-800 rounded-3xl overflow-hidden shadow-xl hover:border-indigo-500/50 transition-all duration-300 flex flex-col">
-                ${imgBlock}
-                <div class="p-6 flex flex-col flex-grow space-y-4">
-                    <div class="text-[11px] text-slate-400 font-semibold flex items-center gap-2">
-                        <i data-lucide="calendar" class="w-3.5 h-3.5"></i> ${a.date || ''}
-                    </div>
-                    <a href="${href}" class="block group">
-                        <h2 class="text-lg font-bold text-white group-hover:text-indigo-400 transition-colors line-clamp-2">
-                            ${a.title}
-                        </h2>
-                    </a>
-                    <p class="text-slate-400 text-sm line-clamp-3 flex-grow">
-                        ${excerpt}
-                    </p>
-                    <a href="${href}" class="inline-flex items-center gap-1 text-xs font-bold text-indigo-400 hover:text-indigo-300 transition-colors w-fit pt-2">
-                        Baca Selengkapnya <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                    </a>
-                </div>
-            </article>`;
-                }).join('');
-                // Re-render ikon lucide setelah konten dinamis masuk
-                if (window.lucide) lucide.createIcons();
-            })
-            .catch(err => {
-                document.getElementById('articles-grid').innerHTML =
-                    '<p class="col-span-full text-center py-12 text-slate-500 text-sm">Gagal memuat artikel. Coba refresh halaman.</p>';
-                console.error(err);
-            });
-
-        // Inisialisasi ikon statis
+        // Inisialisasi ikon
         if (window.lucide) lucide.createIcons();
     </script>
 </body>
