@@ -127,11 +127,16 @@
             scrollbar-width: none;
         }
 
-        .neon-glow-indigo {
-            box-shadow: 0 0 25px -5px rgba(99, 102, 241, 0.5);
-        }
-        .neon-glow-pink {
-            box-shadow: 0 0 25px -5px rgba(236, 72, 153, 0.5);
+        /* Fullscreen Fallback Khusus iPhone / iOS Safari */
+        .is-pseudo-fullscreen {
+            position: fixed !important;
+            inset: 0 !important;
+            z-index: 99999 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            border-radius: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         body {
@@ -153,54 +158,49 @@
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
     </div>
 
-    <!-- Header / Navbar -->
+    <!-- Header / Navbar (RESPONSIVE MOBILE FIXED) -->
     <header class="glass sticky top-0 z-40 border-b border-indigo-500/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 flex justify-between items-center gap-2">
             
-            <!-- Sleek Futuristic Brand Logo -->
-            <div class="flex items-center gap-3 cursor-pointer group" onclick="switchView('home')">
+            <!-- Sleek Futuristic Brand Logo (Unified) -->
+            <a href="#" onclick="switchView('home'); return false;" class="flex items-center gap-2 sm:gap-2.5 cursor-pointer group flex-shrink-0">
                 <div class="relative flex items-center justify-center">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl blur-sm opacity-70 group-hover:opacity-100 transition duration-300 animate-pulse"></div>
-                    <div class="relative w-11 h-11 rounded-xl bg-slate-900 border border-slate-700/80 flex items-center justify-center text-white shadow-xl group-hover:scale-105 transition-transform duration-300">
-                        <svg class="w-6 h-6 text-indigo-400 group-hover:text-pink-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" class="fill-indigo-500/20 stroke-indigo-400 group-hover:stroke-pink-400"></polygon>
-                            <path d="M6 11h4M8 9v4M15 10h.01M18 12h.01"></path>
-                        </svg>
-                        <span class="absolute -top-1 -right-1 flex h-3 w-3">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl blur-sm opacity-70 group-hover:opacity-100 transition duration-300"></div>
+                    <div class="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-900 border border-slate-700/80 flex items-center justify-center text-white shadow-xl group-hover:scale-105 transition-transform duration-300">
+                        <i data-lucide="gamepad-2" class="w-5 h-5 text-indigo-400 group-hover:text-pink-400 transition-colors"></i>
+                        <span class="absolute -top-1 -right-1 flex h-2.5 w-2.5">
                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500"></span>
                         </span>
                     </div>
                 </div>
-                <div>
-                    <div class="flex items-center gap-1.5">
-                        <h1 class="text-xl sm:text-2xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400 drop-shadow-[0_2px_10px_rgba(99,102,241,0.3)]">
-                            Jura<span class="text-pink-500">Game</span>
-                        </h1>
-                        <span class="px-1.5 py-0.5 text-[9px] font-black tracking-wider uppercase bg-gradient-to-r from-indigo-600 to-pink-600 text-white rounded-md shadow-sm border border-indigo-400/30">HQ</span>
-                    </div>
-                    <p class="text-[10px] text-slate-400 font-semibold tracking-wider uppercase hidden sm:block">Portal Game HTML5 Gratis</p>
+                <div class="flex items-center gap-1">
+                    <h1 class="text-lg sm:text-2xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">
+                        Jura<span class="text-pink-500">Game</span>
+                    </h1>
+                    <span class="px-1 py-0.5 text-[8px] sm:text-[9px] font-black tracking-wider uppercase bg-gradient-to-r from-indigo-600 to-pink-600 text-white rounded-md shadow-sm border border-indigo-400/30">HQ</span>
                 </div>
-            </div>
+            </a>
             
-            <div class="flex items-center gap-2.5 sm:gap-3">
-                <a href="blog/index.html" class="px-3 py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 text-xs font-bold flex items-center gap-1.5 shadow-sm hover:border-indigo-500/50">
-                    <i data-lucide="book-open" class="w-4 h-4 text-indigo-400"></i>
-                    <span id="blog-nav-label">Blog & Tips</span>
+            <!-- Action Buttons (Optimized Mobile Compact Bar) -->
+            <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
+                <a href="blog/index.html" class="p-2 sm:px-3 sm:py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 text-xs font-bold flex items-center gap-1.5 shadow-sm hover:border-indigo-500/50">
+                    <i data-lucide="book-open" class="w-4 h-4 text-indigo-400 flex-shrink-0"></i>
+                    <span id="blog-nav-label" class="hidden sm:inline">Blog & Tips</span>
                 </a>
 
-                <button onclick="toggleLanguage()" class="px-3 py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 text-xs font-bold flex items-center gap-1.5 shadow-sm hover:border-indigo-500/50">
-                    <i data-lucide="globe" class="w-4 h-4 text-indigo-400"></i>
+                <button onclick="toggleLanguage()" class="px-2.5 py-2 sm:px-3 sm:py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 text-xs font-bold flex items-center gap-1.5 shadow-sm hover:border-indigo-500/50">
+                    <i data-lucide="globe" class="w-4 h-4 text-indigo-400 flex-shrink-0"></i>
                     <span id="lang-label">ID</span>
                 </button>
 
-                <button onclick="toggleSearch()" class="p-2.5 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 focus:outline-none shadow-sm hover:border-indigo-500/50">
-                    <i data-lucide="search" class="w-5 h-5"></i>
+                <button onclick="toggleSearch()" class="p-2 sm:p-2.5 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 focus:outline-none shadow-sm hover:border-indigo-500/50">
+                    <i data-lucide="search" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                 </button>
 
-                <button id="install-btn" onclick="triggerPWAInstall()" class="flex items-center gap-2 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 text-white px-3.5 py-2 rounded-xl font-bold transition-all shadow-lg shadow-indigo-600/30 text-xs hover:scale-105 active:scale-95">
-                    <i data-lucide="download" class="w-4 h-4 animate-bounce"></i>
-                    <span class="hidden sm:inline">Install App</span>
+                <button id="install-btn" onclick="triggerPWAInstall()" class="flex items-center gap-1.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 text-white p-2 sm:px-3.5 sm:py-2 rounded-xl font-bold transition-all shadow-lg shadow-indigo-600/30 text-xs hover:scale-105 active:scale-95">
+                    <i data-lucide="download" class="w-4 h-4 flex-shrink-0 animate-bounce"></i>
+                    <span class="hidden md:inline">Install App</span>
                 </button>
             </div>
         </div>
@@ -418,16 +418,18 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                 
                 <!-- Left: Iframe & Description -->
-                <div class="lg:col-span-8 space-y-4">
-                    <div class="w-full aspect-[4/3] md:aspect-[16/9] bg-black rounded-2xl overflow-hidden relative shadow-2xl border border-slate-800">
-                        <button onclick="toggleFullScreen()" class="absolute top-3 right-3 z-30 px-3 py-2 bg-slate-900/80 hover:bg-slate-800 text-white rounded-xl backdrop-blur border border-slate-700/80 shadow-lg text-xs font-bold flex items-center gap-1.5 transition-all">
-                            <i data-lucide="maximize" class="w-4 h-4 text-indigo-400"></i> <span class="hidden sm:inline" id="btn-fullscreen-txt">Fullscreen</span>
-                        </button>
+        <div class="lg:col-span-8 space-y-4">
+            <div id="game-iframe-wrapper" class="w-full aspect-[4/3] md:aspect-[16/9] bg-black rounded-2xl overflow-hidden relative shadow-2xl border border-slate-800 transition-all duration-300">
+                <button onclick="toggleFullScreen()" class="absolute top-3 right-3 z-30 px-3 py-2 bg-slate-900/80 hover:bg-slate-800 text-white rounded-xl backdrop-blur border border-slate-700/80 shadow-lg text-xs font-bold flex items-center gap-1.5 transition-all">
+                    <i data-lucide="maximize" class="w-4 h-4 text-indigo-400"></i> <span class="hidden sm:inline" id="btn-fullscreen-txt">Fullscreen</span>
+                </button>
 
-                        <div id="iframe-loader" class="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 z-20 gap-3">
-                            <div class="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-                            <span id="txt-loading" class="text-slate-400 font-semibold text-xs">Menyiapkan Game...</span>
-                        </div>
+                <div id="iframe-loader" class="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 z-20 gap-3">
+                    <div class="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+                    <span id="txt-loading" class="text-slate-400 font-semibold text-xs">Menyiapkan Game...</span>
+                </div>
+                <div id="iframe-container" class="absolute inset-0 z-10 w-full h-full"></div>
+            </div>
                         <div id="iframe-container" class="absolute inset-0 z-10 w-full h-full"></div>
                     </div>
 
@@ -1111,14 +1113,39 @@
         }
 
         function toggleFullScreen() {
-            const iframe = document.getElementById('game-iframe-element') || document.getElementById('iframe-container').querySelector('iframe');
-            if (!iframe) return;
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-            } else if (iframe.webkitRequestFullscreen) {
-                iframe.webkitRequestFullscreen();
-            } else if (iframe.msRequestFullscreen) {
-                iframe.msRequestFullscreen();
+            const container = document.getElementById('game-iframe-wrapper');
+            const iframe = document.getElementById('game-iframe-element');
+            if (!container) return;
+
+            // Deteksi apakah perangkat menggunakan iOS / iPhone
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+            if (isIOS || (!document.fullscreenEnabled && !document.webkitFullscreenEnabled)) {
+                // PSEUDO FULLSCREEN (Khusus iPhone / iOS Safari)
+                container.classList.toggle('is-pseudo-fullscreen');
+                if (container.classList.contains('is-pseudo-fullscreen')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
+            } else {
+                // NATIVE FULLSCREEN API (Android & Desktop)
+                const targetElem = iframe || container;
+                if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                    if (targetElem.requestFullscreen) {
+                        targetElem.requestFullscreen();
+                    } else if (targetElem.webkitRequestFullscreen) {
+                        targetElem.webkitRequestFullscreen();
+                    } else if (targetElem.msRequestFullscreen) {
+                        targetElem.msRequestFullscreen();
+                    }
+                } else {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    }
+                }
             }
         }
 
