@@ -9,9 +9,6 @@
     <meta name="description" content="Mainkan ribuan game gratis tanpa install di Jura game. Koleksi free game terbaik mulai dari action, puzzle, balapan, dan arcade.">
     <meta name="keywords" content="game gratis, free game, main game online, game html5, game tanpa install, portal game, jura game">
     <meta name="author" content="Jura game">
-    
-    <!-- Google AdSense Auto Ads Script (Ganti ca-pub-1234567890123456 dengan ID AdSense Anda saat pendaftaran) -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234567890123456" crossorigin="anonymous"></script>
 
     <!-- PWA Theme Color -->
     <meta name="theme-color" content="#020617">
@@ -127,7 +124,6 @@
             scrollbar-width: none;
         }
 
-        /* Fullscreen Fallback Khusus iPhone / iOS Safari */
         .is-pseudo-fullscreen {
             position: fixed !important;
             inset: 0 !important;
@@ -149,7 +145,7 @@
 
 <body class="min-h-screen flex flex-col relative overflow-x-hidden">
 
-    <!-- ==================== ANIMATED BACKGROUND ==================== -->
+    <!-- ANIMATED BACKGROUND -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
         <div class="absolute inset-0 bg-[#020617]"></div>
         <div class="absolute top-[-15%] left-[-10%] w-[55vw] h-[55vw] bg-indigo-600/25 rounded-full filter blur-[120px] animate-blob-1"></div>
@@ -158,11 +154,10 @@
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
     </div>
 
-    <!-- Header / Navbar (RESPONSIVE MOBILE FIXED) -->
+    <!-- Header / Navbar -->
     <header class="glass sticky top-0 z-40 border-b border-indigo-500/10">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 flex justify-between items-center gap-2">
             
-            <!-- Sleek Futuristic Brand Logo (Unified) -->
             <a href="#" onclick="switchView('home'); return false;" class="flex items-center gap-2 sm:gap-2.5 cursor-pointer group flex-shrink-0">
                 <div class="relative flex items-center justify-center">
                     <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl blur-sm opacity-70 group-hover:opacity-100 transition duration-300"></div>
@@ -178,11 +173,11 @@
                     <h1 class="text-lg sm:text-2xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">
                         Jura<span class="text-pink-500">Game</span>
                     </h1>
-                    <span class="px-1 py-0.5 text-[8px] sm:text-[9px] font-black tracking-wider uppercase bg-gradient-to-r from-indigo-600 to-pink-600 text-white rounded-md shadow-sm border border-indigo-400/30">HQ</span>
+                    <span class="px-1.5 py-0.5 text-[8px] sm:text-[9px] font-black tracking-wider uppercase bg-gradient-to-r from-indigo-600 to-pink-600 text-white rounded-md shadow-sm border border-indigo-400/30">HQ</span>
                 </div>
             </a>
             
-            <!-- Action Buttons (Optimized Mobile Compact Bar) -->
+            <!-- Action Buttons -->
             <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
                 <a href="blog/index.html" class="p-2 sm:px-3 sm:py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 text-xs font-bold flex items-center gap-1.5 shadow-sm hover:border-indigo-500/50">
                     <i data-lucide="book-open" class="w-4 h-4 text-indigo-400 flex-shrink-0"></i>
@@ -209,7 +204,7 @@
         <div id="search-container" class="hidden absolute top-full left-0 w-full glass-modal border-b border-slate-800 p-4 z-30 shadow-2xl">
             <div class="max-w-3xl mx-auto relative flex items-center">
                 <i data-lucide="search" class="w-5 h-5 absolute left-4 text-slate-400"></i>
-                <input type="text" id="search-input" onkeyup="handleSearch(event)" placeholder="Cari game..." class="w-full bg-slate-900/90 border border-slate-700 rounded-xl py-3 pl-12 pr-10 text-white focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/25 transition-all text-sm">
+                <input type="text" id="search-input" onkeyup="handleSearch(event)" placeholder="Cari game (misal: Puzzle, Racing)..." class="w-full bg-slate-900/90 border border-slate-700 rounded-xl py-3 pl-12 pr-10 text-white focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/25 transition-all text-sm">
                 <button onclick="clearSearch()" id="clear-search-btn" class="hidden absolute right-4 text-slate-400 hover:text-rose-400 transition-colors">
                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
@@ -217,12 +212,11 @@
         </div>
     </header>
 
-    <!-- ==================== MAIN VIEWS CONTAINER ==================== -->
     <div id="main-view-container" class="flex-grow flex flex-col w-full">
         
         <!-- HOME VIEW -->
         <div id="view-home" class="space-y-8 w-full">
-            <!-- Dynamic Hero Banner with Visual Stats -->
+            <!-- Hero Banner -->
             <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2 w-full">
                 <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-indigo-950/90 via-slate-900/95 to-purple-950/90 border border-indigo-500/30 p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl backdrop-blur-md">
                     
@@ -232,34 +226,31 @@
                     <div class="relative z-10 max-w-xl space-y-4">
                         <div class="flex flex-wrap items-center gap-2">
                             <span id="hero-badge" class="inline-flex items-center gap-1.5 py-1.5 px-3.5 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold uppercase tracking-wider border border-indigo-500/30">
-                                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i> Free Game Portal
+                                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i> Portal Game Gratis
                             </span>
                             <span class="inline-flex items-center gap-1 py-1.5 px-3 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-500/30">
-                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> 100% Online
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Bebas Install
                             </span>
                         </div>
 
                         <h2 id="hero-title" class="text-2xl sm:text-4xl font-black text-white leading-tight drop-shadow">
-                            Mainkan Ribuan Game <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">Tanpa Install</span>
+                            Mainkan Game HTML5 Terbaik <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">Langsung di Browser</span>
                         </h2>
-                        <p id="hero-desc" class="text-slate-300 text-sm sm:text-base leading-relaxed">Nikmati pengalaman bermain game HTML5 terbaik langsung dari browser kamu. Cepat, ringan, dan 100% gratis!</p>
+                        <p id="hero-desc" class="text-slate-300 text-sm sm:text-base leading-relaxed">Nikmati pengalaman bermain game HTML5 kasual terbaik langsung dari smartphone atau PC Anda. Cepat, ringan, dan 100% gratis!</p>
                         
                         <!-- Quick Stats Badges -->
-                        <div class="grid grid-cols-3 gap-2 py-2 max-w-md">
+                        <div class="grid grid-cols-2 gap-3 py-2 max-w-sm">
                             <div class="glass-card p-2.5 rounded-xl border border-slate-700/60 text-center">
-                                <div class="text-indigo-400 font-black text-base sm:text-lg">500+</div>
-                                <div class="text-[10px] text-slate-400 font-semibold uppercase">Game Gratis</div>
+                                <div class="text-indigo-400 font-black text-base sm:text-lg">Koleksi Luas</div>
+                                <div class="text-[10px] text-slate-400 font-semibold uppercase">500+ Games</div>
                             </div>
                             <div class="glass-card p-2.5 rounded-xl border border-slate-700/60 text-center">
                                 <div class="text-purple-400 font-black text-base sm:text-lg">⚡ Instant</div>
                                 <div class="text-[10px] text-slate-400 font-semibold uppercase">Tanpa Unduh</div>
                             </div>
-                            <div class="glass-card p-2.5 rounded-xl border border-slate-700/60 text-center">
-                                <div class="text-pink-400 font-black text-base sm:text-lg">★ 4.9</div>
-                                <div class="text-[10px] text-slate-400 font-semibold uppercase">Rating Komunitas</div>
-                            </div>
                         </div>
 
+                        <!-- Categories Chips -->
                         <div class="flex flex-wrap gap-2 pt-1" id="category-chips"></div>
                     </div>
                     
@@ -276,8 +267,10 @@
             </section>
 
             <!-- Games Sections Content -->
-            <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 w-full space-y-8">
-                <section id="recent-section" class="hidden space-y-3">
+            <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 w-full space-y-10">
+                
+                <!-- 1. Recent Section -->
+                <section id="recent-section" class="hidden space-y-4">
                     <div class="flex justify-between items-center">
                         <h3 id="txt-recent" class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
                             <i data-lucide="history" class="w-5 h-5 text-indigo-400"></i> Game Terakhir Dimainkan
@@ -287,7 +280,8 @@
                     <div id="recent-grid" class="flex gap-4 overflow-x-auto pb-3 no-scrollbar scroll-smooth"></div>
                 </section>
 
-                <section id="recommended-section" class="hidden space-y-3">
+                <!-- 2. Recommended Section -->
+                <section id="recommended-section" class="hidden space-y-4">
                     <div class="flex justify-between items-center">
                         <h3 id="txt-recommended" class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
                             <i data-lucide="flame" class="w-5 h-5 text-amber-400"></i> Rekomendasi Untuk Kamu
@@ -297,7 +291,8 @@
                     <div id="recommended-grid" class="flex gap-4 overflow-x-auto pb-3 no-scrollbar scroll-smooth"></div>
                 </section>
 
-                <section id="popular-section" class="space-y-3">
+                <!-- 3. Popular Section -->
+                <section id="popular-section" class="space-y-4">
                     <div class="flex justify-between items-center">
                         <h3 id="txt-popular" class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
                             <i data-lucide="trending-up" class="w-5 h-5 text-pink-400"></i> Game Terpopuler
@@ -306,15 +301,18 @@
                     <div id="popular-grid" class="flex gap-4 overflow-x-auto pb-3 no-scrollbar scroll-smooth"></div>
                 </section>
 
-                <section class="space-y-4">
-                    <div class="flex justify-between items-end">
+                <!-- 4. All Games Grid -->
+                <section class="space-y-4 pt-4 border-t border-slate-800/50">
+                    <div class="flex justify-between items-end pb-2">
                         <h3 id="section-title" class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
-                            <i data-lucide="grid" class="w-5 h-5 text-indigo-400"></i> Semua Game
+                            <i data-lucide="gamepad-2" class="w-5 h-5 text-indigo-400"></i> Semua Game
                         </h3>
                     </div>
+                    
                     <div id="skeleton-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"></div>
                     <div id="games-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 hidden"></div>
-                    <div class="flex justify-center pt-4">
+                    
+                    <div class="flex justify-center pt-6">
                         <button id="load-more-btn" onclick="loadMore()" class="hidden px-6 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl text-white font-semibold transition-all shadow-lg text-xs sm:text-sm hover:border-indigo-500/50">
                             Muat Lebih Banyak
                         </button>
@@ -333,9 +331,8 @@
             <div class="space-y-3">
                 <span class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold border border-indigo-500/30">Artikel & Tips Gaming</span>
                 <h2 class="text-3xl font-black text-white">Jura Blog & Update Game</h2>
-                <p class="text-slate-400 text-sm">Informasi seputar game HTML5 terbaru, tips bermain, dan ulasan ringan. Konten disinkronisasi secara otomatis!</p>
+                <p class="text-slate-400 text-sm">Informasi seputar game HTML5 terbaru, tips bermain, dan ulasan ringan.</p>
             </div>
-            
             <div id="blog-articles-list" class="space-y-6"></div>
         </div>
 
@@ -348,30 +345,27 @@
         </div>
     </div>
 
-    <!-- ==================== FOOTER ==================== -->
+    <!-- Footer -->
     <footer class="border-t border-slate-800 bg-slate-900/90 backdrop-blur-md mt-16 py-12 px-4 sm:px-6 lg:px-8 text-slate-400 text-xs space-y-8">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            <!-- Col 1: Brand -->
             <div class="space-y-3">
                 <div class="flex items-center gap-2.5">
                     <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-600 to-pink-500 flex items-center justify-center text-white font-black">J</div>
                     <span class="text-white font-black text-base">Jura game</span>
                 </div>
-                <p class="text-slate-500 leading-relaxed">Portal game HTML5 gratis terbaik tanpa unduhan. Mainkan kapan saja di perangkat seluler maupun komputer Anda.</p>
+                <p class="text-slate-500 leading-relaxed">Portal game HTML5 gratis terbaik tanpa unduhan. Mainkan kapan saja di perangkat seluler maupun komputer Anda dengan lancar.</p>
             </div>
 
-            <!-- Col 2: Kategori Populer -->
             <div class="space-y-3">
                 <h4 class="text-white font-bold text-sm">Kategori Utama</h4>
                 <ul class="space-y-2">
-                    <li><a href="#" onclick="filterByCategory('Racing'); switchView('home'); return false;" class="hover:text-white transition">Racing Games</a></li>
+                    <li><a href="#" onclick="filterByCategory('Action'); switchView('home'); return false;" class="hover:text-white transition font-semibold text-indigo-400">⚔️ Action & Adventure</a></li>
                     <li><a href="#" onclick="filterByCategory('Puzzle'); switchView('home'); return false;" class="hover:text-white transition">Puzzle & Logika</a></li>
-                    <li><a href="#" onclick="filterByCategory('Action'); switchView('home'); return false;" class="hover:text-white transition">Action & Shooting</a></li>
-                    <li><a href="#" onclick="filterByCategory('Arcade'); switchView('home'); return false;" class="hover:text-white transition">Arcade Klasik</a></li>
+                    <li><a href="#" onclick="filterByCategory('Merge'); switchView('home'); return false;" class="hover:text-white transition">Merge & Matching</a></li>
+                    <li><a href="#" onclick="filterByCategory('Racing'); switchView('home'); return false;" class="hover:text-white transition">Racing Games</a></li>
                 </ul>
             </div>
 
-            <!-- Col 3: Informasi & Blog -->
             <div class="space-y-3">
                 <h4 class="text-white font-bold text-sm">Eksplorasi</h4>
                 <ul class="space-y-2">
@@ -381,7 +375,6 @@
                 </ul>
             </div>
 
-            <!-- Col 4: Kebijakan (Syarat AdSense) -->
             <div class="space-y-3">
                 <h4 class="text-white font-bold text-sm">Legal & Kebijakan</h4>
                 <ul class="space-y-2">
@@ -392,12 +385,12 @@
         </div>
 
         <div class="max-w-7xl mx-auto pt-8 border-t border-slate-800/80 text-center space-y-2">
-            <p id="footer-text" class="font-bold text-slate-400">&copy; 2026 Jura game. Semua hak cipta game dimiliki oleh developer terkait.</p>
-            <p class="text-slate-500">Free games online & HTML5 portal gaming platform.</p>
+            <p id="footer-text" class="font-bold text-slate-400">&copy; 2026 Jura game. Semua hak cipta game dimiliki oleh developer masing-masing.</p>
+            <p class="text-slate-500">Free games online portal platform.</p>
         </div>
     </footer>
 
-    <!-- ==================== GAME PLAYER HUB MODAL ==================== -->
+    <!-- GAME PLAYER HUB MODAL -->
     <div id="game-modal" class="fixed inset-0 z-50 hidden flex-col glass-modal transition-all duration-300 opacity-0 overflow-y-auto">
         <div class="glass sticky top-0 z-40 px-4 sm:px-8 py-3.5 flex justify-between items-center border-b border-slate-800">
             <div class="flex items-center gap-3 overflow-hidden">
@@ -417,7 +410,6 @@
         <div class="max-w-7xl mx-auto w-full p-4 sm:p-6 lg:p-8 flex-grow space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                 
-                <!-- Left: Iframe & Description -->
                 <div class="lg:col-span-8 space-y-4">
                     <div id="game-iframe-wrapper" class="w-full aspect-[4/3] md:aspect-[16/9] bg-black rounded-2xl overflow-hidden relative shadow-2xl border border-slate-800 transition-all duration-300">
                         <button onclick="toggleFullScreen()" class="absolute top-3 right-3 z-30 px-3 py-2 bg-slate-900/80 hover:bg-slate-800 text-white rounded-xl backdrop-blur border border-slate-700/80 shadow-lg text-xs font-bold flex items-center gap-1.5 transition-all">
@@ -431,7 +423,6 @@
                         <div id="iframe-container" class="absolute inset-0 z-10 w-full h-full"></div>
                     </div>
 
-                    <!-- Game Info Card -->
                     <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-2xl p-5 space-y-3">
                         <div class="flex items-center justify-between gap-2 flex-wrap">
                             <h2 id="desc-game-title" class="text-lg font-black text-white"></h2>
@@ -440,14 +431,12 @@
                         <p id="desc-game-text" class="text-slate-300 text-xs sm:text-sm leading-relaxed break-words"></p>
                     </div>
 
-                    <!-- Ad Slot Banner Ready -->
                     <div class="bg-slate-900/40 border border-dashed border-slate-800 rounded-2xl p-4 text-center">
                         <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500">Ruang Iklan Banner (AdSense Ready)</span>
                         <div class="h-20 flex items-center justify-center text-slate-600 text-xs">Responsive Ad Slot (728x90)</div>
                     </div>
                 </div>
 
-                <!-- Right: Sidebar Popular -->
                 <div class="lg:col-span-4 space-y-4">
                     <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 rounded-2xl p-4 space-y-3">
                         <h4 class="text-white font-bold text-sm flex items-center gap-2">
@@ -474,50 +463,15 @@
         <span id="toastMsg" class="text-sm font-medium">Tautan berhasil disalin!</span>
     </div>
 
-    <!-- PWA Install Modal Guide -->
-    <div id="pwa-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 glass-modal transition-all duration-300 opacity-0">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 max-w-md w-full space-y-5 shadow-2xl relative">
-            <button onclick="closePWAModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg bg-slate-800/60 border border-slate-700">
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-
-            <div class="flex items-center gap-3">
-                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-pink-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-600/40">
-                    J
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-white">Install Aplikasi Jura Game</h3>
-                    <p class="text-xs text-slate-400">Mainkan game gratis lebih cepat langsung dari layar utama</p>
-                </div>
-            </div>
-
-            <div class="space-y-3 bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80 text-xs text-slate-300">
-                <p class="font-bold text-indigo-400 flex items-center gap-1.5">
-                    <i data-lucide="smartphone" class="w-4 h-4"></i> Cara Install Manual:
-                </p>
-                <ol class="list-decimal list-inside space-y-2 text-slate-300 leading-relaxed pl-1">
-                    <li>Klik ikon <strong class="text-white">Opsi / Bagikan</strong> di browser Anda.</li>
-                    <li>Pilih menu <strong class="text-white font-semibold">"Tambahkan ke Layar Utama"</strong>.</li>
-                    <li>Konfirmasi instalasi aplikasi.</li>
-                </ol>
-            </div>
-
-            <button onclick="closePWAModal()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-indigo-600/30">
-                Saya Mengerti
-            </button>
-        </div>
-    </div>
-
-    <!-- Script Utama -->
     <script>
         const i18n = {
             id: {
                 langCode: 'ID',
                 blogNav: 'Blog & Tips',
-                badge: 'Free Game Portal',
-                heroTitle: 'Mainkan Ribuan Game <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">Tanpa Install</span>',
-                heroDesc: 'Nikmati pengalaman bermain game HTML5 terbaik langsung dari browser kamu. Cepat, ringan, dan 100% gratis!',
-                searchPlaceholder: 'Cari game (misal: Racing, Puzzle, Zombie)...',
+                badge: 'Portal Game Gratis',
+                heroTitle: 'Mainkan Game HTML5 Terbaik <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">Langsung di Browser</span>',
+                heroDesc: 'Nikmati pengalaman bermain game HTML5 kasual terbaik langsung dari smartphone atau PC Anda. Cepat, ringan, dan 100% gratis!',
+                searchPlaceholder: 'Cari game (misal: Puzzle, Racing)...',
                 recentTitle: 'Game Terakhir Dimainkan',
                 clearHistory: 'Hapus Riwayat',
                 recommendedTitle: 'Rekomendasi Untuk Kamu',
@@ -528,25 +482,24 @@
                 loadMore: 'Muat Lebih Banyak',
                 loading: 'Menyiapkan Game...',
                 errorText: 'Gagal memuat game.',
-                footer: '&copy; 2026 Jura game. Semua hak cipta game dimiliki oleh developer terkait.',
+                footer: '&copy; 2026 Jura game. Semua hak cipta game dimiliki oleh developer masing-masing.',
                 similarTitle: 'Game Populer Lainnya',
                 similarGridTitle: 'Game Serupa yang Mungkin Kamu Suka',
                 fullscreenBtn: 'Layar Penuh',
                 linkCopied: 'Tautan game berhasil disalin!',
                 defaultDescId: 'Mainkan game seru ini langsung di browser kamu secara gratis tanpa perlu mendownload aplikasi tambahan. Rasakan keseruan tantangannya!',
                 categories: {
-                    ALL: 'Semua', Racing: 'Racing', Shooting: 'Shooting', Zombie: 'Zombie', 
-                    Multiplayer: 'Multiplayer', Sports: 'Sports', Horror: 'Horror', 
-                    Puzzle: 'Puzzle', Girls: 'Girls', Arcade: 'Arcade'
+                    ALL: 'Semua', Puzzle: 'Puzzle', Merge: 'Merge', 
+                    Racing: 'Racing', Shooting: 'Shooting', Zombie: 'Zombie', Arcade: 'Arcade'
                 }
             },
             en: {
                 langCode: 'EN',
                 blogNav: 'Blog & Tips',
                 badge: 'Free Game Portal',
-                heroTitle: 'Play Thousands of Games <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">No Install Required</span>',
-                heroDesc: 'Enjoy the best HTML5 games instantly from your browser, fast and 100% free!',
-                searchPlaceholder: 'Search games (e.g., Racing, Puzzle, Zombie)...',
+                heroTitle: 'Play Best HTML5 Games <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">Directly in Browser</span>',
+                heroDesc: 'Enjoy top casual HTML5 games instantly from your smartphone or PC. Fast, lightweight, and 100% free!',
+                searchPlaceholder: 'Search games (e.g., Puzzle, Racing)...',
                 recentTitle: 'Recently Played',
                 clearHistory: 'Clear History',
                 recommendedTitle: 'Recommended For You',
@@ -564,9 +517,8 @@
                 linkCopied: 'Game link copied to clipboard!',
                 defaultDescEn: 'Play this exciting game directly in your browser for free with no downloads required. Enjoy the challenge!',
                 categories: {
-                    ALL: 'All', Racing: 'Racing', Shooting: 'Shooting', Zombie: 'Zombie', 
-                    Multiplayer: 'Multiplayer', Sports: 'Sports', Horror: 'Horror', 
-                    Puzzle: 'Puzzle', Girls: 'Girls', Arcade: 'Arcade'
+                    ALL: 'All', Puzzle: 'Puzzle', Merge: 'Merge', 
+                    Racing: 'Racing', Shooting: 'Shooting', Zombie: 'Zombie', Arcade: 'Arcade'
                 }
             }
         };
@@ -574,34 +526,19 @@
         const staticPages = {
             privacy: {
                 title: 'Kebijakan Privasi (Privacy Policy)',
-                content: `
-                    <h3 class="text-xl font-bold text-white mb-2">Kebijakan Privasi untuk Jura Game</h3>
-                    <p>Di Jura Game, yang dapat diakses melalui portal kami, privasi pengunjung adalah salah satu prioritas utama kami. Dokumen Kebijakan Privasi ini berisi jenis informasi yang dikumpulkan dan dicatat oleh Jura Game serta bagaimana kami menggunakannya.</p>
-                    <h4 class="text-lg font-bold text-white mt-4 mb-1">File Log (Log Files)</h4>
-                    <p>Jura Game mengikuti prosedur standar menggunakan file log. File-file ini mencatat pengunjung ketika mereka mengunjungi situs web. Semua perusahaan hosting melakukan ini dan merupakan bagian dari analisis layanan hosting.</p>
-                `
+                content: `<h3 class="text-xl font-bold text-white mb-2">Kebijakan Privasi untuk Jura Game</h3><p>Di Jura Game, privasi pengunjung adalah prioritas utama kami.</p>`
             },
             terms: {
                 title: 'Syarat & Ketentuan (Terms of Service)',
-                content: `
-                    <h3 class="text-xl font-bold text-white mb-2">Syarat dan Ketentuan Penggunaan</h3>
-                    <p>Selamat datang di Jura Game! Syarat dan ketentuan ini menggariskan aturan dan regulasi untuk penggunaan Situs Web Jura Game.</p>
-                `
+                content: `<h3 class="text-xl font-bold text-white mb-2">Syarat dan Ketentuan Penggunaan</h3><p>Selamat datang di Jura Game! Aturan ini menggariskan regulasi situs.</p>`
             },
             about: {
                 title: 'Tentang Kami (About Us)',
-                content: `
-                    <h3 class="text-xl font-bold text-white mb-2">Tentang Jura Game</h3>
-                    <p>Jura Game adalah platform direktori game HTML5 online gratis terdepan yang dirancang untuk memberikan hiburan cepat tanpa memerlukan proses instalasi aplikasi atau unduhan berat.</p>
-                `
+                content: `<h3 class="text-xl font-bold text-white mb-2">Tentang Jura Game</h3><p>Jura Game adalah portal game HTML5 online gratis tanpa instalasi.</p>`
             },
             contact: {
                 title: 'Hubungi Kami (Contact Us)',
-                content: `
-                    <h3 class="text-xl font-bold text-white mb-2">Hubungi Tim Jura Game</h3>
-                    <p>Jika Anda memiliki pertanyaan, saran, atau kendala terkait penayangan game di portal kami, jangan ragu untuk menghubungi tim dukungan kami.</p>
-                    <p class="mt-3">Email resmi: <strong class="text-indigo-400">support@juragame.com</strong></p>
-                `
+                content: `<h3 class="text-xl font-bold text-white mb-2">Hubungi Tim Jura Game</h3><p>Email resmi: <strong class="text-indigo-400">support@juragame.com</strong></p>`
             }
         };
 
@@ -614,7 +551,6 @@
         const itemsPerPage = 18;
         let currentCategory = 'ALL';
         let activeGameObj = null;
-        let deferredPWAInstallPrompt = null;
 
         function slugify(text) {
             if (!text) return 'game';
@@ -625,173 +561,99 @@
                 .replace(/\-\-+/g, '-');
         }
 
-        function init() {
-            applyLanguageTexts();
-            renderSkeletons(12);
-            renderCategories('ALL');
-            fetchGames();
-            setupPWA();
-
-            window.addEventListener('popstate', (e) => {
-                const params = new URLSearchParams(window.location.search);
-                const gameSlug = params.get('game');
-                if (gameSlug && allGamesData.length > 0) {
-                    const found = allGamesData.find(g => slugify(g.title) === gameSlug);
-                    if (found) {
-                        openGame(found.url, found.title, found.category || 'Arcade', found.thumb, encodeURIComponent(found.description || ''), true);
-                        return;
-                    }
-                }
-                closeGame(true);
-            });
-        }
-
-        function switchView(viewName) {
-            document.getElementById('view-home').classList.add('hidden');
-            document.getElementById('view-blog').classList.add('hidden');
-            document.getElementById('view-page').classList.add('hidden');
-
-            if (viewName === 'home') {
-                document.getElementById('view-home').classList.remove('hidden');
-            } else if (viewName === 'blog') {
-                window.location.href = 'blog/index.html';
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function openStaticPage(pageKey) {
-            const page = staticPages[pageKey];
-            if (!page) return;
-            
-            document.getElementById('view-home').classList.add('hidden');
-            document.getElementById('view-blog').classList.add('hidden');
-            document.getElementById('view-page').classList.remove('hidden');
-
-            document.getElementById('static-page-content').innerHTML = `
-                <h2 class="text-2xl font-black text-white mb-4">${page.title}</h2>
-                <div class="space-y-4 text-slate-300">${page.content}</div>
-            `;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function toggleLanguage() {
-            currentLang = currentLang === 'id' ? 'en' : 'id';
-            try { localStorage.setItem('jura_lang', currentLang); } catch(e) {}
-            applyLanguageTexts();
-            renderCategories(currentCategory);
-            renderRecentSection();
-            renderRecommendedSection();
-            updateSectionTitles();
-            if (activeGameObj) renderGameDescription(activeGameObj);
-        }
-
-        function applyLanguageTexts() {
-            const t = i18n[currentLang];
-            document.getElementById('html-root').lang = currentLang;
-            document.getElementById('lang-label').textContent = t.langCode;
-            document.getElementById('blog-nav-label').textContent = t.blogNav;
-            document.getElementById('hero-badge').innerHTML = `<i data-lucide="sparkles" class="w-3.5 h-3.5"></i> ${t.badge}`;
-            document.getElementById('hero-title').innerHTML = t.heroTitle;
-            document.getElementById('hero-desc').textContent = t.heroDesc;
-            document.getElementById('search-input').placeholder = t.searchPlaceholder;
-            document.getElementById('txt-recent').innerHTML = `<i data-lucide="history" class="w-5 h-5 text-indigo-400"></i> ${t.recentTitle}`;
-            document.getElementById('txt-clear').textContent = t.clearHistory;
-            document.getElementById('txt-recommended').innerHTML = `<i data-lucide="flame" class="w-5 h-5 text-amber-400"></i> ${t.recommendedTitle}`;
-            document.getElementById('rec-subtitle').textContent = t.recSubtitle;
-            document.getElementById('txt-popular').innerHTML = `<i data-lucide="trending-up" class="w-5 h-5 text-pink-400"></i> ${t.popularTitle}`;
-            document.getElementById('load-more-btn').textContent = t.loadMore;
-            document.getElementById('txt-loading').textContent = t.loading;
-            document.getElementById('txt-error').textContent = t.errorText;
-            document.getElementById('footer-text').innerHTML = t.footer;
-            
-            const txtSimilar = document.getElementById('txt-similar');
-            if (txtSimilar) txtSimilar.textContent = t.similarTitle;
-
-            const txtSimilarGrid = document.getElementById('txt-similar-grid');
-            if (txtSimilarGrid) txtSimilarGrid.textContent = t.similarGridTitle;
-
-            const btnFullscreenTxt = document.getElementById('btn-fullscreen-txt');
-            if (btnFullscreenTxt) btnFullscreenTxt.textContent = t.fullscreenBtn;
-            
-            if (window.lucide) lucide.createIcons();
-        }
-
-        function updateSectionTitles() {
-            const t = i18n[currentLang];
-            let titleText = currentCategory === 'ALL' ? t.allGames : `${t.categoryLabel} ${t.categories[currentCategory] || currentCategory}`;
-            document.getElementById('section-title').innerHTML = `<i data-lucide="grid" class="w-5 h-5 text-indigo-400"></i> ${titleText}`;
-            if (window.lucide) lucide.createIcons();
-        }
-
-        const categoryKeys = ['ALL', 'Racing', 'Shooting', 'Zombie', 'Multiplayer', 'Sports', 'Horror', 'Puzzle', 'Girls', 'Arcade'];
-        const categoryIcons = {
-            ALL: '🎮', Racing: '🏎️', Shooting: '🎯', Zombie: '🧟', Multiplayer: '👥',
-            Sports: '⚽', Horror: '👻', Puzzle: '🧩', Girls: '🎀', Arcade: '🕹️'
-        };
-
-        function renderCategories(activeCat) {
-            const t = i18n[currentLang];
-            document.getElementById('category-chips').innerHTML = categoryKeys.map(catKey => {
-                const label = t.categories[catKey] || catKey;
-                const icon = categoryIcons[catKey] || '🎮';
-                return `
-                    <button onclick="filterByCategory('${catKey}')" 
-                            class="px-3.5 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 border whitespace-nowrap
-                            ${catKey === activeCat 
-                                ? 'bg-indigo-600 text-white border-indigo-500 shadow-lg shadow-indigo-600/30' 
-                                : 'bg-slate-800/80 text-slate-300 border-slate-700/60 hover:bg-slate-700 hover:text-white'}">
-                        <span>${icon}</span> ${label}
-                    </button>
-                `;
-            }).join('');
-        }
-
-        function renderSkeletons(count) {
-            document.getElementById('games-grid').classList.add('hidden');
-            document.getElementById('error-message').classList.add('hidden');
-            document.getElementById('skeleton-grid').classList.remove('hidden');
+        function renderSkeletons(count = 12) {
+            const skelGrid = document.getElementById('skeleton-grid');
+            if (!skelGrid) return;
+            skelGrid.classList.remove('hidden');
+            const gamesGrid = document.getElementById('games-grid');
+            if (gamesGrid) gamesGrid.classList.add('hidden');
             
             let html = '';
-            for(let i=0; i<count; i++) {
+            for (let i = 0; i < count; i++) {
                 html += `
-                <div class="bg-slate-900/60 rounded-2xl overflow-hidden border border-slate-800 p-2.5 space-y-2 animate-pulse">
-                    <div class="aspect-[4/3] rounded-xl bg-slate-800"></div>
-                    <div class="h-4 bg-slate-800 rounded w-3/4"></div>
-                </div>`;
+                    <div class="animate-pulse space-y-2">
+                        <div class="aspect-[4/3] bg-slate-800/80 rounded-2xl border border-slate-800"></div>
+                        <div class="h-3 bg-slate-800/80 rounded-md w-3/4"></div>
+                    </div>
+                `;
             }
-            document.getElementById('skeleton-grid').innerHTML = html;
+            skelGrid.innerHTML = html;
+        }
+
+        function normalizeGameData(item, sourceName = 'GM') {
+            const title = item.Title || item.title || 'Game';
+            const url = item["Game URL"] || item.url || '';
+            
+            let rawCat = 'Arcade';
+            if (item.Genres && Array.isArray(item.Genres) && item.Genres.length > 0) {
+                rawCat = item.Genres[0];
+            } else if (item.Category || item.category) {
+                const cat = item.Category || item.category;
+                rawCat = Array.isArray(cat) ? cat[0] : cat;
+            }
+
+            let category = rawCat.toString().replace(/-/g, ' ');
+            category = category.charAt(0).toUpperCase() + category.slice(1);
+
+            let thumb = 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&q=80';
+            if (item.banner_image) thumb = item.banner_image;
+            else if (item.Assets && Array.isArray(item.Assets) && item.Assets.length > 0) thumb = item.Assets[0];
+            else if (item.thumb) thumb = item.thumb;
+            else if (item.image) thumb = item.image;
+            else if (item.thumbnailUrl) thumb = item.thumbnailUrl;
+
+            const description = item.Description || item.description || '';
+            const tags = item.Tags ? (Array.isArray(item.Tags) ? item.Tags.join(', ') : item.Tags) : (item.tags || item.namespace || item.category || '');
+            
+            return {
+                id: item.Id || item.id || slugify(title),
+                title: title,
+                url: url,
+                category: category,
+                thumb: thumb,
+                description: description,
+                tags: tags,
+                source: sourceName
+            };
         }
 
         async function fetchGames() {
             renderSkeletons(18);
-            const apiUrl = 'https://rss.gamemonetize.com/rssfeed.php?format=json&type=html5&amount=200';
+            
+            const gmUrl = 'https://rss.gamemonetize.com/rssfeed.php?format=json&type=html5&amount=60';
+            const gpUrl = 'https://feeds.gamepix.com/v2/json?sid=MUGAR&pagination=96&page=1';
+            
+            let listGM = [], listGP = [];
 
             try {
-                const response = await fetch(apiUrl);
-                if (!response.ok) throw new Error('Network error');
-                
-                const data = await response.json();
-                
-                if (Array.isArray(data) && data.length > 0) {
-                    allGamesData = data;
-                } else if (data && typeof data === 'object' && Array.isArray(data.games) && data.games.length > 0) {
-                    allGamesData = data.games;
-                } else {
-                    throw new Error('Data bukan berbentuk array');
+                const resGM = await fetch(gmUrl);
+                if (resGM.ok) {
+                    const dataGM = await resGM.json();
+                    let hits = Array.isArray(dataGM) ? dataGM : (dataGM.segments?.[0]?.hits || []);
+                    listGM = hits.map(g => normalizeGameData(g, 'GM'));
                 }
+            } catch (e) { console.warn('GM fetch warning:', e); }
 
-            } catch (error) {
-                console.warn('Gagal memuat API, memuat game cadangan...', error);
-                allGamesData = [
-                    { id: "1", title: "Nexus 3D Puzzle", category: "Puzzle", description: "A futuristic 3D puzzle game testing your logic and alignment skills.", thumb: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&q=80", url: "https://html5.gamemonetize.co/t2g02eck3p4xyck3xc247ti5nuwl8gaf/" },
-                    { id: "2", title: "Crash Racing Pro", category: "Racing", description: "Extreme high-speed racing simulation with amazing tracks and physics.", thumb: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&q=80", url: "https://html5.gamemonetize.co/sghhzevs4m8qtb1mgjjryhl1dur7nxvh/" },
-                    { id: "3", title: "Super Grotto Shooter", category: "Shooting", description: "Action-packed shooter adventure inside mysterious alien caves.", thumb: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&q=80", url: "https://html5.gamemonetize.co/7y3k24fp7z5jjun4841k3m7btov33b4y/" },
-                    { id: "4", title: "Zombie Apoc Survival", category: "Zombie", description: "Survive the endless waves of zombies.", thumb: "https://images.unsplash.com/photo-1506544777-64cfbe1142df?w=500&q=80", url: "https://html5.gamemonetize.co/t2g02eck3p4xyck3xc247ti5nuwl8gaf/" },
-                    { id: "5", title: "Arcade Retro King", category: "Arcade", description: "Classic retro arcade action.", thumb: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=500&q=80", url: "https://html5.gamemonetize.co/sghhzevs4m8qtb1mgjjryhl1dur7nxvh/" },
-                    { id: "6", title: "Soccer Penalty Pro", category: "Sports", description: "Score the winning penalty.", thumb: "https://images.unsplash.com/photo-1508344928928-7137b29de218?w=500&q=80", url: "https://html5.gamemonetize.co/7y3k24fp7z5jjun4841k3m7btov33b4y/" }
+            try {
+                const resGP = await fetch(gpUrl);
+                if (resGP.ok) {
+                    const dataGP = await resGP.json();
+                    let items = dataGP.items || dataGP.data || [];
+                    listGP = items.map(g => normalizeGameData(g, 'GP'));
+                }
+            } catch (e) { console.warn('GP fetch warning:', e); }
+
+            // Combine both GameMonetize (GM) and GamePix (GP) and shuffle for best mixing
+            allGamesData = [...listGM, ...listGP].sort(() => Math.random() - 0.5);
+
+            if (allGamesData.length === 0) {
+                const dummy = [
+                    {title: "Prism Match 3D", category: "Puzzle", url: "https://play.gamepix.com/prism-match-3d/embed?sid=MUGAR", thumb: "https://img.gamepix.com/games/prism-match-3d/cover/prism-match-3d.png?w=320", source: "GP"},
+                    {title: "Bubble Game 3", category: "Arcade", url: "https://html5.gamedistribution.com/27673bc45d2e4b27b7cd24e422f7c257", thumb: "https://img.gamedistribution.com/27673bc45d2e4b27b7cd24e422f7c257-512x384.jpg", source: "GM"}
                 ];
+                allGamesData = dummy.map(g => normalizeGameData(g, g.source));
             }
-            
+
             renderPopularSection(allGamesData.slice(0, 10));
             renderRecentSection(); 
             renderRecommendedSection(); 
@@ -849,13 +711,15 @@
             const category = game.category || 'Arcade';
             const thumb = game.thumb || 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&q=80';
             
+            let badgeSource = game.source || 'GM';
+            let badgeBg = badgeSource === 'GP' ? 'bg-cyan-500/30 text-cyan-300 border-cyan-500/40' : 'bg-indigo-500/30 text-indigo-300 border-indigo-500/40';
+            
             return `
                 <div class="game-card group cursor-pointer space-y-2 ${cardWidth}" 
                      onclick="openGame('${game.url}', '${escapeTitle}', '${category}', '${thumb}', '${encodeURIComponent(game.description || '')}')">
                     <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 group-hover:border-indigo-500 group-hover:shadow-xl group-hover:shadow-indigo-500/20 transition-all duration-300">
                         <img src="${thumb}" alt="${escapeTitle}" loading="lazy" class="w-full h-full object-cover">
                         
-                        <!-- Overlay Badges -->
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-3">
                             <span class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 to-pink-600 text-white text-xs font-black flex items-center gap-1 shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform">
                                 <i data-lucide="play" class="w-3.5 h-3.5 fill-white"></i> Play Now
@@ -866,8 +730,8 @@
                             ${category}
                         </span>
 
-                        <span class="absolute top-2 right-2 px-1.5 py-0.5 rounded-md bg-amber-500/20 backdrop-blur text-[9px] font-black text-amber-300 border border-amber-500/40 flex items-center gap-0.5">
-                            ★ 4.8
+                        <span class="absolute top-2 right-2 px-1.5 py-0.5 rounded-md backdrop-blur text-[9px] font-black border ${badgeBg}">
+                            ${badgeSource}
                         </span>
                     </div>
                     <div>
@@ -945,7 +809,8 @@
                 document.getElementById('hero-badge').closest('section').classList.add('hidden');
                 
                 renderCategories('');
-                document.getElementById('section-title').innerHTML = `<i data-lucide="search" class="w-5 h-5 text-indigo-400"></i> Hasil Pencarian: "${query}"`;
+                const secTitle = document.getElementById('section-title');
+                if(secTitle) secTitle.innerHTML = `<i data-lucide="search" class="w-5 h-5 text-indigo-400"></i> Hasil Pencarian: "${query}"`;
                 
                 filteredGames = allGamesData.filter(g => 
                     (g.title && g.title.toLowerCase().includes(query)) || 
@@ -1041,15 +906,20 @@
                 const categoriesPlayed = Object.keys(stats);
                 const sec = document.getElementById('recommended-section');
                 
-                if (categoriesPlayed.length === 0 || allGamesData.length === 0) {
-                    sec.classList.add('hidden');
-                    return;
+                let recommendedGames = [];
+                if (categoriesPlayed.length > 0 && allGamesData.length > 0) {
+                    const topCategory = categoriesPlayed.reduce((a, b) => stats[a] > stats[b] ? a : b);
+                    recommendedGames = allGamesData.filter(g => 
+                        g.category && g.category.toLowerCase().includes(topCategory.toLowerCase())
+                    );
                 }
 
-                const topCategory = categoriesPlayed.reduce((a, b) => stats[a] > stats[b] ? a : b);
-                const recommendedGames = allGamesData.filter(g => 
-                    g.category && g.category.toLowerCase().includes(topCategory.toLowerCase())
-                ).slice(0, 10);
+                // If not enough played categories, fallback to mixed GM & GP selection
+                if (recommendedGames.length < 6) {
+                    recommendedGames = [...allGamesData].sort(() => 0.5 - Math.random());
+                }
+
+                recommendedGames = recommendedGames.slice(0, 10);
 
                 if (recommendedGames.length === 0) {
                     sec.classList.add('hidden');
@@ -1075,9 +945,7 @@
                 try {
                     const newUrl = window.location.pathname + '?game=' + slug;
                     history.pushState({ gameSlug: slug }, '', newUrl);
-                } catch (e) {
-                    console.warn('PushState dibatasi oleh browser/iframe preview:', e);
-                }
+                } catch (e) {}
             }
 
             document.getElementById('modal-game-title').textContent = title;
@@ -1091,7 +959,10 @@
             }, 10);
             
             document.body.style.overflow = 'hidden';
-            renderGameDescription(activeGameObj);
+            
+            try {
+                renderGameDescription(activeGameObj);
+            } catch (err) {}
 
             const sidebarGrid = document.getElementById('modal-sidebar-grid');
             if (sidebarGrid && allGamesData.length > 0) {
@@ -1130,13 +1001,6 @@
             let descText = game.description;
             if (!descText || descText.trim() === '') {
                 descText = currentLang === 'id' ? t.defaultDescId : t.defaultDescEn;
-            } else if (currentLang === 'id') {
-                descText = descText.replace(/A futuristic 3D puzzle game/gi, 'Game puzzle 3D futuristik')
-                                   .replace(/testing your logic and alignment skills/gi, 'yang menguji logika dan keterampilan mencocokkan Anda')
-                                   .replace(/Extreme high-speed racing simulation/gi, 'Simulasi balap mobil berkecepatan tinggi ekstrem')
-                                   .replace(/with amazing tracks and physics/gi, 'dengan trek dan fisika yang menakjubkan')
-                                   .replace(/Action-packed shooter adventure/gi, 'Petualangan tembak-tembakan penuh aksi')
-                                   .replace(/inside mysterious alien caves/gi, 'di dalam gua alien yang misterius');
             }
             document.getElementById('desc-game-text').textContent = descText;
         }
@@ -1151,9 +1015,7 @@
                     if (window.location.search.includes('game=')) {
                         history.pushState({}, '', window.location.pathname);
                     }
-                } catch (e) {
-                    console.warn('PushState dibatasi oleh browser/iframe preview:', e);
-                }
+                } catch (e) {}
             }
 
             setTimeout(() => {
@@ -1170,11 +1032,9 @@
             const iframe = document.getElementById('game-iframe-element');
             if (!container) return;
 
-            // Deteksi apakah perangkat menggunakan iOS / iPhone
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
             if (isIOS || (!document.fullscreenEnabled && !document.webkitFullscreenEnabled)) {
-                // PSEUDO FULLSCREEN (Khusus iPhone / iOS Safari)
                 container.classList.toggle('is-pseudo-fullscreen');
                 if (container.classList.contains('is-pseudo-fullscreen')) {
                     document.body.style.overflow = 'hidden';
@@ -1182,15 +1042,12 @@
                     document.body.style.overflow = 'auto';
                 }
             } else {
-                // NATIVE FULLSCREEN API (Android & Desktop)
                 const targetElem = iframe || container;
                 if (!document.fullscreenElement && !document.webkitFullscreenElement) {
                     if (targetElem.requestFullscreen) {
                         targetElem.requestFullscreen();
                     } else if (targetElem.webkitRequestFullscreen) {
                         targetElem.webkitRequestFullscreen();
-                    } else if (targetElem.msRequestFullscreen) {
-                        targetElem.msRequestFullscreen();
                     }
                 } else {
                     if (document.exitFullscreen) {
@@ -1218,87 +1075,132 @@
             }, 3000);
         }
 
-        function triggerPWAInstall() {
-            if (deferredPWAInstallPrompt) {
-                deferredPWAInstallPrompt.prompt();
-                deferredPWAInstallPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User menginstall PWA');
-                    }
-                    deferredPWAInstallPrompt = null;
-                });
-            } else {
-                openPWAModal();
+        function renderCategories(activeCat) {
+            const chipsContainer = document.getElementById('category-chips');
+            if (!chipsContainer) return;
+            
+            const cats = [
+                { id: 'ALL', label: i18n[currentLang].categories.ALL, icon: 'grid' },
+                { id: 'Puzzle', label: i18n[currentLang].categories.Puzzle, icon: 'puzzle' },
+                { id: 'Merge', label: i18n[currentLang].categories.Merge, icon: 'layers' },
+                { id: 'Racing', label: i18n[currentLang].categories.Racing, icon: 'gauge' },
+                { id: 'Shooting', label: i18n[currentLang].categories.Shooting, icon: 'crosshair' },
+                { id: 'Zombie', label: i18n[currentLang].categories.Zombie, icon: 'skull' },
+                { id: 'Arcade', label: i18n[currentLang].categories.Arcade, icon: 'joystick' }
+            ];
+
+            chipsContainer.innerHTML = cats.map(c => {
+                const isActive = c.id === activeCat;
+                const activeStyle = isActive 
+                    ? 'bg-gradient-to-r from-indigo-600 to-pink-600 text-white font-bold shadow-lg shadow-indigo-500/30 border-indigo-400/50' 
+                    : 'bg-slate-800/80 hover:bg-slate-700 text-slate-300 border-slate-700/80';
+                return `
+                    <button onclick="filterByCategory('${c.id}')" class="px-3 py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-1.5 transition-all duration-300 ${activeStyle}">
+                        <i data-lucide="${c.icon}" class="w-3.5 h-3.5"></i>
+                        <span>${c.label}</span>
+                    </button>
+                `;
+            }).join('');
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function updateSectionTitles() {
+            const t = i18n[currentLang];
+            const secTitle = document.getElementById('section-title');
+            if (secTitle) {
+                secTitle.innerHTML = `<i data-lucide="gamepad-2" class="w-5 h-5 text-indigo-400"></i> ${currentCategory === 'ALL' ? t.allGames : t.categoryLabel + currentCategory}`;
             }
         }
 
-        function openPWAModal() {
-            const modal = document.getElementById('pwa-modal');
-            if(!modal) return;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modal.classList.add('opacity-100');
-            }, 10);
+        function toggleLanguage() {
+            currentLang = currentLang === 'id' ? 'en' : 'id';
+            try { localStorage.setItem('jura_lang', currentLang); } catch(e) {}
+            
+            const langLabel = document.getElementById('lang-label');
+            if (langLabel) langLabel.textContent = i18n[currentLang].langCode;
+            
+            const blogLabel = document.getElementById('blog-nav-label');
+            if (blogLabel) blogLabel.textContent = i18n[currentLang].blogNav;
+
+            const t = i18n[currentLang];
+            document.getElementById('hero-badge').innerHTML = `<i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i> ${t.badge}`;
+            document.getElementById('hero-title').innerHTML = t.heroTitle;
+            document.getElementById('hero-desc').textContent = t.heroDesc;
+            document.getElementById('search-input').placeholder = t.searchPlaceholder;
+            
+            const txtRecent = document.getElementById('txt-recent');
+            if (txtRecent) txtRecent.innerHTML = `<i data-lucide="history" class="w-5 h-5 text-indigo-400"></i> ${t.recentTitle}`;
+            
+            const txtClear = document.getElementById('txt-clear');
+            if (txtClear) txtClear.textContent = t.clearHistory;
+            
+            const txtRec = document.getElementById('txt-recommended');
+            if (txtRec) txtRec.innerHTML = `<i data-lucide="flame" class="w-5 h-5 text-amber-400"></i> ${t.recommendedTitle}`;
+            
+            const recSub = document.getElementById('rec-subtitle');
+            if (recSub) recSub.textContent = t.recSubtitle;
+            
+            const txtPop = document.getElementById('txt-popular');
+            if (txtPop) txtPop.innerHTML = `<i data-lucide="trending-up" class="w-5 h-5 text-pink-400"></i> ${t.popularTitle}`;
+            
+            const loadBtn = document.getElementById('load-more-btn');
+            if (loadBtn) loadBtn.textContent = t.loadMore;
+            
+            document.getElementById('txt-loading').textContent = t.loading;
+            document.getElementById('txt-error').textContent = t.errorText;
+            document.getElementById('txt-similar').textContent = t.similarTitle;
+            document.getElementById('txt-similar-grid').textContent = t.similarGridTitle;
+            document.getElementById('btn-fullscreen-txt').textContent = t.fullscreenBtn;
+
+            renderCategories(currentCategory);
+            updateSectionTitles();
+            if (activeGameObj) renderGameDescription(activeGameObj);
+            if (window.lucide) lucide.createIcons();
         }
 
-        function closePWAModal() {
-            const modal = document.getElementById('pwa-modal');
-            if(!modal) return;
-            modal.classList.remove('opacity-100');
-            modal.classList.add('opacity-0');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-            }, 300);
-        }
-
-        function setupPWA() {
-            try {
-                const manifest = {
-                    "name": "Jura game - Free Games Online",
-                    "short_name": "Jura Game",
-                    "description": "Mainkan ribuan game HTML5 gratis tanpa install.",
-                    "start_url": "./index.html",
-                    "display": "standalone",
-                    "background_color": "#020617",
-                    "theme_color": "#6366f1",
-                    "icons": [
-                        {
-                            "src": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=192&q=80",
-                            "sizes": "192x192",
-                            "type": "image/jpeg"
-                        },
-                        {
-                            "src": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=512&q=80",
-                            "sizes": "512x512",
-                            "type": "image/jpeg"
-                        }
-                    ]
-                };
-                const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
-                const link = document.createElement('link');
-                link.rel = 'manifest';
-                link.href = URL.createObjectURL(manifestBlob);
-                document.head.appendChild(link);
-
-                if ('serviceWorker' in navigator) {
-                    const swCode = `
-                        self.addEventListener('install', (e) => self.skipWaiting());
-                        self.addEventListener('activate', (e) => e.waitUntil(self.clients.claim()));
-                        self.addEventListener('fetch', (e) => {});
-                    `;
-                    const swBlob = new Blob([swCode], { type: 'text/javascript' });
-                    const swUrl = URL.createObjectURL(swBlob);
-                    navigator.serviceWorker.register(swUrl).catch(() => {});
-                }
-
-                window.addEventListener('beforeinstallprompt', (e) => {
-                    e.preventDefault();
-                    deferredPWAInstallPrompt = e;
+        function triggerPWAInstall() {
+            if (window.deferredPrompt) {
+                window.deferredPrompt.prompt();
+                window.deferredPrompt.userChoice.then((choiceResult) => {
+                    window.deferredPrompt = null;
                 });
-            } catch(e) {}
+            } else {
+                alert(currentLang === 'id' ? 'Untuk menginstall, tambahkan halaman ini ke Layar Utama melalui menu browser.' : 'To install, add this page to your Home Screen via browser menu.');
+            }
+        }
+
+        function switchView(viewName) {
+            const vHome = document.getElementById('view-home');
+            const vBlog = document.getElementById('view-blog');
+            const vPage = document.getElementById('view-page');
+
+            if (vHome) vHome.classList.add('hidden');
+            if (vBlog) vBlog.classList.add('hidden');
+            if (vPage) vPage.classList.add('hidden');
+
+            if (viewName === 'home' && vHome) vHome.classList.remove('hidden');
+            if (viewName === 'blog' && vBlog) vBlog.classList.remove('hidden');
+            if (viewName === 'page' && vPage) vPage.classList.remove('hidden');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openStaticPage(pageKey) {
+            const pageData = staticPages[pageKey];
+            if (!pageData) return;
+            const container = document.getElementById('static-page-content');
+            if (container) {
+                container.innerHTML = `
+                    <h2 class="text-2xl font-black text-white border-b border-slate-800 pb-3">${pageData.title}</h2>
+                    <div class="pt-2 leading-relaxed">${pageData.content}</div>
+                `;
+            }
+            switchView('page');
+        }
+
+        function init() {
+            renderCategories(currentCategory);
+            fetchGames();
         }
 
         window.onload = () => {
