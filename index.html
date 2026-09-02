@@ -12,3 +12,870 @@
     </script>
     
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Solusi Kuat Anti-Broken Image: Memaksa browser tidak mengirim data referrer -->
+    <meta name="referrer" content="no-referrer">
+    
+    <!-- SEO & Meta Tags -->
+    <title>Jura Game - Mainkan Game Gratis & Free Online Games</title>
+    <meta name="description" content="Mainkan ribuan game HTML5 gratis tanpa install di Jura Game. Koleksi game casual terbaik mulai dari action, puzzle, balapan, dan arcade.">
+    <meta name="keywords" content="game gratis, free game, main game online, game html5, game tanpa install, portal game, jura game">
+    <meta name="author" content="Jura Game">
+
+    <!-- PWA Theme Color -->
+    <meta name="theme-color" content="#020617">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#ec4899',
+                        dark: '#0f172a',
+                        darker: '#020617',
+                        card: '#1e293b'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar {
+            height: 4px;
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        
+        .glass {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .glass-modal {
+            background: rgba(2, 6, 23, 0.98);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .game-card {
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            transform: translateZ(0); /* Mobile performance optimization */
+            will-change: transform;
+        }
+        .game-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        body {
+            background-color: #020617;
+            color: #f8fafc;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative overflow-x-hidden">
+
+    <!-- Background Gradient Grids -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
+        <div class="absolute inset-0 bg-[#020617]"></div>
+        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-indigo-600/15 rounded-full filter blur-[100px]"></div>
+        <div class="absolute top-[40%] right-[-10%] w-[45vw] h-[45vw] bg-pink-600/10 rounded-full filter blur-[100px]"></div>
+    </div>
+
+    <header class="glass sticky top-0 z-40 border-b border-indigo-500/10">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 flex justify-between items-center gap-2">
+            
+            <a href="#" onclick="switchView('home'); return false;" class="flex items-center gap-2 sm:gap-2.5 cursor-pointer group flex-shrink-0">
+                <div class="relative flex items-center justify-center">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl blur-sm opacity-70 group-hover:opacity-100 transition duration-300"></div>
+                    <div class="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-900 border border-slate-700/80 flex items-center justify-center text-white shadow-xl group-hover:scale-105 transition-transform duration-300">
+                        <i data-lucide="gamepad-2" class="w-5 h-5 text-indigo-400 group-hover:text-pink-400 transition-colors"></i>
+                        <span class="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1">
+                    <h1 class="text-lg sm:text-2xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">
+                        Jura<span class="text-pink-500">Game</span>
+                    </h1>
+                    <span class="px-1.5 py-0.5 text-[8px] sm:text-[9px] font-black tracking-wider uppercase bg-gradient-to-r from-indigo-600 to-pink-600 text-white rounded-md shadow-sm border border-indigo-400/30">HQ</span>
+                </div>
+            </a>
+            
+            <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
+                <a href="blog/index.html" class="p-2 sm:px-3 sm:py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 text-xs font-bold flex items-center gap-1.5 shadow-sm">
+                    <i data-lucide="book-open" class="w-4 h-4 text-indigo-400 flex-shrink-0"></i>
+                    <span id="blog-nav-label" class="hidden sm:inline">Blog & Tips</span>
+                </a>
+
+                <button onclick="toggleLanguage()" class="px-2.5 py-2 sm:px-3 sm:py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 text-xs font-bold flex items-center gap-1.5 shadow-sm">
+                    <i data-lucide="globe" class="w-4 h-4 text-indigo-400 flex-shrink-0"></i>
+                    <span id="lang-label">ID</span>
+                </button>
+
+                <button onclick="toggleSearch()" class="p-2 sm:p-2.5 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 focus:outline-none shadow-sm">
+                    <i data-lucide="search" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Search Bar Dropdown -->
+        <div id="search-container" class="hidden absolute top-full left-0 w-full glass-modal border-b border-slate-800 p-4 z-30 shadow-2xl">
+            <div class="max-w-3xl mx-auto relative flex items-center">
+                <i data-lucide="search" class="w-5 h-5 absolute left-4 text-slate-400"></i>
+                <input type="text" id="search-input" onkeyup="handleSearch(event)" placeholder="Cari game..." class="w-full bg-slate-900/90 border border-slate-700 rounded-xl py-3 pl-12 pr-10 text-white focus:outline-none focus:border-indigo-500 text-sm">
+                <button onclick="clearSearch()" id="clear-search-btn" class="hidden absolute right-4 text-slate-400 hover:text-rose-400 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="main-view-container" class="flex-grow flex flex-col w-full">
+        <!-- HOME VIEW -->
+        <div id="view-home" class="space-y-6 w-full">
+            <!-- Hero Banner -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2 w-full">
+                <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-indigo-950/90 via-slate-900/95 to-purple-950/90 border border-indigo-500/30 p-5 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+                    <div class="relative z-10 max-w-xl space-y-3">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span id="hero-badge" class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold uppercase tracking-wider border border-indigo-500/30">
+                                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i> Portal Game Gratis
+                            </span>
+                        </div>
+                        <h2 id="hero-title" class="text-2xl sm:text-3xl font-black text-white leading-tight">
+                            Mainkan Game HTML5 Terbaik <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">Langsung di Browser</span>
+                        </h2>
+                        <p id="hero-desc" class="text-slate-300 text-xs sm:text-sm leading-relaxed">Nikmati pengalaman bermain game kasual terbaik langsung dari smartphone atau PC. Cepat, ringan, dan 100% gratis!</p>
+                        
+                        <!-- Categories Chips -->
+                        <div class="flex flex-wrap gap-2 pt-1" id="category-chips"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Games Sections Content -->
+            <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 w-full space-y-8">
+                
+                <!-- 1. Recent Section -->
+                <section id="recent-section" class="hidden space-y-3">
+                    <div class="flex justify-between items-center">
+                        <h3 id="txt-recent" class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                            <i data-lucide="history" class="w-4 h-4 text-indigo-400"></i> Game Terakhir Dimainkan
+                        </h3>
+                        <button onclick="clearHistory()" id="txt-clear" class="text-xs text-slate-400 hover:text-rose-400 transition">Hapus Riwayat</button>
+                    </div>
+                    <div id="recent-grid" class="flex gap-3 overflow-x-auto pb-2 no-scrollbar scroll-smooth"></div>
+                </section>
+
+                <!-- 2. Recommended Section -->
+                <section id="recommended-section" class="hidden space-y-3">
+                    <div class="flex justify-between items-center">
+                        <h3 id="txt-recommended" class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                            <i data-lucide="flame" class="w-4 h-4 text-amber-400"></i> Rekomendasi Untuk Kamu
+                        </h3>
+                    </div>
+                    <div id="recommended-grid" class="flex gap-3 overflow-x-auto pb-2 no-scrollbar scroll-smooth"></div>
+                </section>
+
+                <!-- 3. Popular Section -->
+                <section id="popular-section" class="space-y-3">
+                    <div class="flex justify-between items-center">
+                        <h3 id="txt-popular" class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                            <i data-lucide="trending-up" class="w-4 h-4 text-pink-400"></i> Game Terpopuler
+                        </h3>
+                    </div>
+                    <div id="popular-grid" class="flex gap-3 overflow-x-auto pb-2 no-scrollbar scroll-smooth"></div>
+                </section>
+
+                <!-- 4. All Games Grid -->
+                <section class="space-y-3 pt-2 border-t border-slate-800/50">
+                    <div class="flex justify-between items-end pb-1">
+                        <h3 id="section-title" class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                            <i data-lucide="gamepad-2" class="w-4 h-4 text-indigo-400"></i> Semua Game
+                        </h3>
+                    </div>
+                    
+                    <div id="skeleton-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
+                    <div id="games-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 hidden"></div>
+                    
+                    <div class="flex justify-center pt-4">
+                        <button id="load-more-btn" onclick="loadMore()" class="hidden px-6 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl text-white font-semibold transition-all text-xs">
+                            Muat Lebih Banyak
+                        </button>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- BLOG VIEW -->
+        <div id="view-blog" class="hidden max-w-4xl mx-auto px-4 py-8 w-full space-y-6">
+            <h2 class="text-2xl font-black text-white">Jura Blog & Update Game</h2>
+            <div id="blog-articles-list" class="space-y-4"></div>
+        </div>
+
+        <!-- STATIC PAGES VIEW -->
+        <div id="view-page" class="hidden max-w-3xl mx-auto px-4 py-8 w-full space-y-4 text-slate-300 text-sm">
+            <button onclick="switchView('home')" class="inline-flex items-center gap-2 text-xs font-bold text-indigo-400">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> Kembali
+            </button>
+            <div id="static-page-content" class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl space-y-3"></div>
+        </div>
+    </div>
+
+    <footer class="border-t border-slate-800 bg-slate-900/90 mt-12 py-8 px-4 text-slate-400 text-xs space-y-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                    <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-indigo-600 to-pink-500 flex items-center justify-center text-white font-black text-xs">J</div>
+                    <span class="text-white font-black text-sm">Jura Game</span>
+                </div>
+                <p class="text-slate-500 text-[11px]">Portal game HTML5 gratis terbaik tanpa unduhan.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-xs mb-2">Kategori Utama</h4>
+                <ul class="space-y-1 text-[11px]">
+                    <li><a href="#" onclick="filterByCategory('Puzzle'); switchView('home'); return false;" class="hover:text-white">Puzzle & Logika</a></li>
+                    <li><a href="#" onclick="filterByCategory('Racing'); switchView('home'); return false;" class="hover:text-white">Racing Games</a></li>
+                    <li><a href="#" onclick="filterByCategory('Arcade'); switchView('home'); return false;" class="hover:text-white">Arcade</a></li>
+                    <li><a href="#" onclick="filterByCategory('Action'); switchView('home'); return false;" class="hover:text-white">Action</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-4 border-t border-slate-800/80 text-center text-[10px]">
+            <p>&copy; 2026 Jura Game. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- GAME PLAYER MODAL -->
+    <div id="game-modal" class="fixed inset-0 z-50 hidden flex-col glass-modal transition-all duration-300 opacity-0 overflow-y-auto">
+        <div class="glass sticky top-0 z-40 px-4 py-3 flex justify-between items-center border-b border-slate-800">
+            <div class="flex items-center gap-3 overflow-hidden">
+                <button onclick="closeGame()" class="p-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-white">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </button>
+                <h3 id="modal-game-title" class="text-sm sm:text-base font-bold text-white truncate max-w-xs">Memuat...</h3>
+            </div>
+            <button onclick="shareGameModal()" class="p-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-white">
+                <i data-lucide="share-2" class="w-4 h-4"></i>
+            </button>
+        </div>
+
+        <div class="max-w-5xl mx-auto w-full p-3 sm:p-6 flex-grow space-y-4">
+            <div class="w-full aspect-[4/3] md:aspect-[16/9] bg-black rounded-2xl overflow-hidden relative shadow-2xl border border-slate-800">
+                <button onclick="toggleFullScreen()" class="absolute top-3 right-3 z-30 px-2.5 py-1.5 bg-slate-900/80 text-white rounded-xl text-xs font-bold flex items-center gap-1 border border-slate-700">
+                    <i data-lucide="maximize" class="w-3.5 h-3.5 text-indigo-400"></i> <span id="btn-fullscreen-txt">Fullscreen</span>
+                </button>
+                <div id="iframe-loader" class="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 z-20 gap-2">
+                    <div class="w-8 h-8 border-3 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+                    <span id="txt-loading" class="text-slate-400 text-xs">Memuat Game...</span>
+                </div>
+                <div id="iframe-container" class="absolute inset-0 z-10 w-full h-full"></div>
+            </div>
+
+            <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 space-y-2">
+                <h2 id="desc-game-title" class="text-base font-black text-white"></h2>
+                <p id="desc-game-text" class="text-slate-300 text-xs leading-relaxed"></p>
+            </div>
+
+            <section class="space-y-3 pt-2">
+                <h4 class="text-white font-bold text-xs sm:text-sm flex items-center gap-2">
+                    <i data-lucide="layers" class="w-4 h-4 text-indigo-400"></i> <span id="txt-similar-grid">Game Serupa</span>
+                </h4>
+                <div id="modal-similar-grid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3"></div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-800 border border-slate-700 text-white px-4 py-2.5 rounded-xl shadow-2xl flex items-center gap-2 text-xs">
+        <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+        <span id="toastMsg">Tautan disalin!</span>
+    </div>
+
+    <script>
+        const i18n = {
+            id: {
+                langCode: 'ID',
+                blogNav: 'Blog & Tips',
+                badge: 'Portal Game Gratis',
+                heroTitle: 'Mainkan Game HTML5 Terbaik <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">Langsung di Browser</span>',
+                heroDesc: 'Nikmati pengalaman bermain game kasual terbaik langsung dari smartphone atau PC. Cepat, ringan, dan 100% gratis!',
+                searchPlaceholder: 'Cari game...',
+                recentTitle: 'Game Terakhir Dimainkan',
+                clearHistory: 'Hapus',
+                recommendedTitle: 'Rekomendasi Untuk Kamu',
+                popularTitle: 'Game Terpopuler',
+                allGames: 'Semua Game',
+                categoryLabel: 'Kategori: ',
+                loadMore: 'Muat Lebih Banyak',
+                loading: 'Memuat Game...',
+                similarGridTitle: 'Game Serupa',
+                fullscreenBtn: 'Layar Penuh',
+                categories: { ALL: 'Semua', Puzzle: 'Puzzle', Merge: 'Merge', Racing: 'Racing', Arcade: 'Arcade', Action: 'Action' }
+            },
+            en: {
+                langCode: 'EN',
+                blogNav: 'Blog & Tips',
+                badge: 'Free Game Portal',
+                heroTitle: 'Play Best HTML5 Games <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">Directly in Browser</span>',
+                heroDesc: 'Enjoy top casual HTML5 games instantly from smartphone or PC. Fast, lightweight, and 100% free!',
+                searchPlaceholder: 'Search games...',
+                recentTitle: 'Recently Played',
+                clearHistory: 'Clear',
+                recommendedTitle: 'Recommended For You',
+                popularTitle: 'Most Popular Games',
+                allGames: 'All Games',
+                categoryLabel: 'Category: ',
+                loadMore: 'Load More',
+                loading: 'Loading Game...',
+                similarGridTitle: 'Similar Games',
+                fullscreenBtn: 'Fullscreen',
+                categories: { ALL: 'All', Puzzle: 'Puzzle', Merge: 'Merge', Racing: 'Racing', Arcade: 'Arcade', Action: 'Action' }
+            }
+        };
+
+        // Fallback GamePix Data (12 games based on user's exact JSON)
+        const fallbackGamePixItems = [
+            {
+                id: "737HCH",
+                title: "Prism Match 3D",
+                category: "Puzzle",
+                thumb: "https://img.gamepix.com/games/prism-match-3d/cover/prism-match-3d.png?w=320",
+                url: "https://play.gamepix.com/prism-match-3d/embed?sid=MUGAR",
+                description: "Dive into a mesmerizing 3D cube universe.",
+                source: "GP"
+            },
+            {
+                id: "5G91RE",
+                title: "Garden Master",
+                category: "Simulation",
+                thumb: "https://img.gamepix.com/games/garden-master/cover/garden-master.png?w=320",
+                url: "https://play.gamepix.com/garden-master/embed?sid=MUGAR",
+                description: "Step into the shoes of an industrious gnome.",
+                source: "GP"
+            },
+            {
+                id: "EE5DCF",
+                title: "Defend the Castle",
+                category: "Action",
+                thumb: "https://img.gamepix.com/games/defend-the-castle/cover/defend-the-castle.png?w=320",
+                url: "https://play.gamepix.com/defend-the-castle/embed?sid=MUGAR",
+                description: "Fortify your kingdom in Defend the Castle!",
+                source: "GP"
+            },
+            {
+                id: "401685",
+                title: "Drop Planets",
+                category: "Puzzle",
+                thumb: "https://img.gamepix.com/games/drop-planets/cover/drop-planets.png?w=320",
+                url: "https://play.gamepix.com/drop-planets/embed?sid=MUGAR",
+                description: "Drop planets to merge and match space objects.",
+                source: "GP"
+            },
+            {
+                id: "A311T3",
+                title: "Stack Rocket",
+                category: "Arcade",
+                thumb: "https://img.gamepix.com/games/stack-rocket/cover/stack-rocket.png?w=320",
+                url: "https://play.gamepix.com/stack-rocket/embed?sid=MUGAR",
+                description: "Build high rocket stacks with speed and accuracy.",
+                source: "GP"
+            },
+            {
+                id: "O1H119",
+                title: "Nova Hop",
+                category: "Arcade",
+                thumb: "https://img.gamepix.com/games/nova-hop/cover/nova-hop.png?w=320",
+                url: "https://play.gamepix.com/nova-hop/embed?sid=MUGAR",
+                description: "Hop through neon obstacles in this hyper casual adventure.",
+                source: "GP"
+            },
+            {
+                id: "B6BTZI",
+                title: "Quarantine Zombies",
+                category: "Action",
+                thumb: "https://img.gamepix.com/games/quarantine-zombies/cover/quarantine-zombies.png?w=320",
+                url: "https://play.gamepix.com/quarantine-zombies/embed?sid=MUGAR",
+                description: "Survive waves of zombies in the quarantine zone.",
+                source: "GP"
+            },
+            {
+                id: "1BA572",
+                title: "Boost Balloon",
+                category: "Arcade",
+                thumb: "https://img.gamepix.com/games/boost-balloon/cover/boost-balloon.png?w=320",
+                url: "https://play.gamepix.com/boost-balloon/embed?sid=MUGAR",
+                description: "Boost balloons into high skies avoiding hazardous traps.",
+                source: "GP"
+            },
+            {
+                id: "A97NE0",
+                title: "Billiards on Ice",
+                category: "Arcade",
+                thumb: "https://img.gamepix.com/games/billiards-on-ice/cover/billiards-on-ice.png?w=320",
+                url: "https://play.gamepix.com/billiards-on-ice/embed?sid=MUGAR",
+                description: "Play classic billiards on slippery ice tables.",
+                source: "GP"
+            },
+            {
+                id: "7DO9L8",
+                title: "Combat Landing",
+                category: "Action",
+                thumb: "https://img.gamepix.com/games/combat-landing/cover/combat-landing.png?w=320",
+                url: "https://play.gamepix.com/combat-landing/embed?sid=MUGAR",
+                description: "Land jet fighters in hostile combat arenas.",
+                source: "GP"
+            },
+            {
+                id: "T59T15",
+                title: "Vegan Quest",
+                category: "Arcade",
+                thumb: "https://img.gamepix.com/games/vegan-quest/cover/vegan-quest.png?w=320",
+                url: "https://play.gamepix.com/vegan-quest/embed?sid=MUGAR",
+                description: "Collect healthy treats while avoiding dangerous pitfalls.",
+                source: "GP"
+            },
+            {
+                id: "KKTTKS",
+                title: "Skater Kitty",
+                category: "Arcade",
+                thumb: "https://img.gamepix.com/games/skater-kitty/cover/skater-kitty.png?w=320",
+                url: "https://play.gamepix.com/skater-kitty/embed?sid=MUGAR",
+                description: "Skate through city parks with cool kitty flips.",
+                source: "GP"
+            }
+        ];
+
+        let currentLang = 'id';
+        try { currentLang = localStorage.getItem('jura_lang') || 'id'; } catch(e) {}
+
+        let allGamesData = [];
+        let filteredGames = [];
+        let displayedCount = 12; // Diturunkan dari 96 ke 12 agar sangat ringan di HP
+        const itemsPerPage = 12;
+        let currentCategory = 'ALL';
+        let activeGameObj = null;
+
+        function slugify(text) {
+            if (!text) return 'game';
+            return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-');
+        }
+
+        function renderSkeletons(count = 12) {
+            const skelGrid = document.getElementById('skeleton-grid');
+            if (!skelGrid) return;
+            skelGrid.classList.remove('hidden');
+            const gamesGrid = document.getElementById('games-grid');
+            if (gamesGrid) gamesGrid.classList.add('hidden');
+            
+            let html = '';
+            for (let i = 0; i < count; i++) {
+                html += `<div class="animate-pulse space-y-2"><div class="aspect-[4/3] bg-slate-800/80 rounded-xl"></div><div class="h-3 bg-slate-800/80 rounded w-3/4"></div></div>`;
+            }
+            skelGrid.innerHTML = html;
+        }
+
+        async function fetchGames() {
+            renderSkeletons(12);
+            
+            // Limitasi pagination 12 untuk meringankan proses rendering di HP
+            const gpUrl = 'https://feeds.gamepix.com/v2/json?sid=MUGAR&pagination=12&page=1';
+            const gmUrl = 'https://rss.gamemonetize.com/rssfeed.php?format=json&category=All&type=html5&amount=12';
+            
+            let listGP = [], listGM = [];
+
+            try {
+                const resGP = await fetch(gpUrl);
+                if (resGP.ok) {
+                    const dataGP = await resGP.json();
+                    let items = dataGP.items || dataGP.data || [];
+                    listGP = items.map(g => ({
+                        id: g.id || slugify(g.title),
+                        title: g.title || 'Game',
+                        url: g.url || '',
+                        category: g.category || 'Arcade',
+                        // Pencarian thumbnail secara agresif dari berbagai nama properti yang mungkin digunakan GamePix
+                        thumb: g.banner_image || g.image || g.thumbnailUrl || g.thumb || 'https://placehold.co/400x300/1e293b/818cf8?text=Game',
+                        description: g.description || '',
+                        source: 'GP'
+                    }));
+                }
+            } catch (e) {
+                console.error("GamePix Fetch Error:", e);
+            }
+
+            try {
+                const resGM = await fetch(gmUrl);
+                if (resGM.ok) {
+                    const dataGM = await resGM.json();
+                    let hits = Array.isArray(dataGM) ? dataGM : (dataGM.segments?.[0]?.hits || []);
+                    listGM = hits.map(g => ({
+                        id: g.id || slugify(g.title),
+                        title: g.title || 'Game',
+                        url: g.url || '',
+                        category: g.category || 'Arcade',
+                        thumb: g.thumb || 'https://placehold.co/400x300/1e293b/818cf8?text=Game',
+                        description: g.description || '',
+                        source: 'GM'
+                    }));
+                }
+            } catch (e) {
+                console.error("GameMonetize Fetch Error:", e);
+            }
+
+            // Jika API gagal dipanggil karena pemblokiran browser, pasang fallback murni
+            if (listGP.length === 0) {
+                listGP = fallbackGamePixItems;
+            }
+
+            // Campurkan GP dan GM menjadi satu pengalaman white-label yang kaya
+            allGamesData = [...listGP, ...listGM].sort(() => Math.random() - 0.5);
+
+            renderPopularSection(allGamesData.slice(0, 6));
+            renderRecentSection(); 
+            renderRecommendedSection(); 
+            filterByCategory('ALL');
+        }
+
+        function createGameCardHtml(game, isHorizontal = false) {
+            const rawTitle = game.title && game.title !== 'Game' ? game.title : 'Play Game';
+            const escapeTitle = rawTitle.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+            const cardWidth = isHorizontal ? 'flex-shrink-0 w-32 sm:w-36' : '';
+            const category = game.category || 'Arcade';
+            
+            // Thumbnail Fallback Chain
+            const thumbUrl = game.thumb || 'https://placehold.co/400x300/1e293b/818cf8?text=Game';
+            const source = game.source || 'GP';
+            
+            // Hapus loading="lazy" agar tidak membuat gambar nyangkut di mobile (tanpa scrolling)
+            // Tambahkan referrerpolicy="no-referrer" agar CDN GamePix/Monetize tidak me-reject request (403)
+            // onerror dibuat super simpel agar kebal dari character escaping bug
+            return `
+                <div class="game-card group cursor-pointer space-y-1.5 ${cardWidth}" 
+                     onclick="openGame('${game.url}', '${escapeTitle}', '${category}', '${thumbUrl}', '${encodeURIComponent(game.description || '')}')">
+                    <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-900 border border-slate-800">
+                        <img src="${thumbUrl}" alt="${escapeTitle}" referrerpolicy="no-referrer"
+                             onerror="this.onerror=null; this.src='https://placehold.co/400x300/1e293b/818cf8?text=Game';" 
+                             class="absolute inset-0 w-full h-full object-cover transition duration-300">
+                        <span class="absolute top-1.5 right-1.5 px-1 py-0.5 rounded text-[8px] font-black bg-slate-950/80 text-slate-300 border border-slate-700 shadow-md">${source}</span>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-200 truncate" title="${escapeTitle}">${escapeTitle}</h4>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderPopularSection(list) {
+            if(!list || list.length === 0) return;
+            document.getElementById('popular-grid').innerHTML = list.map(game => createGameCardHtml(game, true)).join('');
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function filterByCategory(category) {
+            currentCategory = category;
+            renderCategories(category);
+            updateSectionTitles();
+            
+            const searchContainer = document.getElementById('search-container');
+            if (searchContainer && !searchContainer.classList.contains('hidden')) {
+                searchContainer.classList.add('hidden');
+            }
+            
+            if (category === 'ALL') {
+                filteredGames = allGamesData;
+            } else {
+                filteredGames = allGamesData.filter(g => {
+                    const catStr = (g.category || '').toLowerCase();
+                    const query = category.toLowerCase();
+                    return catStr.includes(query);
+                });
+            }
+            
+            displayedCount = itemsPerPage;
+            renderGames();
+        }
+
+        function renderGames() {
+            document.getElementById('skeleton-grid').classList.add('hidden');
+            document.getElementById('games-grid').classList.remove('hidden');
+            
+            if (filteredGames.length === 0) {
+                document.getElementById('games-grid').innerHTML = '<div class="col-span-full py-8 text-center text-slate-400 text-xs">Tidak ada game ditemukan.</div>';
+                document.getElementById('load-more-btn').classList.add('hidden');
+                return;
+            }
+
+            const gamesToShow = filteredGames.slice(0, displayedCount);
+            document.getElementById('games-grid').innerHTML = gamesToShow.map(game => createGameCardHtml(game)).join('');
+
+            if (displayedCount < filteredGames.length) {
+                document.getElementById('load-more-btn').classList.remove('hidden');
+            } else {
+                document.getElementById('load-more-btn').classList.add('hidden');
+            }
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function toggleSearch() {
+            const sc = document.getElementById('search-container');
+            sc.classList.toggle('hidden');
+            if (!sc.classList.contains('hidden')) {
+                setTimeout(() => document.getElementById('search-input').focus(), 50);
+            }
+        }
+
+        function handleSearch(event) {
+            const query = event.target.value.toLowerCase().trim();
+            const clearBtn = document.getElementById('clear-search-btn');
+            
+            if (query.length > 0) {
+                clearBtn.classList.remove('hidden');
+                filteredGames = allGamesData.filter(g => (g.title && g.title.toLowerCase().includes(query)));
+                displayedCount = itemsPerPage;
+                renderGames();
+            } else {
+                clearBtn.classList.add('hidden');
+                filterByCategory(currentCategory);
+            }
+        }
+
+        function clearSearch() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('clear-search-btn').classList.add('hidden');
+            document.getElementById('search-container').classList.add('hidden');
+            filterByCategory(currentCategory);
+        }
+
+        function loadMore() {
+            displayedCount += itemsPerPage;
+            renderGames();
+        }
+
+        function saveToHistory(gameObj) {
+            try {
+                let recent = JSON.parse(localStorage.getItem('jura_recent_games') || '[]');
+                recent = recent.filter(g => g.url !== gameObj.url); 
+                recent.unshift(gameObj); 
+                if (recent.length > 6) recent.pop();
+                localStorage.setItem('jura_recent_games', JSON.stringify(recent));
+
+                renderRecentSection();
+                renderRecommendedSection();
+            } catch (e) {}
+        }
+
+        function renderRecentSection() {
+            try {
+                let recent = JSON.parse(localStorage.getItem('jura_recent_games') || '[]');
+                const sec = document.getElementById('recent-section');
+                if (recent.length === 0) {
+                    sec.classList.add('hidden');
+                    return;
+                }
+                sec.classList.remove('hidden');
+                document.getElementById('recent-grid').innerHTML = recent.map(game => createGameCardHtml(game, true)).join('');
+                if (window.lucide) lucide.createIcons();
+            } catch (e) {
+                document.getElementById('recent-section').classList.add('hidden');
+            }
+        }
+
+        function clearHistory() {
+            try { localStorage.removeItem('jura_recent_games'); } catch(e) {}
+            document.getElementById('recent-section').classList.add('hidden');
+            document.getElementById('recommended-section').classList.add('hidden');
+        }
+
+        function renderRecommendedSection() {
+            try {
+                const sec = document.getElementById('recommended-section');
+                let recommendedGames = [...allGamesData].sort(() => 0.5 - Math.random()).slice(0, 6);
+
+                if (recommendedGames.length === 0) {
+                    sec.classList.add('hidden');
+                    return;
+                }
+
+                sec.classList.remove('hidden');
+                document.getElementById('recommended-grid').innerHTML = recommendedGames.map(game => createGameCardHtml(game, true)).join('');
+                if (window.lucide) lucide.createIcons();
+            } catch (e) {
+                document.getElementById('recommended-section').classList.add('hidden');
+            }
+        }
+
+        function openGame(url, title, category, thumb, encodedDesc) {
+            const description = decodeURIComponent(encodedDesc || '');
+            activeGameObj = { url, title, category, thumb, description };
+            saveToHistory(activeGameObj);
+
+            document.getElementById('modal-game-title').textContent = title;
+            const modal = document.getElementById('game-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => { modal.classList.remove('opacity-0'); modal.classList.add('opacity-100'); }, 10);
+            document.body.style.overflow = 'hidden';
+            
+            document.getElementById('desc-game-title').textContent = title;
+            document.getElementById('desc-game-text').textContent = description || 'Mainkan game seru ini langsung di browser kamu secara gratis tanpa download.';
+
+            const similarGrid = document.getElementById('modal-similar-grid');
+            if (similarGrid && allGamesData.length > 0) {
+                let similar = allGamesData.filter(g => g.url !== url).sort(() => 0.5 - Math.random()).slice(0, 6);
+                similarGrid.innerHTML = similar.map(game => createGameCardHtml(game)).join('');
+            }
+
+            document.getElementById('iframe-container').innerHTML = `
+                <iframe src="${url}" class="w-full h-full absolute inset-0 z-20 bg-black" frameborder="0" scrolling="no" allowfullscreen="true" onload="document.getElementById('iframe-loader').style.display='none';"></iframe>
+            `;
+            document.getElementById('iframe-loader').style.display = 'flex';
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function closeGame() {
+            const modal = document.getElementById('game-modal');
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.getElementById('iframe-container').innerHTML = '';
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        function toggleFullScreen() {
+            const container = document.getElementById('game-modal');
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+            }
+        }
+
+        function shareGameModal() {
+            const tempInput = document.createElement("input");
+            tempInput.value = window.location.href;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            const toast = document.getElementById('toastNotification');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 2500);
+        }
+
+        function renderCategories(activeCat) {
+            const chipsContainer = document.getElementById('category-chips');
+            if (!chipsContainer) return;
+            
+            const cats = [
+                { id: 'ALL', label: i18n[currentLang].categories.ALL },
+                { id: 'Puzzle', label: i18n[currentLang].categories.Puzzle },
+                { id: 'Merge', label: i18n[currentLang].categories.Merge },
+                { id: 'Racing', label: i18n[currentLang].categories.Racing },
+                { id: 'Arcade', label: i18n[currentLang].categories.Arcade },
+                { id: 'Action', label: i18n[currentLang].categories.Action }
+            ];
+
+            chipsContainer.innerHTML = cats.map(c => {
+                const isActive = c.id === activeCat;
+                const activeStyle = isActive 
+                    ? 'bg-gradient-to-r from-indigo-600 to-pink-600 text-white font-bold border-indigo-400' 
+                    : 'bg-slate-800/80 text-slate-300 border-slate-700';
+                return `<button onclick="filterByCategory('${c.id}')" class="px-3 py-1.5 rounded-xl border text-xs font-semibold transition-all ${activeStyle}"><span>${c.label}</span></button>`;
+            }).join('');
+        }
+
+        function updateSectionTitles() {
+            const t = i18n[currentLang];
+            const secTitle = document.getElementById('section-title');
+            if (secTitle) {
+                secTitle.innerHTML = `<i data-lucide="gamepad-2" class="w-4 h-4 text-indigo-400"></i> ${currentCategory === 'ALL' ? t.allGames : t.categoryLabel + currentCategory}`;
+            }
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'id' ? 'en' : 'id';
+            try { localStorage.setItem('jura_lang', currentLang); } catch(e) {}
+            
+            document.getElementById('lang-label').textContent = i18n[currentLang].langCode;
+            document.getElementById('blog-nav-label').textContent = i18n[currentLang].blogNav;
+            const t = i18n[currentLang];
+            document.getElementById('hero-title').innerHTML = t.heroTitle;
+            document.getElementById('hero-desc').textContent = t.heroDesc;
+            document.getElementById('search-input').placeholder = t.searchPlaceholder;
+            
+            renderCategories(currentCategory);
+            updateSectionTitles();
+        }
+
+        function switchView(viewName) {
+            document.getElementById('view-home').classList.add('hidden');
+            document.getElementById('view-blog').classList.add('hidden');
+            document.getElementById('view-page').classList.add('hidden');
+
+            if (viewName === 'home') document.getElementById('view-home').classList.remove('hidden');
+            if (viewName === 'blog') document.getElementById('view-blog').classList.remove('hidden');
+            if (viewName === 'page') document.getElementById('view-page').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function init() {
+            renderCategories(currentCategory);
+            fetchGames();
+        }
+
+        window.onload = () => {
+            init();
+            if (window.lucide) lucide.createIcons();
+        };
+    </script>
+</body>
+</html>
