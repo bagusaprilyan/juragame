@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="id" class="dark">
 <head>
-
-    <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RRFH8S2MS3"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -21,8 +20,8 @@
     <meta name="author" content="Admin Jura Game">
     <link rel="canonical" href="https://juragame.com/blog/">
 
-    <!-- Google AdSense Auto Ads Script -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1234567890123456" crossorigin="anonymous"></script>
+    <!-- Google AdSense SCRIPT DENGAN ID MILIK ANDA -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1947710883450076" crossorigin="anonymous"></script>
 
     <!-- Tailwind CSS & Icons -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -126,7 +125,7 @@
 </head>
 <body class="min-h-screen flex flex-col relative overflow-x-hidden">
 
-    <!-- ==================== ANIMATED BACKGROUND (MATCHING MAIN INDEX) ==================== -->
+    <!-- ==================== ANIMATED BACKGROUND ==================== -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
         <div class="absolute inset-0 bg-[#020617]"></div>
         <div class="absolute top-[-15%] left-[-10%] w-[55vw] h-[55vw] bg-indigo-600/25 rounded-full filter blur-[120px] animate-blob-1"></div>
@@ -135,7 +134,7 @@
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
     </div>
 
-    <!-- Header (UNIFIED BRANDING LOGO & COMPACT NAV MATCHING MAIN) -->
+    <!-- Header -->
     <header class="glass sticky top-0 z-40 border-b border-indigo-500/10">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 flex justify-between items-center gap-2">
             
@@ -170,7 +169,7 @@
     <!-- Main Content Container -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow space-y-8">
         
-        <!-- Blog Hero Header (MATCHING MAIN HERO CARD STYLE) -->
+        <!-- Blog Hero Header -->
         <section class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-indigo-950/90 via-slate-900/95 to-purple-950/90 border border-indigo-500/30 p-6 sm:p-10 text-center max-w-4xl mx-auto shadow-2xl backdrop-blur-md space-y-4">
             <div class="absolute -right-16 -top-16 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl pointer-events-none"></div>
             <div class="absolute -left-16 -bottom-16 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -190,14 +189,21 @@
             </p>
         </section>
 
-        <!-- Ad Slot (Top Banner) -->
-        <div class="bg-slate-900/60 border border-dashed border-slate-800 rounded-2xl p-4 flex items-center justify-center h-24">
-            <span class="text-xs text-slate-500 uppercase font-bold tracking-widest">Ruang Iklan Banner (AdSense Ready)</span>
+        <!-- Ad Slot (Top Banner Blog) -->
+        <div class="w-full max-w-[728px] mx-auto bg-slate-900/60 rounded-2xl min-h-[90px] flex items-center justify-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-1947710883450076"
+                 data-ad-slot="ISI_SLOT_ID_BANNER_BLOG_DISINI"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
 
-        <!-- Articles Grid (DINAMIS DARI articles.json) -->
+        <!-- Articles Grid -->
         <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Loading state -->
             <div class="col-span-full text-center py-16 text-slate-400 text-sm flex flex-col items-center justify-center gap-3">
                 <div class="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
                 <span>Memuat artikel...</span>
@@ -206,10 +212,9 @@
 
     </main>
 
-    <!-- ==================== FOOTER (MATCHING MAIN INDEX 100%) ==================== -->
+    <!-- Footer -->
     <footer class="border-t border-slate-800 bg-slate-900/90 backdrop-blur-md mt-16 py-12 px-4 sm:px-6 lg:px-8 text-slate-400 text-xs space-y-8">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            <!-- Col 1: Brand -->
             <div class="space-y-3">
                 <div class="flex items-center gap-2.5">
                     <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-600 to-pink-500 flex items-center justify-center text-white font-black">J</div>
@@ -217,41 +222,32 @@
                 </div>
                 <p class="text-slate-500 leading-relaxed">Portal game HTML5 gratis terbaik tanpa unduhan. Mainkan kapan saja di perangkat seluler maupun komputer Anda.</p>
             </div>
-
-            <!-- Col 2: Kategori Populer -->
             <div class="space-y-3">
                 <h4 class="text-white font-bold text-sm">Kategori Utama</h4>
                 <ul class="space-y-2">
                     <li><a href="../index.html" class="hover:text-white transition">Racing Games</a></li>
                     <li><a href="../index.html" class="hover:text-white transition">Puzzle & Logika</a></li>
                     <li><a href="../index.html" class="hover:text-white transition">Action & Shooting</a></li>
-                    <li><a href="../index.html" class="hover:text-white transition">Arcade Klasik</a></li>
                 </ul>
             </div>
-
-            <!-- Col 3: Informasi & Blog -->
             <div class="space-y-3">
                 <h4 class="text-white font-bold text-sm">Eksplorasi</h4>
                 <ul class="space-y-2">
                     <li><a href="index.html" class="hover:text-white transition font-semibold text-indigo-400">Blog & Artikel Game</a></li>
-                    <li><a href="../index.html" class="hover:text-white transition">Tentang Kami (About Us)</a></li>
-                    <li><a href="../index.html" class="hover:text-white transition">Hubungi Kami (Contact)</a></li>
+                    <li><a href="../index.html" class="hover:text-white transition">Tentang Kami</a></li>
                 </ul>
             </div>
-
-            <!-- Col 4: Kebijakan -->
             <div class="space-y-3">
                 <h4 class="text-white font-bold text-sm">Legal & Kebijakan</h4>
                 <ul class="space-y-2">
-                    <li><a href="../index.html" class="hover:text-white transition">Kebijakan Privasi (Privacy Policy)</a></li>
-                    <li><a href="../index.html" class="hover:text-white transition">Syarat & Ketentuan (Terms of Service)</a></li>
+                    <li><a href="../index.html" class="hover:text-white transition">Kebijakan Privasi</a></li>
+                    <li><a href="../index.html" class="hover:text-white transition">Syarat & Ketentuan</a></li>
                 </ul>
             </div>
         </div>
 
         <div class="max-w-7xl mx-auto pt-8 border-t border-slate-800/80 text-center space-y-2">
             <p class="font-bold text-slate-400">&copy; 2026 Jura game. Semua hak cipta game dimiliki oleh developer terkait.</p>
-            <p class="text-slate-500">Free games online & HTML5 portal gaming platform.</p>
         </div>
     </footer>
 
@@ -283,7 +279,6 @@
                 } catch (err) {}
             }
 
-            // Fallback Data jika dipanggil secara lokal (file://) atau file json belum di-push
             if (!articles || !Array.isArray(articles) || articles.length === 0) {
                 articles = [
                     {
@@ -294,22 +289,11 @@
                         "category": "Tips Gaming",
                         "author": "Admin Jura",
                         "cover_image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80",
-                        "excerpt": "Simak alasan mengapa game HTML5 berbasis browser semakin disukai. Tanpa instalasi, cepat, dan hemat penyimpanan di smartphone dan PC Anda."
-                    },
-                    {
-                        "id": 2,
-                        "slug": "review-puzzle-game",
-                        "title": "5 Game Puzzle Terbaik di Jura Game yang Wajib Anda Coba",
-                        "date": "25 Agustus 2026",
-                        "category": "Review Game",
-                        "author": "Admin Jura",
-                        "cover_image": "",
-                        "excerpt": "Kategori puzzle selalu menjadi favorit karena mampu mengasah otak sekaligus merilekskan pikiran. Temukan berbagai judul game puzzle 3D dan logika terbaru minggu ini."
+                        "excerpt": "Simak alasan mengapa game HTML5 berbasis browser semakin disukai. Tanpa instalasi, cepat, dan hemat penyimpanan."
                     }
                 ];
             }
 
-            // Render Kartu Artikel dengan Style UI Terpadu
             grid.innerHTML = articles.map(a => {
                 const rawSlug = a.slug || a.url || 'game-html5-tanpa-install';
                 const href = rawSlug.endsWith('.html') || rawSlug.startsWith('#') || rawSlug.startsWith('http') ? rawSlug : rawSlug + '.html';
