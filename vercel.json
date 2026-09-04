@@ -1,1 +1,17 @@
-{ "cleanUrls": true, "trailingSlash": false, "redirects": [ { "source": "/blog/:slug.html", "destination": "/blog/:slug", "permanent": true } ], "rewrites": [ { "source": "/blog/:slug", "destination": "/blog/:slug.html" } ] }
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/blog/(.*)\\.html",
+      "destination": "/blog/$1",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/blog/:slug",
+      "destination": "/blog/:slug.html"
+    }
+  ]
+}
