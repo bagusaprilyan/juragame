@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="id" id="html-root" class="dark">
 <head>
-     <meta name="google-adsense-account" content="ca-pub-1947710883450076">
      <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RRFH8S2MS3"></script>
     <script>
@@ -37,6 +36,9 @@
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- GOOGLE ADSENSE SCRIPT (AUTO ADS & CORE) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1947710883450076" crossorigin="anonymous"></script>
 
     <script>
         tailwind.config = {
@@ -78,12 +80,6 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .glass-card {
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
         .glass-modal {
             background: rgba(2, 6, 23, 0.98);
             backdrop-filter: blur(16px);
@@ -92,7 +88,7 @@
 
         .game-card {
             transition: transform 0.2s ease, border-color 0.2s ease;
-            transform: translateZ(0); /* Mobile performance optimization */
+            transform: translateZ(0);
             will-change: transform;
         }
         .game-card:hover {
@@ -189,13 +185,29 @@
                         <h2 id="hero-title" class="text-2xl sm:text-3xl font-black text-white leading-tight">
                             Mainkan Game HTML5 Terbaik <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">Langsung di Browser</span>
                         </h2>
-                        <p id="hero-desc" class="text-slate-300 text-xs sm:text-sm leading-relaxed">Nikmati pengalaman bermain game kasual terbaik langsung dari smartphone atau PC. Cepat, ringan, dan 100% gratis!</p>
+                        <p id="hero-desc" class="text-slate-300 text-xs sm:text-sm leading-relaxed">Nikmati pengalaman bermain ratusan game kasual seru langsung dari HP atau PC. Cepat, ringan, dan 100% gratis tanpa install!</p>
                         
                         <!-- Categories Chips -->
                         <div class="flex flex-wrap gap-2 pt-1" id="category-chips"></div>
                     </div>
                 </div>
             </section>
+
+            <!-- SLOT IKLAN 1: Bawah Hero Banner -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex justify-center">
+                <div class="w-full max-w-[728px] bg-slate-800/20 rounded-xl overflow-hidden min-h-[90px] flex items-center justify-center">
+                    <!-- Banner Atas -->
+                    <ins class="adsbygoogle"
+                         style="display:block; width:100%;"
+                         data-ad-client="ca-pub-1947710883450076"
+                         data-ad-slot="9098015953"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            </div>
 
             <!-- Games Sections Content -->
             <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 w-full space-y-8">
@@ -251,13 +263,13 @@
             </main>
         </div>
 
-        <!-- BLOG VIEW -->
+        <!-- BLOG VIEW (Template) -->
         <div id="view-blog" class="hidden max-w-4xl mx-auto px-4 py-8 w-full space-y-6">
             <h2 class="text-2xl font-black text-white">Jura Blog & Update Game</h2>
             <div id="blog-articles-list" class="space-y-4"></div>
         </div>
 
-        <!-- STATIC PAGES VIEW -->
+        <!-- STATIC PAGES VIEW (Template) -->
         <div id="view-page" class="hidden max-w-3xl mx-auto px-4 py-8 w-full space-y-4 text-slate-300 text-sm">
             <button onclick="switchView('home')" class="inline-flex items-center gap-2 text-xs font-bold text-indigo-400">
                 <i data-lucide="arrow-left" class="w-4 h-4"></i> Kembali
@@ -266,6 +278,7 @@
         </div>
     </div>
 
+    <!-- FOOTER -->
     <footer class="border-t border-slate-800 bg-slate-900/90 mt-12 py-8 px-4 text-slate-400 text-xs space-y-6">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
             <div class="space-y-2">
@@ -273,7 +286,7 @@
                     <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-indigo-600 to-pink-500 flex items-center justify-center text-white font-black text-xs">J</div>
                     <span class="text-white font-black text-sm">Jura Game</span>
                 </div>
-                <p class="text-slate-500 text-[11px]">Portal game HTML5 gratis terbaik tanpa unduhan.</p>
+                <p class="text-slate-500 text-[11px]">Koleksi game gratis terbesar. Mainkan ratusan judul game HTML5 terbaik langsung di browser Anda.</p>
             </div>
             <div>
                 <h4 class="text-white font-bold text-xs mb-2">Kategori Utama</h4>
@@ -305,7 +318,7 @@
         </div>
 
         <div class="max-w-5xl mx-auto w-full p-3 sm:p-6 flex-grow space-y-4">
-            <!-- Tambahkan id="game-wrapper" di sini -->
+            <!-- Game Canvas Wrapper -->
             <div id="game-wrapper" class="w-full aspect-[4/3] md:aspect-[16/9] bg-black rounded-2xl overflow-hidden relative shadow-2xl border border-slate-800">
                 <button onclick="toggleFullScreen()" class="absolute top-3 right-3 z-30 px-2.5 py-1.5 bg-slate-900/80 text-white rounded-xl text-xs font-bold flex items-center gap-1 border border-slate-700">
                     <i id="icon-fullscreen" data-lucide="maximize" class="w-3.5 h-3.5 text-indigo-400"></i> <span id="btn-fullscreen-txt">Fullscreen</span>
@@ -315,6 +328,20 @@
                     <span id="txt-loading" class="text-slate-400 text-xs">Memuat Game...</span>
                 </div>
                 <div id="iframe-container" class="absolute inset-0 z-10 w-full h-full"></div>
+            </div>
+
+            <!-- SLOT IKLAN 2: Bawah Layar Game (Dalam Modal) -->
+            <div class="w-full bg-slate-900/60 rounded-xl overflow-hidden min-h-[90px] flex items-center justify-center">
+                <!-- Banner Bawah Game (Sementara menggunakan ID Slot Banner Atas agar langsung aktif) -->
+                <ins class="adsbygoogle"
+                     style="display:block; width:100%;"
+                     data-ad-client="ca-pub-1947710883450076"
+                     data-ad-slot="9098015953"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
 
             <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 space-y-2">
@@ -344,7 +371,7 @@
                 blogNav: 'Blog & Tips',
                 badge: 'Portal Game Gratis',
                 heroTitle: 'Mainkan Game HTML5 Terbaik <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">Langsung di Browser</span>',
-                heroDesc: 'Nikmati pengalaman bermain game kasual terbaik langsung dari smartphone atau PC. Cepat, ringan, dan 100% gratis!',
+                heroDesc: 'Nikmati pengalaman bermain ratusan game kasual seru langsung dari HP atau PC. Cepat, ringan, dan 100% gratis tanpa install!',
                 searchPlaceholder: 'Cari game...',
                 recentTitle: 'Game Terakhir Dimainkan',
                 clearHistory: 'Hapus',
@@ -356,7 +383,7 @@
                 loading: 'Memuat Game...',
                 similarGridTitle: 'Game Serupa',
                 fullscreenBtn: 'Layar Penuh',
-                categories: { ALL: 'Semua', Puzzle: 'Puzzle', Merge: 'Merge', Racing: 'Racing', Arcade: 'Arcade', Action: 'Action' }
+                categories: { ALL: 'Semua', Action: 'Action', Puzzle: 'Puzzle', Merge: 'Merge', Racing: 'Racing', Arcade: 'Arcade', Strategy: 'Strategy' }
             },
             en: {
                 langCode: 'EN',
@@ -375,11 +402,10 @@
                 loading: 'Loading Game...',
                 similarGridTitle: 'Similar Games',
                 fullscreenBtn: 'Fullscreen',
-                categories: { ALL: 'All', Puzzle: 'Puzzle', Merge: 'Merge', Racing: 'Racing', Arcade: 'Arcade', Action: 'Action' }
+                categories: { ALL: 'All', Action: 'Action', Puzzle: 'Puzzle', Merge: 'Merge', Racing: 'Racing', Arcade: 'Arcade', Strategy: 'Strategy' }
             }
         };
 
-        // Fallback GamePix Data (12 games based on user's exact JSON)
         const fallbackGamePixItems = [
             {
                 id: "737HCH",
@@ -387,22 +413,22 @@
                 category: "Puzzle",
                 thumb: "https://img.gamepix.com/games/prism-match-3d/cover/prism-match-3d.png?w=320",
                 url: "https://play.gamepix.com/prism-match-3d/embed?sid=MUGAR",
-                description: "Dive into a mesmerizing 3D cube universe.",
+                description: "Dive into a mesmerizing 3D cube universe where vibrant prisms challenge your logic.",
                 source: "GP"
             },
             {
                 id: "5G91RE",
                 title: "Garden Master",
-                category: "Simulation",
+                category: "Farming",
                 thumb: "https://img.gamepix.com/games/garden-master/cover/garden-master.png?w=320",
                 url: "https://play.gamepix.com/garden-master/embed?sid=MUGAR",
-                description: "Step into the shoes of an industrious gnome.",
+                description: "Step into the shoes of an industrious gnome in Garden Master!",
                 source: "GP"
             },
             {
                 id: "EE5DCF",
                 title: "Defend the Castle",
-                category: "Action",
+                category: "Strategy",
                 thumb: "https://img.gamepix.com/games/defend-the-castle/cover/defend-the-castle.png?w=320",
                 url: "https://play.gamepix.com/defend-the-castle/embed?sid=MUGAR",
                 description: "Fortify your kingdom in Defend the Castle!",
@@ -420,7 +446,7 @@
             {
                 id: "A311T3",
                 title: "Stack Rocket",
-                category: "Arcade",
+                category: "Building",
                 thumb: "https://img.gamepix.com/games/stack-rocket/cover/stack-rocket.png?w=320",
                 url: "https://play.gamepix.com/stack-rocket/embed?sid=MUGAR",
                 description: "Build high rocket stacks with speed and accuracy.",
@@ -429,7 +455,7 @@
             {
                 id: "O1H119",
                 title: "Nova Hop",
-                category: "Arcade",
+                category: "Casual",
                 thumb: "https://img.gamepix.com/games/nova-hop/cover/nova-hop.png?w=320",
                 url: "https://play.gamepix.com/nova-hop/embed?sid=MUGAR",
                 description: "Hop through neon obstacles in this hyper casual adventure.",
@@ -447,7 +473,7 @@
             {
                 id: "1BA572",
                 title: "Boost Balloon",
-                category: "Arcade",
+                category: "Casual",
                 thumb: "https://img.gamepix.com/games/boost-balloon/cover/boost-balloon.png?w=320",
                 url: "https://play.gamepix.com/boost-balloon/embed?sid=MUGAR",
                 description: "Boost balloons into high skies avoiding hazardous traps.",
@@ -456,7 +482,7 @@
             {
                 id: "A97NE0",
                 title: "Billiards on Ice",
-                category: "Arcade",
+                category: "Sports",
                 thumb: "https://img.gamepix.com/games/billiards-on-ice/cover/billiards-on-ice.png?w=320",
                 url: "https://play.gamepix.com/billiards-on-ice/embed?sid=MUGAR",
                 description: "Play classic billiards on slippery ice tables.",
@@ -483,7 +509,7 @@
             {
                 id: "KKTTKS",
                 title: "Skater Kitty",
-                category: "Arcade",
+                category: "Sports",
                 thumb: "https://img.gamepix.com/games/skater-kitty/cover/skater-kitty.png?w=320",
                 url: "https://play.gamepix.com/skater-kitty/embed?sid=MUGAR",
                 description: "Skate through city parks with cool kitty flips.",
@@ -496,7 +522,7 @@
 
         let allGamesData = [];
         let filteredGames = [];
-        let displayedCount = 12; // Diturunkan dari 96 ke 12 agar sangat ringan di HP
+        let displayedCount = 12; 
         const itemsPerPage = 12;
         let currentCategory = 'ALL';
         let activeGameObj = null;
@@ -504,6 +530,15 @@
         function slugify(text) {
             if (!text) return 'game';
             return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-');
+        }
+
+        function getSafeThumbnail(game) {
+            let thumb = game.banner_image || game.image || game.thumbnailUrl || game.thumb || game.Assets?.[0];
+            if (!thumb) {
+                let safeTitle = (game.title || 'Game').replace(/[^a-zA-Z0-9]/g, '+');
+                thumb = `https://placehold.co/400x300/1e293b/818cf8?text=${safeTitle}`;
+            }
+            return thumb;
         }
 
         function renderSkeletons(count = 12) {
@@ -523,7 +558,7 @@
         async function fetchGames() {
             renderSkeletons(12);
             
-            // Limitasi pagination 12 untuk meringankan proses rendering di HP
+            // Limit 12 agar performa HP kencang seperti Poki
             const gpUrl = 'https://feeds.gamepix.com/v2/json?sid=MUGAR&pagination=12&page=1';
             const gmUrl = 'https://rss.gamemonetize.com/rssfeed.php?format=json&category=All&type=html5&amount=12';
             
@@ -539,8 +574,7 @@
                         title: g.title || 'Game',
                         url: g.url || '',
                         category: g.category || 'Arcade',
-                        // Pencarian thumbnail secara agresif dari berbagai nama properti yang mungkin digunakan GamePix
-                        thumb: g.banner_image || g.image || g.thumbnailUrl || g.thumb || 'https://placehold.co/400x300/1e293b/818cf8?text=Game',
+                        thumb: getSafeThumbnail(g),
                         description: g.description || '',
                         source: 'GP'
                     }));
@@ -548,6 +582,8 @@
             } catch (e) {
                 console.error("GamePix Fetch Error:", e);
             }
+
+            if (listGP.length === 0) listGP = fallbackGamePixItems;
 
             try {
                 const resGM = await fetch(gmUrl);
@@ -559,7 +595,7 @@
                         title: g.title || 'Game',
                         url: g.url || '',
                         category: g.category || 'Arcade',
-                        thumb: g.thumb || 'https://placehold.co/400x300/1e293b/818cf8?text=Game',
+                        thumb: getSafeThumbnail(g),
                         description: g.description || '',
                         source: 'GM'
                     }));
@@ -568,12 +604,6 @@
                 console.error("GameMonetize Fetch Error:", e);
             }
 
-            // Jika API gagal dipanggil karena pemblokiran browser, pasang fallback murni
-            if (listGP.length === 0) {
-                listGP = fallbackGamePixItems;
-            }
-
-            // Campurkan GP dan GM menjadi satu pengalaman white-label yang kaya
             allGamesData = [...listGP, ...listGM].sort(() => Math.random() - 0.5);
 
             renderPopularSection(allGamesData.slice(0, 6));
@@ -588,20 +618,16 @@
             const cardWidth = isHorizontal ? 'flex-shrink-0 w-32 sm:w-36' : '';
             const category = game.category || 'Arcade';
             
-            // Thumbnail Fallback Chain
-            const thumbUrl = game.thumb || 'https://placehold.co/400x300/1e293b/818cf8?text=Game';
-            const source = game.source || 'GP';
+            const thumbUrl = game.thumb || `https://placehold.co/400x300/1e293b/818cf8?text=Game`;
+            const source = game.source || 'Jura';
             
-            // Hapus loading="lazy" agar tidak membuat gambar nyangkut di mobile (tanpa scrolling)
-            // Tambahkan referrerpolicy="no-referrer" agar CDN GamePix/Monetize tidak me-reject request (403)
-            // onerror dibuat super simpel agar kebal dari character escaping bug
             return `
                 <div class="game-card group cursor-pointer space-y-1.5 ${cardWidth}" 
                      onclick="openGame('${game.url}', '${escapeTitle}', '${category}', '${thumbUrl}', '${encodeURIComponent(game.description || '')}')">
                     <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-900 border border-slate-800">
-                        <img src="${thumbUrl}" alt="${escapeTitle}" referrerpolicy="no-referrer"
-                             onerror="this.onerror=null; this.src='https://placehold.co/400x300/1e293b/818cf8?text=Game';" 
-                             class="absolute inset-0 w-full h-full object-cover transition duration-300">
+                        <img src="${thumbUrl}" alt="${escapeTitle}" 
+                             class="absolute inset-0 w-full h-full object-cover transition duration-300"
+                             onerror="this.onerror=null; this.src='https://placehold.co/400x300/1e293b/818cf8?text=Jura+Game';">
                         <span class="absolute top-1.5 right-1.5 px-1 py-0.5 rounded text-[8px] font-black bg-slate-950/80 text-slate-300 border border-slate-700 shadow-md">${source}</span>
                     </div>
                     <div>
@@ -633,7 +659,7 @@
                 filteredGames = allGamesData.filter(g => {
                     const catStr = (g.category || '').toLowerCase();
                     const query = category.toLowerCase();
-                    return catStr.includes(query);
+                    return catStr.includes(query) || (query === 'action' && catStr.includes('shooter')) || (query === 'racing' && catStr.includes('car'));
                 });
             }
             
@@ -783,7 +809,6 @@
             modal.classList.remove('opacity-100');
             modal.classList.add('opacity-0');
             
-            // Keluar dari fullscreen jika pemain menekan tombol back saat masih fullscreen
             if (document.fullscreenElement || document.webkitFullscreenElement) {
                 if (document.exitFullscreen) document.exitFullscreen();
                 else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
@@ -798,23 +823,20 @@
         }
 
         function toggleFullScreen() {
-            const container = document.getElementById('game-wrapper'); // Hanya fullscreen kotak gamenya saja
+            const container = document.getElementById('game-wrapper');
             
             if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-                // Masuk Fullscreen
                 if (container.requestFullscreen) {
-                    container.requestFullscreen().catch(e => console.error("Error fullscreen:", e));
+                    container.requestFullscreen().catch(e => console.error(e));
                 } else if (container.webkitRequestFullscreen) {
                     container.webkitRequestFullscreen();
                 } else {
-                    // Fallback untuk perangkat iOS lama (Pseudo-fullscreen)
                     container.classList.toggle('fixed');
                     container.classList.toggle('inset-0');
                     container.classList.toggle('z-[9999]');
                     container.classList.toggle('rounded-none');
                 }
             } else {
-                // Keluar Fullscreen
                 if (document.exitFullscreen) {
                     document.exitFullscreen();
                 } else if (document.webkitExitFullscreen) {
@@ -823,7 +845,6 @@
             }
         }
 
-        // Listener jika pemain keluar fullscreen menggunakan tombol ESC di keyboard
         document.addEventListener('fullscreenchange', updateFullscreenUI);
         document.addEventListener('webkitfullscreenchange', updateFullscreenUI);
 
@@ -835,7 +856,7 @@
             if (!document.fullscreenElement && !document.webkitFullscreenElement) {
                 btnTxt.textContent = i18n[currentLang].fullscreenBtn;
                 if(icon) icon.setAttribute('data-lucide', 'maximize');
-                container.classList.remove('fixed', 'inset-0', 'z-[9999]', 'rounded-none'); // Hapus fallback iOS
+                container.classList.remove('fixed', 'inset-0', 'z-[9999]', 'rounded-none');
             } else {
                 btnTxt.textContent = currentLang === 'id' ? 'Keluar' : 'Exit';
                 if(icon) icon.setAttribute('data-lucide', 'minimize');
@@ -862,11 +883,12 @@
             
             const cats = [
                 { id: 'ALL', label: i18n[currentLang].categories.ALL },
+                { id: 'Action', label: i18n[currentLang].categories.Action },
                 { id: 'Puzzle', label: i18n[currentLang].categories.Puzzle },
                 { id: 'Merge', label: i18n[currentLang].categories.Merge },
                 { id: 'Racing', label: i18n[currentLang].categories.Racing },
                 { id: 'Arcade', label: i18n[currentLang].categories.Arcade },
-                { id: 'Action', label: i18n[currentLang].categories.Action }
+                { id: 'Strategy', label: i18n[currentLang].categories.Strategy }
             ];
 
             chipsContainer.innerHTML = cats.map(c => {
@@ -896,6 +918,14 @@
             document.getElementById('hero-title').innerHTML = t.heroTitle;
             document.getElementById('hero-desc').textContent = t.heroDesc;
             document.getElementById('search-input').placeholder = t.searchPlaceholder;
+            document.getElementById('txt-recent').innerHTML = `<i data-lucide="history" class="w-4 h-4 text-indigo-400"></i> ${t.recentTitle}`;
+            document.getElementById('txt-clear').textContent = t.clearHistory;
+            document.getElementById('txt-recommended').innerHTML = `<i data-lucide="flame" class="w-4 h-4 text-amber-400"></i> ${t.recommendedTitle}`;
+            document.getElementById('txt-popular').innerHTML = `<i data-lucide="trending-up" class="w-4 h-4 text-pink-400"></i> ${t.popularTitle}`;
+            document.getElementById('load-more-btn').textContent = t.loadMore;
+            document.getElementById('txt-loading').textContent = t.loading;
+            document.getElementById('txt-similar-grid').textContent = t.similarGridTitle;
+            document.getElementById('btn-fullscreen-txt').textContent = t.fullscreenBtn;
             
             renderCategories(currentCategory);
             updateSectionTitles();
