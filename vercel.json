@@ -1,1 +1,1 @@
-{"cleanUrls": true,"trailingSlash": false,"rewrites": [{"source": "/blog/:path*","destination": "/blog/:path*.html"}]}
+{ "cleanUrls": true, "trailingSlash": false, "redirects": [ { "source": "/blog/:slug.html", "destination": "/blog/:slug", "permanent": true } ], "rewrites": [ { "source": "/blog/:slug", "destination": "/blog/:slug.html" } ] }
