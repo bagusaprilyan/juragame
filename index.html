@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id" id="html-root" class="dark">
 <head>
-    <!-- Google tag (gtag.js) -->
+     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RRFH8S2MS3"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -10,7 +10,6 @@
 
       gtag('config', 'G-RRFH8S2MS3');
     </script>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- Solusi Kuat Anti-Broken Image: Memaksa browser tidak mengirim data referrer -->
@@ -305,9 +304,10 @@
         </div>
 
         <div class="max-w-5xl mx-auto w-full p-3 sm:p-6 flex-grow space-y-4">
-            <div class="w-full aspect-[4/3] md:aspect-[16/9] bg-black rounded-2xl overflow-hidden relative shadow-2xl border border-slate-800">
+            <!-- Tambahkan id="game-wrapper" di sini -->
+            <div id="game-wrapper" class="w-full aspect-[4/3] md:aspect-[16/9] bg-black rounded-2xl overflow-hidden relative shadow-2xl border border-slate-800">
                 <button onclick="toggleFullScreen()" class="absolute top-3 right-3 z-30 px-2.5 py-1.5 bg-slate-900/80 text-white rounded-xl text-xs font-bold flex items-center gap-1 border border-slate-700">
-                    <i data-lucide="maximize" class="w-3.5 h-3.5 text-indigo-400"></i> <span id="btn-fullscreen-txt">Fullscreen</span>
+                    <i id="icon-fullscreen" data-lucide="maximize" class="w-3.5 h-3.5 text-indigo-400"></i> <span id="btn-fullscreen-txt">Fullscreen</span>
                 </button>
                 <div id="iframe-loader" class="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 z-20 gap-2">
                     <div class="w-8 h-8 border-3 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
@@ -781,6 +781,13 @@
             const modal = document.getElementById('game-modal');
             modal.classList.remove('opacity-100');
             modal.classList.add('opacity-0');
+            
+            // Keluar dari fullscreen jika pemain menekan tombol back saat masih fullscreen
+            if (document.fullscreenElement || document.webkitFullscreenElement) {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+            }
+
             setTimeout(() => {
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
@@ -790,26 +797,49 @@
         }
 
         function toggleFullScreen() {
-            const container = document.getElementById('game-iframe-wrapper');
-            if (!container) return;
+            const container = document.getElementById('game-wrapper'); // Hanya fullscreen kotak gamenya saja
             
-            if (!document.fullscreenElement) {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                // Masuk Fullscreen
                 if (container.requestFullscreen) {
-                    container.requestFullscreen();
+                    container.requestFullscreen().catch(e => console.error("Error fullscreen:", e));
                 } else if (container.webkitRequestFullscreen) {
                     container.webkitRequestFullscreen();
-                } else if (container.msRequestFullscreen) {
-                    container.msRequestFullscreen();
+                } else {
+                    // Fallback untuk perangkat iOS lama (Pseudo-fullscreen)
+                    container.classList.toggle('fixed');
+                    container.classList.toggle('inset-0');
+                    container.classList.toggle('z-[9999]');
+                    container.classList.toggle('rounded-none');
                 }
             } else {
+                // Keluar Fullscreen
                 if (document.exitFullscreen) {
                     document.exitFullscreen();
                 } else if (document.webkitExitFullscreen) {
                     document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
                 }
             }
+        }
+
+        // Listener jika pemain keluar fullscreen menggunakan tombol ESC di keyboard
+        document.addEventListener('fullscreenchange', updateFullscreenUI);
+        document.addEventListener('webkitfullscreenchange', updateFullscreenUI);
+
+        function updateFullscreenUI() {
+            const btnTxt = document.getElementById('btn-fullscreen-txt');
+            const icon = document.getElementById('icon-fullscreen');
+            const container = document.getElementById('game-wrapper');
+
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                btnTxt.textContent = i18n[currentLang].fullscreenBtn;
+                if(icon) icon.setAttribute('data-lucide', 'maximize');
+                container.classList.remove('fixed', 'inset-0', 'z-[9999]', 'rounded-none'); // Hapus fallback iOS
+            } else {
+                btnTxt.textContent = currentLang === 'id' ? 'Keluar' : 'Exit';
+                if(icon) icon.setAttribute('data-lucide', 'minimize');
+            }
+            if (window.lucide) lucide.createIcons();
         }
 
         function shareGameModal() {
