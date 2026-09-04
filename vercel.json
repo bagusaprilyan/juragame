@@ -1,1 +1,1 @@
-{"cleanUrls": true,"trailingSlash": false}
+{"cleanUrls": true,"trailingSlash": false,"rewrites": [{"source": "/blog/:path*","destination": "/blog/:path*.html"}]}
