@@ -1,10 +1,18 @@
 {
   "trailingSlash": false,
-  "rewrites": [
+  "redirects": [
     {
       "source": "/blog/:slug.html",
-      "destination": "/blog/:slug.html"
+      "destination": "/blog/:slug",
+      "permanent": true
     },
+    {
+      "source": "/blog/index.html",
+      "destination": "/blog",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
     {
       "source": "/blog/:slug",
       "destination": "/blog/:slug.html"
