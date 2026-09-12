@@ -296,7 +296,7 @@
 
             grid.innerHTML = articles.map(a => {
                 const rawSlug = a.slug || a.url || 'game-html5-tanpa-install';
-                const href = rawSlug.endsWith('.html') || rawSlug.startsWith('#') || rawSlug.startsWith('http') ? rawSlug : rawSlug + '.html';
+                const href = rawSlug.startsWith('#') || rawSlug.startsWith('http') ? rawSlug : rawSlug;
                 const cover = a.cover_image || a.image || '';
                 const category = a.category || 'Tips Gaming';
                 const dateStr = a.date || 'Terbaru';
