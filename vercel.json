@@ -2,13 +2,13 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/blog/:slug.html",
-      "destination": "/blog/:slug",
+      "source": "/blog/index.html",
+      "destination": "/blog",
       "permanent": true
     },
     {
-      "source": "/blog/index.html",
-      "destination": "/blog",
+      "source": "/blog/:slug.html",
+      "destination": "/blog/:slug",
       "permanent": true
     }
   ],
