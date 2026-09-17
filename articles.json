@@ -1,5 +1,22 @@
 [
   {
+    "slug": "7-game-sederhana-tapi-bikin-ketagihan-untuk-sore-hari",
+    "title": "7 Game Sederhana Tapi Bikin Ketagihan untuk Sore Hari",
+    "body": "Mengisi waktu luang di sore hari sering kali dilakukan dengan bermain game yang tidak memerlukan komitmen waktu lama atau mekanisme yang terlalu kompleks. Game dengan kontrol sederhana namun memiliki tantangan yang konsisten biasanya menjadi pilihan bagi pengguna ponsel pintar maupun pemain yang menggunakan browser. Berikut adalah tujuh",
+    "excerpt": "Mengisi waktu luang di sore hari sering kali dilakukan dengan bermain game yang tidak memerlukan komitmen waktu lama atau mekanisme yang terlalu kompleks. Game",
+    "date": "18 September 2026",
+    "category": "Game Online",
+    "cover_image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800",
+    "tags": [
+      "game",
+      "sederhana",
+      "tapi",
+      "bikin",
+      "ketagihan"
+    ],
+    "mode": "game"
+  },
+  {
     "slug": "game-rpg-browser-terbaik-yang-bisa-dimainkan-tanpa-download",
     "title": "Game RPG Browser Terbaik yang Bisa Dimainkan Tanpa Download",
     "body": "Bermain game Role-Playing Game (RPG) saat ini tidak selalu memerlukan perangkat dengan spesifikasi tinggi atau proses instalasi yang lama. Berkat teknologi HTML5 dan WebGL, banyak pengembang merilis game RPG yang dapat dijalankan langsung melalui peramban (browser) seperti Google Chrome, Safari, atau Firefox. Hal ini memudahkan pemain yang memiliki keterbatasan ruang penyimpanan pada PC atau ponsel mereka.\n\n## Keunggulan Game RPG Berbasis Browser\n\nGame RPG browser menawarkan aksesibilitas yang tinggi karena pemain hanya perlu membuka URL tertentu untuk mulai bermain. Sebagian besar game ini juga mendukung fitur *cross-platform*, yang berarti progres permainan yang disimpan di browser PC dapat dilanjutkan melalui browser di ponsel pintar. Secara teknis, game jenis ini lebih ringan karena aset visual dimuat secara bertahap saat dimainkan, bukan diunduh sekaligus di awal. Namun, performa permainan sangat bergantung pada stabilitas koneksi internet dan pembaruan versi browser yang digunakan.\n\n## Daftar Game RPG Browser yang Aktif Saat Ini\n\nBerikut adalah beberapa judul game RPG yang benar-benar ada dan dapat dimainkan secara stabil melalui browser tanpa perlu mengunduh aplikasi tambahan:\n\n1.  **Flyff Universe**\n    Ini merupakan versi *remake* dari Flyff Online yang dibangun menggunakan teknologi HTML5. Game ini menyajikan grafis 3D penuh yang bisa dijalankan di browser. Gameplay-nya mencakup sistem *job* (profesi), pertarungan melawan monster, dan fitur ikonik terbang menggunakan sapu atau papan terbang. Pemain dapat berinteraksi dengan ribuan pemain lain dalam satu server yang sama.\n2.  **Granblue Fantasy**\n    Dikembangkan oleh Cygames, game ini sangat populer di wilayah Asia. Meskipun memiliki aplikasi mobile, *Granblue Fantasy* sebenarnya didesain untuk berjalan optimal di browser (khususnya melalui alamat `game.granbluefantasy.jp`). Game ini menggunakan sistem *turn-based combat* dengan elemen gacha untuk mengoleksi karakter dan senjata. Visualnya menggunakan gaya seni anime berkualitas tinggi dengan iringan musik dari komposer ternama.\n3.  **PokeClicker**\n    Berbeda dengan RPG tradisional, *PokeClicker* adalah game RPG berbasis *idle* dan *clicker* yang bersifat *open-source*. Pemain bertugas menangkap berbagai jenis makhluk, meningkatkan level, dan menantang *Gym Leaders* di berbagai wilayah. Game ini fokus pada manajemen sumber daya dan progresi bertahap tanpa memerlukan spesifikasi perangkat yang berat.\n4.  **AdventureQuest Worlds (AQW)**\n    Game 2D MMORPG ini telah eksis cukup lama dan masih aktif mendapatkan pembaruan mingguan. Pemain dapat memilih kelas karakter, menyelesaikan ribuan misi, dan mengumpulkan kostum atau perlengkapan",
@@ -30,23 +47,6 @@
       "ringan",
       "dengan",
       "grafis"
-    ],
-    "mode": "game"
-  },
-  {
-    "slug": "7-game-sederhana-tapi-bikin-ketagihan-untuk-sore-hari",
-    "title": "7 Game Sederhana Tapi Bikin Ketagihan untuk Sore Hari",
-    "body": "Game sederhana dengan aturan yang mudah dipahami sering jadi pilihan untuk mengisi waktu luang di sore hari. Tanpa perlu tutorial panjang atau spesifikasi perangkat tinggi, beberapa game berikut bisa langsung dimainkan di browser atau HP dan menawarkan sesi permainan yang singkat.\n\nBerikut 7 game sederhana tapi punya gameplay yang membuat pemain ingin mengulang lagi.\n\n## 1. Game Puzzle Kata dan Angka\n\nJenis puzzle ini mengandalkan logika sederhana dan bisa dimainkan dalam beberapa menit saja.\n\n**1. Wordle**\nGame tebak kata dari The New York Times yang bisa dimainkan di browser. Pemain diberi 6 kesempatan untuk menebak kata berbahasa Inggris dengan 5 huruf. Setiap tebakan akan memberi petunjuk warna: hijau untuk huruf dan posisi benar, kuning untuk huruf benar tapi posisi salah, dan abu-abu untuk huruf tidak ada. Wordle hanya menyediakan satu tantangan per hari.\n\n**2. 2048**\nGame puzzle angka yang tersedia di browser di play2048.co dan versi aplikasi di HP. Gameplay-nya adalah menggeser semua ubin di papan 4x4 ke atas, bawah, kiri, atau kanan. Ubin dengan angka sama yang bertabrakan akan bergabung menjadi satu (contoh: 2 + 2 menjadi 4). Tujuannya adalah membuat ubin dengan angka 2048. Tidak",
-    "excerpt": "Game sederhana dengan aturan yang mudah dipahami sering jadi pilihan untuk mengisi waktu luang di sore hari. Tanpa perlu tutorial panjang atau spesifikasi peran",
-    "date": "10 September 2026",
-    "category": "Game Online",
-    "cover_image": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800",
-    "tags": [
-      "game",
-      "sederhana",
-      "tapi",
-      "bikin",
-      "ketagihan"
     ],
     "mode": "game"
   },
