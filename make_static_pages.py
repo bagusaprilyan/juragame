@@ -122,7 +122,7 @@ PAGES["about.html"] = render(
     <p>Selain bermain, kami menulis artikel yang benar-benar berguna: daftar rekomendasi game berdasarkan tema, panduan untuk pemula, dan tips memilih game yang cocok untuk anak-anak. Setiap artikel kami susun dengan riset dan ditulis ulang dengan gaya kami sendiri agar memberi informasi yang jujur dan bermanfaat bagi pembaca.</p>
 
     <h2>Hubungi Kami</h2>
-    <p>Punya pertanyaan, masukan, atau ingin bekerja sama? Kami senang mendengar dari Anda. Silakan kunjungi halaman <a href="/contact.html">Kontak</a> atau kirim surel ke <strong>halo@juragame.com</strong>.</p>
+    <p>Punya pertanyaan, masukan, atau ingin bekerja sama? Kami senang mendengar dari Anda. Silakan kunjungi halaman <a href="/contact.html">Kontak</a> atau kirim surel ke <a href="mailto:halo@juragame.com"><a href="mailto:halo@juragame.com"><strong>halo@juragame.com</strong></a></a>.</p>
 
     <p>Terima kasih telah bermain di Jura Game. Selamat bersenang-senang! 🎮</p>
     """,
@@ -183,7 +183,7 @@ PAGES["privacy.html"] = render(
     <p>Kami dapat memperbarui Kebijakan Privasi ini dari waktu ke waktu. Perubahan akan ditampilkan di halaman ini dengan tanggal pembaruan terbaru. Kami menyarankan Anda meninjau halaman ini secara berkala.</p>
 
     <h2>11. Hubungi Kami</h2>
-    <p>Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini, silakan hubungi kami di <strong>halo@juragame.com</strong>.</p>
+    <p>Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini, silakan hubungi kami di <a href="mailto:halo@juragame.com"><a href="mailto:halo@juragame.com"><strong>halo@juragame.com</strong></a></a>.</p>
     """,
 )
 
@@ -223,7 +223,7 @@ PAGES["disclaimer.html"] = render(
     <p>Kami dapat mengubah Disclaimer ini kapan saja. Versi terbaru akan selalu ditampilkan di halaman ini.</p>
 
     <h2>8. Kontak</h2>
-    <p>Pertanyaan mengenai Disclaimer ini dapat disampaikan ke <strong>halo@juragame.com</strong> atau melalui halaman <a href="/contact.html">Kontak</a>.</p>
+    <p>Pertanyaan mengenai Disclaimer ini dapat disampaikan ke <a href="mailto:halo@juragame.com"><a href="mailto:halo@juragame.com"><strong>halo@juragame.com</strong></a></a> atau melalui halaman <a href="/contact.html">Kontak</a>.</p>
     """,
 )
 
@@ -270,7 +270,7 @@ PAGES["terms.html"] = render(
     <p>Syarat &amp; Ketentuan ini diatur oleh hukum yang berlaku di Indonesia. Segala perselisihan akan diselesaikan secara musyawarah terlebih dahulu.</p>
 
     <h2>10. Kontak</h2>
-    <p>Untuk pertanyaan mengenai Syarat &amp; Ketentuan ini, hubungi kami di <strong>halo@juragame.com</strong> atau melalui halaman <a href="/contact.html">Kontak</a>.</p>
+    <p>Untuk pertanyaan mengenai Syarat &amp; Ketentuan ini, hubungi kami di <a href="mailto:halo@juragame.com"><a href="mailto:halo@juragame.com"><strong>halo@juragame.com</strong></a></a> atau melalui halaman <a href="/contact.html">Kontak</a>.</p>
     """,
 )
 

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Blokir area internal / berkas sensitif
+Disallow: /api/
+Disallow: /*.json$
+
+Sitemap: https://juragame.com/sitemap.xml
