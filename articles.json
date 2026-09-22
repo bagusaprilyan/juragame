@@ -158,9 +158,9 @@
   {
     "slug": "7-game-sederhana-tapi-bikin-ketagihan-untuk-sore-hari",
     "title": "7 Game Sederhana Tapi Bikin Ketagihan untuk Sore Hari",
-    "body": "Mengisi waktu luang di sore hari sering kali dilakukan dengan bermain game yang tidak memerlukan komitmen waktu lama atau mekanisme yang terlalu kompleks. Game dengan kontrol sederhana namun memiliki tantangan yang konsisten biasanya menjadi pilihan bagi pengguna ponsel pintar maupun pemain yang menggunakan browser. Berikut adalah tujuh",
-    "excerpt": "Mengisi waktu luang di sore hari sering kali dilakukan dengan bermain game yang tidak memerlukan komitmen waktu lama atau mekanisme yang terlalu kompleks. Game",
-    "date": "18 September 2026",
+    "body": "",
+    "excerpt": "",
+    "date": "22 September 2026",
     "category": "Game Online",
     "cover_image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800",
     "tags": [
@@ -170,7 +170,8 @@
       "bikin",
       "ketagihan"
     ],
-    "mode": "game"
+    "mode": "game",
+    "date_iso": "2026-09-22"
   },
   {
     "slug": "game-lari-tak-terbatas-paling-populer-tahun-ini",
