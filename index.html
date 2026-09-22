@@ -11,7 +11,7 @@
       gtag('config', 'G-RRFH8S2MS3');
     </script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Solusi Kuat Anti-Broken Image: Memaksa browser tidak mengirim data referrer -->
     <meta name="referrer" content="no-referrer">
     
@@ -20,6 +20,70 @@
     <meta name="description" content="Mainkan ribuan game HTML5 gratis tanpa install di Jura Game. Koleksi game casual terbaik mulai dari action, puzzle, balapan, dan arcade.">
     <meta name="keywords" content="game gratis, free game, main game online, game html5, game tanpa install, portal game, jura game">
     <meta name="author" content="Jura Game">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <link rel="canonical" href="https://juragame.com/">
+
+    <!-- Open Graph (Facebook, WhatsApp, Telegram) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jura Game">
+    <meta property="og:title" content="Jura Game - Mainkan Game Gratis & Free Online Games">
+    <meta property="og:description" content="Mainkan ribuan game HTML5 gratis tanpa install di Jura Game. Koleksi game casual terbaik mulai dari action, puzzle, balapan, dan arcade.">
+    <meta property="og:url" content="https://juragame.com/">
+    <meta property="og:image" content="https://juragame.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="id_ID">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jura Game - Mainkan Game Gratis & Free Online Games">
+    <meta name="twitter:description" content="Mainkan ribuan game HTML5 gratis tanpa install di Jura Game. Koleksi game casual terbaik mulai dari action, puzzle, balapan, dan arcade.">
+    <meta name="twitter:image" content="https://juragame.com/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+
+    <!-- Structured Data: WebSite + SearchAction + Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://juragame.com/#website",
+          "url": "https://juragame.com/",
+          "name": "Jura Game",
+          "description": "Portal game HTML5 gratis yang bisa dimainkan langsung di browser tanpa install.",
+          "inLanguage": "id-ID",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": { "@type": "EntryPoint", "urlTemplate": "https://juragame.com/?q={search_term_string}" },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://juragame.com/#organization",
+          "name": "Jura Game",
+          "url": "https://juragame.com/",
+          "logo": { "@type": "ImageObject", "url": "https://juragame.com/og-image.png" }
+        },
+        {
+          "@type": "ItemList",
+          "name": "Koleksi Game HTML5 Gratis",
+          "description": "Daftar game HTML5 gratis terbaik yang bisa dimainkan langsung di browser.",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Game Puzzle & Logika" },
+            { "@type": "ListItem", "position": 2, "name": "Game Action & Arcade" },
+            { "@type": "ListItem", "position": 3, "name": "Game Racing" },
+            { "@type": "ListItem", "position": 4, "name": "Game Strategy" }
+          ]
+        }
+      ]
+    }
+    </script>
+
 
     <!-- PWA Theme Color -->
     <meta name="theme-color" content="#020617">
@@ -108,9 +172,34 @@
             color: #f8fafc;
             -webkit-tap-highlight-color: transparent;
         }
+
+        /* Batasi judul kartu maksimal 2 baris (aman meski plugin line-clamp tak ada) */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Skip link untuk aksesibilitas keyboard */
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            z-index: 9999;
+            background: #6366f1;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 0 0 8px 0;
+            font-size: 13px;
+            font-weight: 700;
+        }
+        .skip-link:focus { left: 0; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col relative overflow-x-hidden">
+
+    <a href="#main-content" class="skip-link">Lewati ke konten utama</a>
 
     <!-- Background Gradient Grids -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
@@ -147,12 +236,12 @@
                     <span id="blog-nav-label" class="hidden sm:inline">Blog & Tips</span>
                 </a>
 
-                <button onclick="toggleLanguage()" class="px-2.5 py-2 sm:px-3 sm:py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 text-xs font-bold flex items-center gap-1.5 shadow-sm">
+                <button onclick="toggleLanguage()" aria-label="Ganti bahasa" class="px-2.5 py-2 sm:px-3 sm:py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 text-xs font-bold flex items-center gap-1.5 shadow-sm">
                     <i data-lucide="globe" class="w-4 h-4 text-indigo-400 flex-shrink-0"></i>
                     <span id="lang-label">ID</span>
                 </button>
 
-                <button onclick="toggleSearch()" class="p-2 sm:p-2.5 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 focus:outline-none shadow-sm">
+                <button onclick="toggleSearch()" aria-label="Cari game" class="p-2 sm:p-2.5 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 focus:outline-none shadow-sm">
                     <i data-lucide="search" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                 </button>
             </div>
@@ -163,7 +252,7 @@
             <div class="max-w-3xl mx-auto relative flex items-center">
                 <i data-lucide="search" class="w-5 h-5 absolute left-4 text-slate-400"></i>
                 <input type="text" id="search-input" onkeyup="handleSearch(event)" placeholder="Cari game..." class="w-full bg-slate-900/90 border border-slate-700 rounded-xl py-3 pl-12 pr-10 text-white focus:outline-none focus:border-indigo-500 text-sm">
-                <button onclick="clearSearch()" id="clear-search-btn" class="hidden absolute right-4 text-slate-400 hover:text-rose-400 transition-colors">
+                <button onclick="clearSearch()" id="clear-search-btn" aria-label="Hapus pencarian" class="hidden absolute right-4 text-slate-400 hover:text-rose-400 transition-colors">
                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
@@ -193,24 +282,57 @@
                 </div>
             </section>
 
-            <!-- SLOT IKLAN 1: Bawah Hero Banner -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex justify-center">
-                <div class="w-full max-w-[728px] bg-slate-800/20 rounded-xl overflow-hidden min-h-[90px] flex items-center justify-center">
-                    <!-- Banner Atas -->
-                    <ins class="adsbygoogle"
-                         style="display:block; width:100%;"
-                         data-ad-client="ca-pub-1947710883450076"
-                         data-ad-slot="9098015953"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
-                    <script>
-                         (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+            <!-- INFO VALUE SECTION: Kenapa Jura Game (konten bermanfaat + isi ruang) -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-2">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 flex gap-3 items-start">
+                        <div class="w-9 h-9 shrink-0 rounded-xl bg-indigo-600/20 flex items-center justify-center">
+                            <i data-lucide="zap" class="w-4 h-4 text-indigo-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-xs">Tanpa Install &amp; Tanpa Tunggu</h3>
+                            <p class="text-slate-400 text-[11px] mt-1 leading-relaxed">Semua game berjalan langsung di browser. Tidak perlu mengunduh, memasang, atau memperbarui aplikasi apa pun.</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 flex gap-3 items-start">
+                        <div class="w-9 h-9 shrink-0 rounded-xl bg-pink-600/20 flex items-center justify-center">
+                            <i data-lucide="smartphone" class="w-4 h-4 text-pink-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-xs">Ringan untuk HP Kentang</h3>
+                            <p class="text-slate-400 text-[11px] mt-1 leading-relaxed">Dioptimalkan agar lancar di perangkat sederhana. Mainkan di HP maupun PC dengan koneksi seadanya.</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 flex gap-3 items-start">
+                        <div class="w-9 h-9 shrink-0 rounded-xl bg-emerald-600/20 flex items-center justify-center">
+                            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-xs">100% Gratis &amp; Aman</h3>
+                            <p class="text-slate-400 text-[11px] mt-1 leading-relaxed">Tidak ada biaya tersembunyi dan tidak ada pemasangan mencurigakan. Cukup buka, pilih game, dan main.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+                <div class="mt-5 bg-slate-900/60 border border-slate-800 rounded-2xl p-5 sm:p-6">
+                    <h2 class="text-white font-black text-base sm:text-lg mb-2">Portal Game HTML5 Gratis untuk Semua</h2>
+                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                        <strong class="text-white">Jura Game</strong> menghadirkan ratusan permainan HTML5 pilihan yang bisa langsung dimainkan tanpa hambatan.
+                        Mulai dari <a href="#" onclick="filterByCategory('Puzzle'); switchView('home'); return false;" class="text-indigo-400 hover:underline">puzzle</a>,
+                        <a href="#" onclick="filterByCategory('Action'); switchView('home'); return false;" class="text-indigo-400 hover:underline">action</a>,
+                        <a href="#" onclick="filterByCategory('Racing'); switchView('home'); return false;" class="text-indigo-400 hover:underline">balapan</a>,
+                        hingga <a href="#" onclick="filterByCategory('Strategy'); switchView('home'); return false;" class="text-indigo-400 hover:underline">strategi</a> — semuanya tersusun rapi agar Anda cepat menemukan permainan favorit.
+                    </p>
+                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mt-3">
+                        Baru mulai bermain game browser? Baca panduan dan daftar rekomendasi kami di
+                        <a href="/blog/" class="text-indigo-400 hover:underline font-semibold">Blog &amp; Tips</a> —
+                        kami rutin menulis ulasan serta tips memilih game yang sesuai untuk anak maupun orang dewasa.
+                    </p>
+                </div>
+            </section>
 
             <!-- Games Sections Content -->
-            <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 w-full space-y-8">
+            <main id="main-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 w-full space-y-8">
                 
                 <!-- 1. Recent Section -->
                 <section id="recent-section" class="hidden space-y-3">
@@ -297,8 +419,26 @@
                     <li><a href="#" onclick="filterByCategory('Action'); switchView('home'); return false;" class="hover:text-white">Action</a></li>
                 </ul>
             </div>
+            <div>
+                <h4 class="text-white font-bold text-xs mb-2">Jelajahi</h4>
+                <ul class="space-y-1 text-[11px]">
+                    <li><a href="/blog/" class="hover:text-white">Blog &amp; Tips</a></li>
+                    <li><a href="/about.html" class="hover:text-white">Tentang Kami</a></li>
+                    <li><a href="/contact.html" class="hover:text-white">Kontak</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-xs mb-2">Informasi</h4>
+                <ul class="space-y-1 text-[11px]">
+                    <li><a href="/privacy.html" class="hover:text-white">Kebijakan Privasi</a></li>
+                    <li><a href="/disclaimer.html" class="hover:text-white">Disclaimer</a></li>
+                    <li><a href="/terms.html" class="hover:text-white">Syarat &amp; Ketentuan</a></li>
+                    <li><a href="/sitemap.xml" class="hover:text-white">Peta Situs</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="max-w-7xl mx-auto pt-4 border-t border-slate-800/80 text-center text-[10px]">
+        <div class="max-w-7xl mx-auto pt-4 border-t border-slate-800/80 text-center text-[10px] space-y-1">
+            <p>Jura Game — portal game HTML5 gratis, mainkan langsung di browser tanpa install.</p>
             <p>&copy; 2026 Jura Game. All rights reserved.</p>
         </div>
     </footer>
@@ -307,12 +447,12 @@
     <div id="game-modal" class="fixed inset-0 z-50 hidden flex-col glass-modal transition-all duration-300 opacity-0 overflow-y-auto">
         <div class="glass sticky top-0 z-40 px-4 py-3 flex justify-between items-center border-b border-slate-800">
             <div class="flex items-center gap-3 overflow-hidden">
-                <button onclick="closeGame()" class="p-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-white">
+                <button onclick="closeGame()" aria-label="Tutup game" class="p-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-white">
                     <i data-lucide="arrow-left" class="w-4 h-4"></i>
                 </button>
                 <h3 id="modal-game-title" class="text-sm sm:text-base font-bold text-white truncate max-w-xs">Memuat...</h3>
             </div>
-            <button onclick="shareGameModal()" class="p-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-white">
+            <button onclick="shareGameModal()" aria-label="Bagikan game" class="p-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-white">
                 <i data-lucide="share-2" class="w-4 h-4"></i>
             </button>
         </div>
@@ -320,7 +460,7 @@
         <div class="max-w-5xl mx-auto w-full p-3 sm:p-6 flex-grow space-y-4">
             <!-- Game Canvas Wrapper -->
             <div id="game-wrapper" class="w-full aspect-[4/3] md:aspect-[16/9] bg-black rounded-2xl overflow-hidden relative shadow-2xl border border-slate-800">
-                <button onclick="toggleFullScreen()" class="absolute top-3 right-3 z-30 px-2.5 py-1.5 bg-slate-900/80 text-white rounded-xl text-xs font-bold flex items-center gap-1 border border-slate-700">
+                <button onclick="toggleFullScreen()" aria-label="Mode layar penuh" class="absolute top-3 right-3 z-30 px-2.5 py-1.5 bg-slate-900/80 text-white rounded-xl text-xs font-bold flex items-center gap-1 border border-slate-700">
                     <i id="icon-fullscreen" data-lucide="maximize" class="w-3.5 h-3.5 text-indigo-400"></i> <span id="btn-fullscreen-txt">Fullscreen</span>
                 </button>
                 <div id="iframe-loader" class="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 z-20 gap-2">
@@ -625,13 +765,14 @@
                 <div class="game-card group cursor-pointer space-y-1.5 ${cardWidth}" 
                      onclick="openGame('${game.url}', '${escapeTitle}', '${category}', '${thumbUrl}', '${encodeURIComponent(game.description || '')}')">
                     <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-900 border border-slate-800">
-                        <img src="${thumbUrl}" alt="${escapeTitle}" 
+                        <img src="${thumbUrl}" alt="Mainkan ${escapeTitle} gratis di Jura Game" 
+                             loading="lazy" decoding="async"
                              class="absolute inset-0 w-full h-full object-cover transition duration-300"
                              onerror="this.onerror=null; this.src='https://placehold.co/400x300/1e293b/818cf8?text=Jura+Game';">
                         <span class="absolute top-1.5 right-1.5 px-1 py-0.5 rounded text-[8px] font-black bg-slate-950/80 text-slate-300 border border-slate-700 shadow-md">${source}</span>
                     </div>
                     <div>
-                        <h4 class="text-xs font-bold text-slate-200 truncate" title="${escapeTitle}">${escapeTitle}</h4>
+                        <h4 class="text-xs font-bold text-slate-200 leading-snug line-clamp-2 min-h-[2rem]" title="${escapeTitle}">${escapeTitle}</h4>
                     </div>
                 </div>
             `;

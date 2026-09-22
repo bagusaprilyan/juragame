@@ -25,9 +25,29 @@ REPO = "bagusaprilyan/juragame"
 BASE_URL = "https://juragame.vercel.app"
 API = f"https://api.github.com/repos/{REPO}/contents"
 
-AI_API_URL = config['model']['base_url'] + "/chat/completions"
-AI_API_KEY = config['model']['api_key']
+AI_API_URL = "http://127.0.0.1:20128/v1/chat/completions"
 AI_MODEL = "hermes"
+
+
+def _load_router_key():
+    """Ambil API key 9Router dari config/DB lokal."""
+    env_key = os.environ.get("ROUTER_API_KEY", "")
+    if env_key:
+        return env_key
+    try:
+        import subprocess
+        out = subprocess.check_output(
+            ["sqlite3", "/home/ubuntu/.9router/db/data.sqlite",
+             "SELECT key FROM apiKeys WHERE name='hermes';"],
+            timeout=10).decode().strip()
+        if out:
+            return out
+    except Exception:
+        pass
+    return config.get('model', {}).get('api_key', '')
+
+
+AI_API_KEY = _load_router_key()
 
 GH = {"Authorization": f"token {GITHUB_TOKEN}", "User-Agent": "HermesAgent", "Content-Type": "application/json"}
 
@@ -128,7 +148,33 @@ ARTICLE_TEMPLATE = '''<!DOCTYPE html>
     <meta property="og:description" content="{description}">
     <meta property="og:image" content="{cover_image}">
     <meta property="og:url" content="{url}">
+    <meta property="og:site_name" content="Jura Game">
+    <meta property="og:locale" content="id_ID">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{title}">
+    <meta name="twitter:description" content="{description}">
+    <meta name="twitter:image" content="{cover_image}">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="{url}">
+    <script type="application/ld+json">
+    {{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "{title}",
+      "description": "{description}",
+      "image": "{cover_image}",
+      "datePublished": "{date_iso}",
+      "dateModified": "{date_iso}",
+      "inLanguage": "id-ID",
+      "author": {{ "@type": "Organization", "name": "Jura Game", "url": "https://juragame.com/" }},
+      "publisher": {{
+        "@type": "Organization",
+        "name": "Jura Game",
+        "logo": {{ "@type": "ImageObject", "url": "https://juragame.com/og-image.png" }}
+      }},
+      "mainEntityOfPage": {{ "@type": "WebPage", "@id": "{url}" }}
+    }}
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -220,8 +266,20 @@ ARTICLE_TEMPLATE = '''<!DOCTYPE html>
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800 bg-slate-900/50 py-6 text-center text-xs text-slate-500 mt-12">
-        <p>&copy; 2026 Jura game. Portal Game Gratis Online &amp; Blog Informasi.</p>
+    <footer class="border-t border-slate-800 bg-slate-900/50 py-8 mt-12">
+        <div class="max-w-3xl mx-auto px-4 text-xs text-slate-500 space-y-3">
+            <div class="flex flex-wrap gap-x-5 gap-y-2">
+                <a href="../index.html" class="hover:text-slate-300 transition">Beranda</a>
+                <a href="index.html" class="hover:text-slate-300 transition">Blog &amp; Tips</a>
+                <a href="../about.html" class="hover:text-slate-300 transition">Tentang Kami</a>
+                <a href="../contact.html" class="hover:text-slate-300 transition">Kontak</a>
+                <a href="../privacy.html" class="hover:text-slate-300 transition">Kebijakan Privasi</a>
+                <a href="../disclaimer.html" class="hover:text-slate-300 transition">Disclaimer</a>
+                <a href="../terms.html" class="hover:text-slate-300 transition">Syarat &amp; Ketentuan</a>
+            </div>
+            <p>Jura Game — portal game HTML5 gratis yang bisa dimainkan langsung di browser tanpa install.</p>
+            <p>&copy; 2026 Jura Game. Portal Game Gratis Online &amp; Blog Informasi.</p>
+        </div>
     </footer>
     <script>if(window.lucide)lucide.createIcons();</script>
 </body>
@@ -282,30 +340,65 @@ COVER_IMAGES = [
 # ── Core Functions ───────────────────────────────────────────────
 
 def ai_write(topic):
+    """Tulis artikel panjang (900-1200 kata) yang bernilai untuk AdSense."""
+    system_prompt = (
+        "Kamu adalah penulis konten senior untuk portal game Indonesia bernama Jura Game. "
+        "Tulis artikel ORISINAL, mendalam, dan benar-benar bermanfaat (bukan konten tipis). "
+        "Gaya bahasa: ramah, santai tapi informatif, memakai 'kamu'. "
+        "WAJIB dalam Bahasa Indonesia yang baik dan benar.\n\n"
+        "ATURAN FORMAT (patuhi ketat):\n"
+        "- Panjang 900-1200 kata. Jangan kurang dari 900 kata.\n"
+        "- Mulai dengan paragraf pembuka yang mengaitkan pembaca (tanpa heading 'Pendahuluan').\n"
+        "- Gunakan minimal 5 sub-judul dengan format '## Judul Sub'.\n"
+        "- Setiap sub-judul diikuti 2-3 paragraf penjelasan yang mengalir.\n"
+        "- Sertakan minimal satu daftar berpoin ('- ') dan satu daftar bernomor ('1. ').\n"
+        "- Gunakan **bold** untuk istilah penting.\n"
+        "- Sebut nama-nama game nyata yang relevan sebagai contoh.\n"
+        "- Akhiri dengan '## Kesimpulan' berisi ringkasan + ajakan mencoba game di Jura Game.\n"
+        "- JANGAN menulis judul artikel di awal (judul sudah dipisah).\n"
+        "- JANGAN menulis catatan meta, disclaimer AI, atau tanda kurung instruksi. Langsung isi."
+    )
+    user_prompt = (
+        f"Tulis satu artikel blog lengkap (900-1200 kata) dengan topik: \"{topic}\".\n\n"
+        "Buat artikel yang benar-benar membantu pembaca: berikan penjelasan, alasan, "
+        "contoh game nyata, tips praktis, dan kesimpulan. Hindari kalimat klise yang berulang. "
+        "Setiap sub-bab harus menambah informasi baru, bukan mengulang isi sebelumnya."
+    )
     payload = json.dumps({
         "model": AI_MODEL,
         "messages": [
-            {"role": "system", "content": "Kamu penulis blog game Indonesia. Gaya santai, asik, informatif. Tulis dalam Bahasa Indonesia. Gunakan heading (##), bold (**), dan list. Langsung isi tanpa judul."},
-            {"role": "user", "content": f"Tulis artikel blog game tentang: {topic}. 3-5 paragraf, gunakan sub-heading dan list agar enak dibaca."}
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
         ],
-        "max_tokens": 1500
+        "max_tokens": 4000,
+        "temperature": 0.75
     }).encode('utf-8')
     req = urllib.request.Request(AI_API_URL, data=payload, headers={
         "Content-Type": "application/json",
         "Authorization": f"Bearer {AI_API_KEY}"
     })
+    with urllib.request.urlopen(req, timeout=180) as r:
+        raw = r.read().decode('utf-8', 'replace')
+
+    # 9Router bisa balas SSE streaming ATAU JSON biasa — tangani keduanya.
+    if raw.lstrip().startswith("{"):
+        try:
+            d = json.loads(raw)
+            return (d['choices'][0]['message'].get('content') or '').strip()
+        except Exception:
+            return ""
+
     full = ""
-    with urllib.request.urlopen(req, timeout=90) as r:
-        for line in r:
-            ls = line.decode('utf-8').strip()
-            if ls.startswith("data: ") and ls != "data: [DONE]":
-                try:
-                    d = json.loads(ls[6:])
-                    delta = d['choices'][0].get('delta', {})
-                    if 'content' in delta:
-                        full += delta['content']
-                except:
-                    continue
+    for line in raw.splitlines():
+        ls = line.strip()
+        if ls.startswith("data: ") and ls != "data: [DONE]":
+            try:
+                d = json.loads(ls[6:])
+                delta = d['choices'][0].get('delta', {})
+                if 'content' in delta:
+                    full += delta['content']
+            except Exception:
+                continue
     return full.strip()
 
 def update_sitemap(slugs):
@@ -378,9 +471,10 @@ def update_blog_index(articles):
     gh_put("blog/index.html", new_content, "Update blog catalog")
     print("   📋 blog/index.html updated")
 
-def add_article(title, body_md, category="Tips Gaming", cover_image=None):
+def add_article(title, body_md, category="Tips Gaming", cover_image=None, source="manual"):
     slug = slugify(title)
     date_str = datetime.now().strftime("%d %B %Y")
+    date_iso = datetime.now().strftime("%Y-%m-%d")
     read_time = max(2, len(body_md.split()) // 150)
     excerpt = re.sub(r'[*#_]', '', body_md)[:180].strip()
     content_html = md_to_html(body_md)
@@ -402,6 +496,7 @@ def add_article(title, body_md, category="Tips Gaming", cover_image=None):
         cover_image=cover_image,
         category=category,
         date=date_str,
+        date_iso=date_iso,
         read_time=read_time,
         content=content_html
     )
@@ -419,7 +514,7 @@ def add_article(title, body_md, category="Tips Gaming", cover_image=None):
         "date": date_str,
         "category": category,
         "cover_image": cover_image,
-        "source": "ai" if len(sys.argv) > 1 and sys.argv[1] == "--ai" else "manual"
+        "source": source
     }
     # Hapus duplikat slug lama
     articles = [a for a in articles if a.get('slug') != slug]
