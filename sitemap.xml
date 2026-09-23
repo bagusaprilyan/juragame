@@ -2,6 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://juragame.com/</loc><priority>1.0</priority></url>
   <url><loc>https://juragame.com/blog/</loc><priority>0.8</priority></url>
+  <url><loc>https://juragame.com/about.html</loc><priority>0.5</priority></url>
+  <url><loc>https://juragame.com/contact.html</loc><priority>0.5</priority></url>
+  <url><loc>https://juragame.com/privacy.html</loc><priority>0.5</priority></url>
+  <url><loc>https://juragame.com/disclaimer.html</loc><priority>0.5</priority></url>
+  <url><loc>https://juragame.com/terms.html</loc><priority>0.5</priority></url>
+  <url><loc>https://juragame.com/blog/nintendo-genap-137-tahun-lebih-tua-dari-roti-iris-dan-menara.html</loc><priority>0.7</priority></url>
   <url><loc>https://juragame.com/blog/game-rpg-browser-terbaik-yang-bisa-dimainkan-tanpa-download.html</loc><priority>0.7</priority></url>
   <url><loc>https://juragame.com/blog/sony-uji-coba-bonus-saldo-playstation-store-untuk-pembelian.html</loc><priority>0.7</priority></url>
   <url><loc>https://juragame.com/blog/switch-2-ludes-remake-ocarina-of-time-diumumkan-nintendo-coo.html</loc><priority>0.7</priority></url>
