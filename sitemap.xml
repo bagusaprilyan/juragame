@@ -2,6 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://juragame.com/</loc><priority>1.0</priority></url>
   <url><loc>https://juragame.com/blog/</loc><priority>0.8</priority></url>
+  <url><loc>https://juragame.com/about.html</loc><priority>0.5</priority></url>
+  <url><loc>https://juragame.com/contact.html</loc><priority>0.5</priority></url>
+  <url><loc>https://juragame.com/privacy.html</loc><priority>0.5</priority></url>
+  <url><loc>https://juragame.com/disclaimer.html</loc><priority>0.5</priority></url>
+  <url><loc>https://juragame.com/terms.html</loc><priority>0.5</priority></url>
+  <url><loc>https://juragame.com/blog/sutradara-cerita-gears-of-war-e-day-kena-phk-jelang-rilis.html</loc><priority>0.7</priority></url>
   <url><loc>https://juragame.com/blog/game-simulasi-kehidupan-ringan-paling-realistis.html</loc><priority>0.7</priority></url>
   <url><loc>https://juragame.com/blog/gelombang-kedua-xbox-game-pass-september-gears-of-war-e-day.html</loc><priority>0.7</priority></url>
   <url><loc>https://juragame.com/blog/sutradara-cerita-gears-of-war-e-day-kena-phk-2-minggu-sebelu.html</loc><priority>0.7</priority></url>
