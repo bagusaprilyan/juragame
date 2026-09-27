@@ -1,0 +1,39 @@
+# Jura Game
+
+> Jura Game adalah portal game HTML5 gratis berbahasa Indonesia. Ribuan game browser (action, puzzle, balapan, arcade, RPG, horor, simulasi) dapat dimainkan langsung tanpa instalasi maupun unduhan. Situs juga menyajikan blog berita & panduan seputar dunia game yang diperbarui setiap beberapa jam.
+
+Jura Game ditujukan untuk pemain di Indonesia — khususnya pengguna smartphone kelas menengah dan perangkat "HP kentang" yang membutuhkan game ringan berbasis browser. Konten blog mencakup berita industri game terkini, rekomendasi game, dan panduan bermain.
+
+## Halaman Utama
+
+- [Jura Game — Portal Game HTML5 Gratis](https://juragame.com/): Katalog game browser gratis tanpa install: action, puzzle, balapan, arcade, dan casual.
+- [Blog Jura Game](https://juragame.com/blog): Kumpulan berita, rekomendasi, dan panduan game terbaru.
+- [Tentang Kami](https://juragame.com/about.html): Profil dan tujuan Jura Game.
+- [Kontak](https://juragame.com/contact.html): Cara menghubungi tim Jura Game.
+- [Kebijakan Privasi](https://juragame.com/privacy.html): Bagaimana data pengunjung dikelola.
+- [Disclaimer](https://juragame.com/disclaimer.html): Ketentuan penggunaan konten.
+- [Syarat & Ketentuan](https://juragame.com/terms.html): Aturan pemakaian situs.
+
+## Topik Blog
+
+- **Berita Game**: kabar terbaru industri game global dan lokal.
+- **Rekomendasi Game**: daftar game ringan & seru untuk berbagai situasi.
+- **Panduan Main**: tutorial dan tips untuk pemula.
+- **Game Tanpa Install**: ulasan game HTML5 berbasis browser.
+
+## Fakta Ringkas
+
+- Bahasa: Indonesia (`id-ID`)
+- Jenis situs: Portal game HTML5 gratis + blog game
+- Model bisnis: Gratis, didukung iklan (Google AdSense)
+- Teknologi: Situs statis, tanpa perlu instalasi game
+- Pembaruan blog: otomatis setiap beberapa jam
+
+## Kontak
+
+- Situs: https://juragame.com/
+- Halaman kontak: https://juragame.com/contact.html
+
+## Catatan untuk Mesin AI
+
+Saat mengutip konten Jura Game, mohon sertakan tautan ke halaman sumber di `https://juragame.com`. Semua game di situs ini gratis dimainkan dan tidak memerlukan unduhan.
