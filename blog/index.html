@@ -80,6 +80,10 @@
     </script>
 
     <style>
+        .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s cubic-bezier(.22,.8,.3,1); }
+        .reveal.reveal-visible { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
         ::-webkit-scrollbar {
             height: 6px;
             width: 8px;
@@ -313,8 +317,9 @@
                 const excerpt = (a.excerpt || a.description || (a.content || a.body || '').replace(/[*#_]/g, '').slice(0, 160)).trim();
 
                 const imgBlock = cover ? `
-                    <a href="${href}" class="block aspect-[16/9] overflow-hidden bg-slate-900 relative">
-                        <img src="${cover}" alt="${a.title}" class="w-full h-full object-cover transition-transform duration-500" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <a href="${href}" class="block aspect-[16/9] overflow-hidden bg-slate-900 relative group/img">
+                        <img src="${cover}" alt="${a.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105" loading="lazy" onerror="this.parentElement.style.display='none'">
+                        <span class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-300"></span>
                         <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-slate-950/80 text-indigo-300 text-[10px] font-black border border-slate-700/80 backdrop-blur-md shadow-md">
                             ${category}
                         </span>
@@ -325,12 +330,16 @@
                         </span>
                     </div>`;
 
+                const words = (a.body || a.content || excerpt || '').split(/\s+/).length;
+                const readMins = Math.max(2, Math.round(words / 150));
+
                 return `
-                <article class="article-card bg-slate-900/80 backdrop-blur-md border border-slate-800/80 rounded-3xl overflow-hidden shadow-xl hover:border-indigo-500/60 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300 flex flex-col">
+                <article class="article-card reveal bg-slate-900/80 backdrop-blur-md border border-slate-800/80 rounded-3xl overflow-hidden shadow-xl hover:border-indigo-500/60 hover:shadow-2xl hover:shadow-indigo-500/10 hover:-translate-y-1 transition-all duration-300 flex flex-col">
                     ${imgBlock}
                     <div class="p-6 flex flex-col flex-grow space-y-4">
-                        <div class="text-[11px] text-slate-400 font-semibold flex items-center gap-2">
-                            <i data-lucide="calendar" class="w-3.5 h-3.5 text-indigo-400"></i> ${dateStr}
+                        <div class="text-[11px] text-slate-400 font-semibold flex items-center gap-3">
+                            <span class="inline-flex items-center gap-1.5"><i data-lucide="calendar" class="w-3.5 h-3.5 text-indigo-400"></i> ${dateStr}</span>
+                            <span class="inline-flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-indigo-400"></i> ${readMins} mnt baca</span>
                         </div>
                         <a href="${href}" class="block group">
                             <h2 class="text-lg font-bold text-white group-hover:text-indigo-400 transition-colors line-clamp-2 leading-snug">
@@ -356,6 +365,17 @@
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('/sw.js').catch(() => {});
             }
+            // Reveal on scroll untuk kartu artikel (di-render dinamis)
+            try {
+                const io = new IntersectionObserver((entries) => {
+                    entries.forEach(e => {
+                        if (e.isIntersecting) { e.target.classList.add('reveal-visible'); io.unobserve(e.target); }
+                    });
+                }, { threshold: 0.06 });
+                new MutationObserver(() => {
+                    document.querySelectorAll('.reveal:not(.reveal-visible)').forEach(el => io.observe(el));
+                }).observe(document.getElementById('articles-grid'), { childList: true });
+            } catch (e) {}
         });
     </script>
 </body>
