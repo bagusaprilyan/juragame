@@ -6,6 +6,7 @@ auto_blog_v2.py — Auto-posting blog Jura Game
 - Update report setiap posting
 """
 import sys, os, re, json, random, base64, urllib.request, urllib.error, yaml
+import html as _html
 from datetime import datetime
 
 # Load config
@@ -277,7 +278,7 @@ def md_to_html(md):
         else:
             close_list()
             parts.append(f'<p>{line}</p>')
-    if in_list: parts.append('</ul>')
+    close_list()
     html = '\n'.join(parts)
     html = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', html)
     html = re.sub(r'\*(.+?)\*', r'<em>\1</em>', html)
@@ -289,7 +290,9 @@ def build_article(mode, title, body_md, cover, slug, category, tags, description
     url = f"{BASE}/blog/{slug}"
     keywords = ", ".join(KEYWORDS[mode] + tags)
     content_html = md_to_html(body_md)
-    tags_html = " ".join([f'<a href="{BASE}/blog/?tag={t}" class="px-2 py-1 rounded-md bg-slate-800 text-indigo-300 text-xs">#{t}</a>' for t in tags])
+    tags_html = " ".join([f'<a href="/blog/?tag={t}" class="px-2 py-1 rounded-md bg-slate-800 hover:bg-indigo-600 text-indigo-300 hover:text-white text-xs transition-colors">#{t}</a>' for t in tags])
+    title_attr = _html.escape(title, quote=True)
+    desc_attr = _html.escape(description, quote=True)
     # Kotak sumber (untuk berita) — sinyal kepercayaan E-E-A-T
     source_html = ""
     if source_name and source_url:
@@ -325,20 +328,20 @@ def build_article(mode, title, body_md, cover, slug, category, tags, description
 <meta name="theme-color" content="#020617">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>{title} - Jura Game Blog</title>
-<meta name="description" content="{description}">
+<title>{title_attr} - Jura Game Blog</title>
+<meta name="description" content="{desc_attr}">
 <meta name="keywords" content="{keywords}">
 <meta name="author" content="Admin Jura Game">
 <meta name="robots" content="index, follow">
 <meta name="article:published_time" content="{date_str}">
 <meta name="article:section" content="{category}">
 <meta property="og:type" content="article">
-<meta property="og:title" content="{title}">
-<meta property="og:description" content="{description}">
+<meta property="og:title" content="{title_attr}">
+<meta property="og:description" content="{desc_attr}">
 <meta property="og:image" content="{cover}">
 <meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{title}">
+<meta name="twitter:title" content="{title_attr}">
 <meta name="twitter:image" content="{cover}">
 <link rel="canonical" href="{url}">
 <script type="application/ld+json">{jsonld}</script>
@@ -381,7 +384,7 @@ body{{font-family:'Inter',sans-serif;background:#020617;color:#f8fafc}}
 <div class="flex flex-wrap gap-2 pt-2">{tags_html}</div>
 </header>
 <div class="rounded-2xl overflow-hidden border border-slate-800 shadow-2xl aspect-[16/9] bg-slate-900">
-<img src="{cover}" alt="{title}" class="w-full h-full object-cover"></div>
+<img src="{cover}" alt="{title_attr}" class="w-full h-full object-cover"></div>
 {source_html}
 <article class="article-content max-w-none text-slate-300 text-sm sm:text-base leading-relaxed space-y-4">
 {content_html}

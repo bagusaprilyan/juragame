@@ -264,17 +264,17 @@
             </a>
             
             <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
-                <a href="blog/index.html" class="p-2 sm:px-3 sm:py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 text-xs font-bold flex items-center gap-1.5 shadow-sm">
+                <a href="blog/index.html" class="min-w-[44px] min-h-[44px] inline-flex items-center justify-center p-2 sm:px-3 sm:py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 text-xs font-bold flex items-center gap-1.5 shadow-sm">
                     <i data-lucide="book-open" class="w-4 h-4 text-indigo-400 flex-shrink-0"></i>
                     <span id="blog-nav-label" class="hidden sm:inline">Blog & Tips</span>
                 </a>
 
-                <button onclick="toggleLanguage()" aria-label="Ganti bahasa" class="px-2.5 py-2 sm:px-3 sm:py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 text-xs font-bold flex items-center gap-1.5 shadow-sm">
+                <button onclick="toggleLanguage()" aria-label="Ganti bahasa" class="min-h-[44px] px-2.5 py-2 sm:px-3 sm:py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 text-xs font-bold flex items-center gap-1.5 shadow-sm">
                     <i data-lucide="globe" class="w-4 h-4 text-indigo-400 flex-shrink-0"></i>
                     <span id="lang-label">ID</span>
                 </button>
 
-                <button onclick="toggleSearch()" aria-label="Cari game" class="p-2 sm:p-2.5 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 focus:outline-none shadow-sm">
+                <button onclick="toggleSearch()" aria-label="Cari game" class="min-w-[44px] min-h-[44px] inline-flex items-center justify-center p-2 sm:p-2.5 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 focus:outline-none shadow-sm">
                     <i data-lucide="search" class="w-4 h-4 sm:w-5 sm:h-5"></i>
                 </button>
             </div>
@@ -308,11 +308,11 @@
                         <div class="max-w-xl space-y-4 flex-1 w-full">
                             <div class="flex flex-wrap items-center gap-2">
                                 <span id="hero-badge" class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold uppercase tracking-wider border border-indigo-500/30">
-                                    <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i> Portal Game Gratis
+                                    <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i> <span id="hero-badge-txt">Portal Game Gratis</span>
                                 </span>
                                 <span class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold border border-emerald-500/30">
                                     <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span></span>
-                                    100+ Game Online
+                                    <span id="hero-live">100+ Game Online</span>
                                 </span>
                             </div>
                             <h2 id="hero-title" class="text-3xl sm:text-4xl lg:text-[2.75rem] font-black text-white leading-[1.12] tracking-tight">
@@ -323,20 +323,20 @@
                             <!-- CTA -->
                             <div class="flex flex-wrap items-center gap-3 pt-1">
                                 <button onclick="document.getElementById('popular-section').scrollIntoView({behavior:'smooth'})" class="group inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-pink-600 text-white text-sm font-black shadow-lg shadow-indigo-600/40 hover:shadow-pink-600/40 hover:scale-[1.03] active:scale-95 transition-all">
-                                    <i data-lucide="play" class="w-4 h-4 fill-current"></i> Mainkan Sekarang
+                                    <i data-lucide="play" class="w-4 h-4 fill-current"></i> <span id="cta-play">Mainkan Sekarang</span>
                                 </button>
                                 <a href="/blog/" class="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-slate-800/70 border border-slate-700 text-slate-200 text-sm font-bold hover:bg-slate-700/80 hover:border-indigo-500/50 transition-all">
-                                    <i data-lucide="book-open" class="w-4 h-4 text-indigo-400"></i> Blog &amp; Tips
+                                    <i data-lucide="book-open" class="w-4 h-4 text-indigo-400"></i> <span id="cta-blog">Blog &amp; Tips</span>
                                 </a>
                             </div>
 
                             <!-- Statistik -->
                             <div class="flex items-center gap-5 sm:gap-7 pt-2">
-                                <div><p class="text-white font-black text-lg sm:text-xl leading-none">100+</p><p class="text-slate-400 text-[10px] sm:text-[11px] mt-1 font-semibold">Game Gratis</p></div>
+                                <div><p id="stat1-num" class="text-white font-black text-lg sm:text-xl leading-none">100+</p><p id="stat1-label" class="text-slate-400 text-[10px] sm:text-[11px] mt-1 font-semibold">Game Gratis</p></div>
                                 <div class="w-px h-8 bg-slate-700/60"></div>
-                                <div><p class="text-white font-black text-lg sm:text-xl leading-none">0 Rp</p><p class="text-slate-400 text-[10px] sm:text-[11px] mt-1 font-semibold">Tanpa Biaya</p></div>
+                                <div><p id="stat2-num" class="text-white font-black text-lg sm:text-xl leading-none">0 Rp</p><p id="stat2-label" class="text-slate-400 text-[10px] sm:text-[11px] mt-1 font-semibold">Tanpa Biaya</p></div>
                                 <div class="w-px h-8 bg-slate-700/60"></div>
-                                <div><p class="text-white font-black text-lg sm:text-xl leading-none">Tanpa</p><p class="text-slate-400 text-[10px] sm:text-[11px] mt-1 font-semibold">Install Aplikasi</p></div>
+                                <div><p id="stat3-num" class="text-white font-black text-lg sm:text-xl leading-none">Tanpa</p><p id="stat3-label" class="text-slate-400 text-[10px] sm:text-[11px] mt-1 font-semibold">Install Aplikasi</p></div>
                             </div>
 
                             <!-- Categories Chips -->
@@ -372,8 +372,8 @@
                             <i data-lucide="zap" class="w-4 h-4 text-indigo-400"></i>
                         </div>
                         <div>
-                            <h3 class="text-white font-bold text-xs">Tanpa Install &amp; Tanpa Tunggu</h3>
-                            <p class="text-slate-400 text-[11px] mt-1 leading-relaxed">Semua game berjalan langsung di browser. Tidak perlu mengunduh, memasang, atau memperbarui aplikasi apa pun.</p>
+                            <h3 id="vp1-title" class="text-white font-bold text-xs">Tanpa Install &amp; Tanpa Tunggu</h3>
+                            <p id="vp1-desc" class="text-slate-400 text-[11px] mt-1 leading-relaxed">Semua game berjalan langsung di browser. Tidak perlu mengunduh, memasang, atau memperbarui aplikasi apa pun.</p>
                         </div>
                     </div>
                     <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 flex gap-3 items-start">
@@ -381,8 +381,8 @@
                             <i data-lucide="smartphone" class="w-4 h-4 text-pink-400"></i>
                         </div>
                         <div>
-                            <h3 class="text-white font-bold text-xs">Ringan untuk HP Kentang</h3>
-                            <p class="text-slate-400 text-[11px] mt-1 leading-relaxed">Dioptimalkan agar lancar di perangkat sederhana. Mainkan di HP maupun PC dengan koneksi seadanya.</p>
+                            <h3 id="vp2-title" class="text-white font-bold text-xs">Ringan untuk HP Kentang</h3>
+                            <p id="vp2-desc" class="text-slate-400 text-[11px] mt-1 leading-relaxed">Dioptimalkan agar lancar di perangkat sederhana. Mainkan di HP maupun PC dengan koneksi seadanya.</p>
                         </div>
                     </div>
                     <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 flex gap-3 items-start">
@@ -390,22 +390,22 @@
                             <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
                         </div>
                         <div>
-                            <h3 class="text-white font-bold text-xs">100% Gratis &amp; Aman</h3>
-                            <p class="text-slate-400 text-[11px] mt-1 leading-relaxed">Tidak ada biaya tersembunyi dan tidak ada pemasangan mencurigakan. Cukup buka, pilih game, dan main.</p>
+                            <h3 id="vp3-title" class="text-white font-bold text-xs">100% Gratis &amp; Aman</h3>
+                            <p id="vp3-desc" class="text-slate-400 text-[11px] mt-1 leading-relaxed">Tidak ada biaya tersembunyi dan tidak ada pemasangan mencurigakan. Cukup buka, pilih game, dan main.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="mt-5 bg-slate-900/60 border border-slate-800 rounded-2xl p-5 sm:p-6">
-                    <h2 class="text-white font-black text-base sm:text-lg mb-2">Portal Game HTML5 Gratis untuk Semua</h2>
-                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                    <h2 id="portal-title" class="text-white font-black text-base sm:text-lg mb-2">Portal Game HTML5 Gratis untuk Semua</h2>
+                    <p id="portal-p1" class="text-slate-300 text-xs sm:text-sm leading-relaxed">
                         <strong class="text-white">Jura Game</strong> menghadirkan ratusan permainan HTML5 pilihan yang bisa langsung dimainkan tanpa hambatan.
                         Mulai dari <a href="#" onclick="filterByCategory('Puzzle'); switchView('home'); return false;" class="text-indigo-400 hover:underline">puzzle</a>,
                         <a href="#" onclick="filterByCategory('Action'); switchView('home'); return false;" class="text-indigo-400 hover:underline">action</a>,
                         <a href="#" onclick="filterByCategory('Racing'); switchView('home'); return false;" class="text-indigo-400 hover:underline">balapan</a>,
                         hingga <a href="#" onclick="filterByCategory('Strategy'); switchView('home'); return false;" class="text-indigo-400 hover:underline">strategi</a> — semuanya tersusun rapi agar Anda cepat menemukan permainan favorit.
                     </p>
-                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mt-3">
+                    <p id="portal-p2" class="text-slate-300 text-xs sm:text-sm leading-relaxed mt-3">
                         Baru mulai bermain game browser? Baca panduan dan daftar rekomendasi kami di
                         <a href="/blog/" class="text-indigo-400 hover:underline font-semibold">Blog &amp; Tips</a> —
                         kami rutin menulis ulasan serta tips memilih game yang sesuai untuk anak maupun orang dewasa.
@@ -502,7 +502,7 @@
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-bold text-xs mb-2">Jelajahi</h4>
+                <h4 id="foot-explore" class="text-white font-bold text-xs mb-2">Jelajahi</h4>
                 <ul class="space-y-1 text-[11px]">
                     <li><a href="/blog/" class="hover:text-white">Blog &amp; Tips</a></li>
                     <li><a href="/about.html" class="hover:text-white">Tentang Kami</a></li>
@@ -510,7 +510,7 @@
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-bold text-xs mb-2">Informasi</h4>
+                <h4 id="foot-info" class="text-white font-bold text-xs mb-2">Informasi</h4>
                 <ul class="space-y-1 text-[11px]">
                     <li><a href="/privacy.html" class="hover:text-white">Kebijakan Privasi</a></li>
                     <li><a href="/disclaimer.html" class="hover:text-white">Disclaimer</a></li>
@@ -600,6 +600,23 @@
                 langCode: 'ID',
                 blogNav: 'Blog & Tips',
                 badge: 'Portal Game Gratis',
+                heroLive: '100+ Game Online',
+                ctaPlay: 'Mainkan Sekarang',
+                ctaBlog: 'Blog & Tips',
+                stat1num: '100+', stat1label: 'Game Gratis',
+                stat2num: '0 Rp', stat2label: 'Tanpa Biaya',
+                stat3num: 'Tanpa', stat3label: 'Install Aplikasi',
+                vp1t: 'Tanpa Install & Tanpa Tunggu',
+                vp1d: 'Semua game berjalan langsung di browser. Tidak perlu mengunduh, memasang, atau memperbarui aplikasi apa pun.',
+                vp2t: 'Ringan untuk HP Kentang',
+                vp2d: 'Dioptimalkan agar lancar di perangkat sederhana. Mainkan di HP maupun PC dengan koneksi seadanya.',
+                vp3t: '100% Gratis & Aman',
+                vp3d: 'Tidak ada biaya tersembunyi dan tidak ada pemasangan mencurigakan. Cukup buka, pilih game, dan main.',
+                portalTitle: 'Portal Game HTML5 Gratis untuk Semua',
+                portalP1: '<strong class="text-white">Jura Game</strong> menghadirkan ratusan permainan HTML5 pilihan yang bisa langsung dimainkan tanpa hambatan. Mulai dari <a href="#" onclick="filterByCategory(\'Puzzle\'); switchView(\'home\'); return false;" class="text-indigo-400 hover:underline">puzzle</a>, <a href="#" onclick="filterByCategory(\'Action\'); switchView(\'home\'); return false;" class="text-indigo-400 hover:underline">action</a>, <a href="#" onclick="filterByCategory(\'Racing\'); switchView(\'home\'); return false;" class="text-indigo-400 hover:underline">balapan</a>, hingga <a href="#" onclick="filterByCategory(\'Strategy\'); switchView(\'home\'); return false;" class="text-indigo-400 hover:underline">strategi</a> — semuanya tersusun rapi agar Anda cepat menemukan permainan favorit.',
+                portalP2: 'Baru mulai bermain game browser? Baca panduan dan daftar rekomendasi kami di <a href="/blog/" class="text-indigo-400 hover:underline font-semibold">Blog &amp; Tips</a> — kami rutin menulis ulasan serta tips memilih game yang sesuai untuk anak maupun orang dewasa.',
+                footExplore: 'Jelajahi',
+                footInfo: 'Informasi',
                 heroTitle: 'Mainkan Game HTML5 Terbaik <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">Langsung di Browser</span>',
                 heroDesc: 'Nikmati pengalaman bermain ratusan game kasual seru langsung dari HP atau PC. Cepat, ringan, dan 100% gratis tanpa install!',
                 searchPlaceholder: 'Cari game...',
@@ -619,6 +636,23 @@
                 langCode: 'EN',
                 blogNav: 'Blog & Tips',
                 badge: 'Free Game Portal',
+                heroLive: '100+ Online Games',
+                ctaPlay: 'Play Now',
+                ctaBlog: 'Blog & Tips',
+                stat1num: '100+', stat1label: 'Free Games',
+                stat2num: '$0', stat2label: 'No Cost',
+                stat3num: 'No', stat3label: 'App Install',
+                vp1t: 'No Install, No Waiting',
+                vp1d: 'Every game runs right in your browser. No downloads, no installs, no updates — ever.',
+                vp2t: 'Lightweight for Low-End Phones',
+                vp2d: 'Optimized to run smoothly on modest devices. Play on phone or PC even with a slow connection.',
+                vp3t: '100% Free & Safe',
+                vp3d: 'No hidden fees and no shady installs. Just open, pick a game, and play.',
+                portalTitle: 'Free HTML5 Game Portal for Everyone',
+                portalP1: '<strong class="text-white">Jura Game</strong> brings you hundreds of hand-picked HTML5 games you can play instantly, no hurdles. From <a href="#" onclick="filterByCategory(\'Puzzle\'); switchView(\'home\'); return false;" class="text-indigo-400 hover:underline">puzzle</a>, <a href="#" onclick="filterByCategory(\'Action\'); switchView(\'home\'); return false;" class="text-indigo-400 hover:underline">action</a>, <a href="#" onclick="filterByCategory(\'Racing\'); switchView(\'home\'); return false;" class="text-indigo-400 hover:underline">racing</a>, to <a href="#" onclick="filterByCategory(\'Strategy\'); switchView(\'home\'); return false;" class="text-indigo-400 hover:underline">strategy</a> — neatly organized so you find your favorites fast.',
+                portalP2: 'New to browser games? Read our guides and recommendations at <a href="/blog/" class="text-indigo-400 hover:underline font-semibold">Blog &amp; Tips</a> — we regularly publish reviews and tips for picking games for kids and adults alike.',
+                footExplore: 'Explore',
+                footInfo: 'Information',
                 heroTitle: 'Play Best HTML5 Games <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">Directly in Browser</span>',
                 heroDesc: 'Enjoy top casual HTML5 games instantly from smartphone or PC. Fast, lightweight, and 100% free!',
                 searchPlaceholder: 'Search games...',
@@ -762,6 +796,20 @@
             return text.toString().toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-');
         }
 
+        // Bersihkan entitas HTML ganda dari data feed (mis. "Bolts &amp;amp; Nuts")
+        function decodeEntities(text) {
+            if (!text || typeof text !== 'string') return text || '';
+            const ta = document.createElement('textarea');
+            let prev = text, out = text;
+            for (let i = 0; i < 3; i++) {
+                ta.innerHTML = out;
+                out = ta.value;
+                if (out === prev) break;
+                prev = out;
+            }
+            return out;
+        }
+
         function getSafeThumbnail(game) {
             let thumb = game.banner_image || game.image || game.thumbnailUrl || game.thumb || game.Assets?.[0];
             if (!thumb) {
@@ -801,11 +849,11 @@
                     let items = dataGP.items || dataGP.data || [];
                     listGP = items.map(g => ({
                         id: g.id || slugify(g.title),
-                        title: g.title || 'Game',
+                        title: decodeEntities(g.title) || 'Game',
                         url: g.url || '',
                         category: g.category || 'Arcade',
                         thumb: getSafeThumbnail(g),
-                        description: g.description || '',
+                        description: decodeEntities(g.description),
                         source: 'GP'
                     }));
                 }
@@ -813,7 +861,8 @@
                 console.error("GamePix Fetch Error:", e);
             }
 
-            if (listGP.length === 0) listGP = fallbackGamePixItems;
+            if (listGP.length === 0) listGP = fallbackGamePixItems.map(g => ({...g,
+                title: decodeEntities(g.title), description: decodeEntities(g.description)}));
 
             try {
                 const resGM = await fetch(gmUrl);
@@ -822,11 +871,11 @@
                     let hits = Array.isArray(dataGM) ? dataGM : (dataGM.segments?.[0]?.hits || []);
                     listGM = hits.map(g => ({
                         id: g.id || slugify(g.title),
-                        title: g.title || 'Game',
+                        title: decodeEntities(g.title) || 'Game',
                         url: g.url || '',
                         category: g.category || 'Arcade',
                         thumb: getSafeThumbnail(g),
-                        description: g.description || '',
+                        description: decodeEntities(g.description),
                         source: 'GM'
                     }));
                 }
@@ -1173,12 +1222,30 @@
         function toggleLanguage() {
             currentLang = currentLang === 'id' ? 'en' : 'id';
             try { localStorage.setItem('jura_lang', currentLang); } catch(e) {}
-            
+            applyLanguage();
+        }
+
+        function applyLanguage() {
             document.getElementById('lang-label').textContent = i18n[currentLang].langCode;
             document.getElementById('blog-nav-label').textContent = i18n[currentLang].blogNav;
             const t = i18n[currentLang];
             document.getElementById('hero-title').innerHTML = t.heroTitle;
             document.getElementById('hero-desc').textContent = t.heroDesc;
+            const setText = (id, val) => { const el = document.getElementById(id); if (el && val !== undefined) el.textContent = val; };
+            const setHtml = (id, val) => { const el = document.getElementById(id); if (el && val !== undefined) el.innerHTML = val; };
+            setText('hero-badge-txt', t.badge);
+            setText('hero-live', t.heroLive);
+            setText('cta-play', t.ctaPlay);
+            setText('cta-blog', t.ctaBlog);
+            setText('stat1-num', t.stat1num); setText('stat1-label', t.stat1label);
+            setText('stat2-num', t.stat2num); setText('stat2-label', t.stat2label);
+            setText('stat3-num', t.stat3num); setText('stat3-label', t.stat3label);
+            setText('vp1-title', t.vp1t); setText('vp1-desc', t.vp1d);
+            setText('vp2-title', t.vp2t); setText('vp2-desc', t.vp2d);
+            setText('vp3-title', t.vp3t); setText('vp3-desc', t.vp3d);
+            setText('portal-title', t.portalTitle);
+            setHtml('portal-p1', t.portalP1); setHtml('portal-p2', t.portalP2);
+            setText('foot-explore', t.footExplore); setText('foot-info', t.footInfo);
             document.getElementById('search-input').placeholder = t.searchPlaceholder;
             document.getElementById('txt-recent').innerHTML = `<i data-lucide="history" class="w-4 h-4 text-indigo-400"></i> ${t.recentTitle}`;
             document.getElementById('txt-clear').textContent = t.clearHistory;
@@ -1191,6 +1258,7 @@
             
             renderCategories(currentCategory);
             updateSectionTitles();
+            if (window.lucide) lucide.createIcons();
         }
 
         function switchView(viewName) {
@@ -1207,6 +1275,7 @@
         function init() {
             renderCategories(currentCategory);
             fetchGames();
+            applyLanguage();
             initRevealOnScroll();
             initHeaderScroll();
         }
