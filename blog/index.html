@@ -204,7 +204,7 @@
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-1947710883450076"
-                 data-ad-slot="ISI_SLOT_ID_BANNER_BLOG_DISINI"
+                 data-ad-slot="9098015953"
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
             <script>
@@ -228,7 +228,7 @@
             <div class="space-y-3">
                 <div class="flex items-center gap-2.5">
                     <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-600 to-pink-500 flex items-center justify-center text-white font-black">J</div>
-                    <span class="text-white font-black text-base">Jura game</span>
+                    <span class="text-white font-black text-base">Jura Game</span>
                 </div>
                 <p class="text-slate-500 leading-relaxed">Portal game HTML5 gratis terbaik tanpa unduhan. Mainkan kapan saja di perangkat seluler maupun komputer Anda.</p>
             </div>
@@ -259,12 +259,14 @@
         </div>
 
         <div class="max-w-7xl mx-auto pt-8 border-t border-slate-800/80 text-center space-y-2">
-            <p class="font-bold text-slate-400">&copy; 2026 Jura game. Semua hak cipta game dimiliki oleh developer terkait.</p>
+            <p class="font-bold text-slate-400">&copy; 2026 Jura Game. Semua hak cipta game dimiliki oleh developer terkait.</p>
         </div>
     </footer>
 
     <!-- Script Dynamic Fetch articles.json -->
     <script>
+        const esc = (v) => String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        const escAttr = (v) => esc(v).replace(/'/g, '&#39;');
         async function loadArticles() {
             const grid = document.getElementById('articles-grid');
             if (!grid) return;
@@ -306,7 +308,19 @@
                 ];
             }
 
-            grid.innerHTML = articles.map(a => {
+            const tagFilter = new URLSearchParams(location.search).get('tag');
+            const shown = tagFilter
+                ? articles.filter(a => (a.tags || []).some(t => String(t).toLowerCase() === tagFilter.toLowerCase()))
+                : articles;
+            if (tagFilter) {
+                const bar = document.createElement('div');
+                bar.className = 'col-span-full flex items-center justify-between gap-3 px-4 py-3 rounded-2xl bg-indigo-600/15 border border-indigo-500/40 text-sm';
+                bar.innerHTML = '<span>Menampilkan artikel bertag <strong class="text-indigo-300">#' + esc(tagFilter) + '</strong></span>' +
+                    '<a href="/blog/" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-indigo-600 text-slate-200 text-xs font-bold transition-colors">Tampilkan semua</a>';
+                grid.innerHTML = '';
+                grid.appendChild(bar);
+            }
+            grid.innerHTML += shown.map(a => {
                 const rawSlug = a.slug || a.url || 'game-html5-tanpa-install';
                 const href = (rawSlug.startsWith('#') || rawSlug.startsWith('http') || rawSlug.startsWith('/'))
                     ? rawSlug
@@ -318,15 +332,15 @@
 
                 const imgBlock = cover ? `
                     <a href="${href}" class="block aspect-[16/9] overflow-hidden bg-slate-900 relative group/img">
-                        <img src="${cover}" alt="${a.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105" loading="lazy" onerror="this.parentElement.style.display='none'">
+                        <img src="${escAttr(cover)}" alt="${escAttr(a.title)}" class="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105" loading="lazy" onerror="this.parentElement.style.display='none'">
                         <span class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-300"></span>
                         <span class="absolute top-3 right-3 px-3 py-1 rounded-full bg-slate-950/80 text-indigo-300 text-[10px] font-black border border-slate-700/80 backdrop-blur-md shadow-md">
-                            ${category}
+                            ${esc(category)}
                         </span>
                     </a>` : `
                     <div class="pt-6 px-6 flex justify-end">
                         <span class="px-3 py-1 rounded-full bg-slate-800/90 text-amber-300 text-[10px] font-black border border-slate-700/80">
-                            ${category}
+                            ${esc(category)}
                         </span>
                     </div>`;
 
@@ -338,16 +352,16 @@
                     ${imgBlock}
                     <div class="p-6 flex flex-col flex-grow space-y-4">
                         <div class="text-[11px] text-slate-400 font-semibold flex items-center gap-3">
-                            <span class="inline-flex items-center gap-1.5"><i data-lucide="calendar" class="w-3.5 h-3.5 text-indigo-400"></i> ${dateStr}</span>
+                            <span class="inline-flex items-center gap-1.5"><i data-lucide="calendar" class="w-3.5 h-3.5 text-indigo-400"></i> ${esc(dateStr)}</span>
                             <span class="inline-flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-indigo-400"></i> ${readMins} mnt baca</span>
                         </div>
                         <a href="${href}" class="block group">
                             <h2 class="text-lg font-bold text-white group-hover:text-indigo-400 transition-colors line-clamp-2 leading-snug">
-                                ${a.title}
+                                ${esc(a.title)}
                             </h2>
                         </a>
                         <p class="text-slate-400 text-sm line-clamp-3 flex-grow leading-relaxed">
-                            ${excerpt}
+                            ${esc(excerpt)}
                         </p>
                         <a href="${href}" class="inline-flex items-center gap-1.5 text-xs font-black text-indigo-400 hover:text-indigo-300 transition-colors w-fit pt-2">
                             Baca Selengkapnya <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
