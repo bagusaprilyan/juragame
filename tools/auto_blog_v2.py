@@ -345,8 +345,8 @@ def build_article(mode, title, body_md, cover, slug, category, tags, description
 <meta name="twitter:image" content="{cover}">
 <link rel="canonical" href="{url}">
 <script type="application/ld+json">{jsonld}</script>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="/css/tailwind.css">
+<script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js" defer></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 body{{font-family:'Inter',sans-serif;background:#020617;color:#f8fafc}}
@@ -366,14 +366,14 @@ body{{font-family:'Inter',sans-serif;background:#020617;color:#f8fafc}}
 <div id="read-progress" class="fixed top-0 left-0 h-1 z-[60] w-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
 <header class="glass sticky top-0 z-40">
 <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
-<a href="../index.html" class="flex items-center gap-2"><div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center text-white font-bold">J</div>
+<a href="/" class="flex items-center gap-2"><div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center text-white font-bold">J</div>
 <span class="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">Jura game</span></a>
-<a href="../index.html" class="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5"><i data-lucide="gamepad-2" class="w-4 h-4"></i> Main Game</a>
+<a href="/" class="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5"><i data-lucide="gamepad-2" class="w-4 h-4"></i> Main Game</a>
 </div></header>
 <main class="max-w-3xl mx-auto px-4 py-8 flex-grow space-y-6">
 <nav class="flex items-center gap-2 text-xs text-slate-400">
-<a href="../index.html" class="hover:text-white">Beranda</a><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
-<a href="index.html" class="hover:text-white">Blog</a><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+<a href="/" class="hover:text-white">Beranda</a><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+<a href="/blog" class="hover:text-white">Blog</a><i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
 <span class="text-indigo-400 truncate">{title[:40]}</span></nav>
 <header class="space-y-3">
 <div class="flex items-center gap-2 flex-wrap">
@@ -391,20 +391,20 @@ body{{font-family:'Inter',sans-serif;background:#020617;color:#f8fafc}}
 <div class="my-6 p-6 rounded-2xl bg-gradient-to-r from-indigo-950/80 to-purple-950/80 border border-indigo-500/30 text-center space-y-3">
 <h3 class="text-lg font-bold text-white">Mau {cta_title} Sekarang?</h3>
 <p class="text-xs text-slate-300">Jelajahi koleksi review & game terbaik di Jura Game.</p>
-<a href="../index.html" class="inline-block px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-indigo-600/40">{cta_btn}</a>
+<a href="/" class="inline-block px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-indigo-600/40">{cta_btn}</a>
 </div>
 </article>
 <section id="related-wrap" class="hidden border-t border-slate-800 pt-6">
 <h3 class="text-white font-black text-base mb-4 flex items-center gap-2"><i data-lucide="layers" class="w-4 h-4 text-indigo-400"></i> Artikel Terkait</h3>
 <div id="related-grid" class="grid sm:grid-cols-3 gap-4"></div>
 </section>
-<div class="border-t border-slate-800 pt-6"><a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-indigo-400 hover:text-indigo-300"><i data-lucide="arrow-left" class="w-4 h-4"></i> Kembali ke Katalog</a></div>
+<div class="border-t border-slate-800 pt-6"><a href="/blog" class="inline-flex items-center gap-2 text-xs font-bold text-indigo-400 hover:text-indigo-300"><i data-lucide="arrow-left" class="w-4 h-4"></i> Kembali ke Katalog</a></div>
 </main>
 <footer class="border-t border-slate-800 bg-slate-900/50 py-8 mt-12">
 <div class="max-w-4xl mx-auto px-4 text-xs text-slate-500 space-y-3">
 <div class="flex flex-wrap gap-x-4 gap-y-2 justify-center">
-<a href="../index.html" class="hover:text-white transition">Beranda</a>
-<a href="index.html" class="hover:text-white transition">Blog &amp; Tips</a>
+<a href="/" class="hover:text-white transition">Beranda</a>
+<a href="/blog" class="hover:text-white transition">Blog &amp; Tips</a>
 <a href="../about.html" class="hover:text-white transition">Tentang Kami</a>
 <a href="../contact.html" class="hover:text-white transition">Kontak</a>
 <a href="../privacy.html" class="hover:text-white transition">Kebijakan Privasi</a>

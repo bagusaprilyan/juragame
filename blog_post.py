@@ -2,9 +2,9 @@
 """
 blog_post.py v2 — Posting artikel blog Jura Game ke GitHub (HTML statis)
 Struktur repo:
-  /index.html          <- Portal Game
+  /                   <- Portal Game
   /sitemap.xml
-  /blog/index.html     <- Katalog Blog
+  /blog               <- Katalog Blog
   /blog/<slug>.html    <- Artikel
 
 Usage:
@@ -179,8 +179,8 @@ ARTICLE_TEMPLATE = '''<!DOCTYPE html>
       "mainEntityOfPage": {{ "@type": "WebPage", "@id": "{url}" }}
     }}
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/css/tailwind.css">
+    <script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -203,11 +203,11 @@ ARTICLE_TEMPLATE = '''<!DOCTYPE html>
     <!-- Header -->
     <header class="glass sticky top-0 z-40">
         <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="../index.html" class="flex items-center gap-2 group">
+            <a href="/" class="flex items-center gap-2 group">
                 <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-600/30">J</div>
                 <span class="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">Jura game</span>
             </a>
-            <a href="../index.html" class="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-lg shadow-indigo-600/30">
+            <a href="/" class="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-lg shadow-indigo-600/30">
                 <i data-lucide="gamepad-2" class="w-4 h-4"></i> Main Game
             </a>
         </div>
@@ -218,9 +218,9 @@ ARTICLE_TEMPLATE = '''<!DOCTYPE html>
 
         <!-- Breadcrumb -->
         <nav class="flex items-center gap-2 text-xs text-slate-400">
-            <a href="../index.html" class="hover:text-white transition">Beranda</a>
+            <a href="/" class="hover:text-white transition">Beranda</a>
             <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
-            <a href="index.html" class="hover:text-white transition">Blog</a>
+            <a href="/blog" class="hover:text-white transition">Blog</a>
             <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
             <span class="text-indigo-400 truncate">{title_short}</span>
         </nav>
@@ -257,13 +257,13 @@ ARTICLE_TEMPLATE = '''<!DOCTYPE html>
             <div class="my-6 p-6 rounded-2xl bg-gradient-to-r from-indigo-950/80 to-purple-950/80 border border-indigo-500/30 text-center space-y-3">
                 <h3 class="text-lg font-bold text-white">Ingin Mencoba Game HTML5 Gratis?</h3>
                 <p class="text-xs text-slate-300">Jelajahi ratusan koleksi game balapan, puzzle, dan aksi terbaik di Jura Game.</p>
-                <a href="../index.html" class="inline-block px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-indigo-600/40">Mainkan Game Sekarang</a>
+                <a href="/" class="inline-block px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-indigo-600/40">Mainkan Game Sekarang</a>
             </div>
         </article>
 
         <!-- Back -->
         <div class="border-t border-slate-800 pt-6">
-            <a href="index.html" class="inline-flex items-center gap-2 text-xs font-bold text-indigo-400 hover:text-indigo-300">
+            <a href="/blog" class="inline-flex items-center gap-2 text-xs font-bold text-indigo-400 hover:text-indigo-300">
                 <i data-lucide="arrow-left" class="w-4 h-4"></i> Kembali ke Katalog Blog
             </a>
         </div>
@@ -273,8 +273,8 @@ ARTICLE_TEMPLATE = '''<!DOCTYPE html>
     <footer class="border-t border-slate-800 bg-slate-900/50 py-8 mt-12">
         <div class="max-w-3xl mx-auto px-4 text-xs text-slate-500 space-y-3">
             <div class="flex flex-wrap gap-x-5 gap-y-2">
-                <a href="../index.html" class="hover:text-slate-300 transition">Beranda</a>
-                <a href="index.html" class="hover:text-slate-300 transition">Blog &amp; Tips</a>
+                <a href="/" class="hover:text-slate-300 transition">Beranda</a>
+                <a href="/blog" class="hover:text-slate-300 transition">Blog &amp; Tips</a>
                 <a href="../about.html" class="hover:text-slate-300 transition">Tentang Kami</a>
                 <a href="../contact.html" class="hover:text-slate-300 transition">Kontak</a>
                 <a href="../privacy.html" class="hover:text-slate-300 transition">Kebijakan Privasi</a>
@@ -525,6 +525,16 @@ def add_article(title, body_md, category="Tips Gaming", cover_image=None, source
     articles.insert(0, article_data)
     gh_put("articles.json", json.dumps(articles, ensure_ascii=False, indent=2), f"Update articles.json: {title[:40]}")
     print(f"   📦 articles.json updated ({len(articles)} artikel)")
+
+    # 2b. Update articles-index.json (versi ringan tanpa body — dipakai halaman /blog)
+    index_keys = ("slug", "title", "excerpt", "date", "category", "cover_image", "tags")
+    articles_index = [
+        {**{k: a[k] for k in index_keys if k in a},
+         "body_len": len(a.get("body", "") or "")}
+        for a in articles
+    ]
+    gh_put("articles-index.json", json.dumps(articles_index, ensure_ascii=False, separators=(",", ":")), f"Update articles-index.json: {title[:40]}")
+    print(f"   📦 articles-index.json updated ({len(articles_index)} entri)")
 
     # 3. Update blog/index.html
     update_blog_index(articles)

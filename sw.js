@@ -1,9 +1,12 @@
 /* Jura Game Service Worker — offline-first untuk aset & halaman same-origin.
    Konten pihak ketiga (embed game GamePix/GameMonetize, iklan, analytics)
    TIDAK di-cache agar selalu segar dan tidak melanggar kebijakan mereka. */
-const CACHE_VERSION = 'jura-v1';
+const CACHE_VERSION = 'jura-v2';
 const CORE_ASSETS = [
   '/',
+  '/css/tailwind.css',
+  '/games.json',
+  '/articles-index.json',
   '/manifest.webmanifest',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
@@ -45,8 +48,10 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
   const isPage = request.mode === 'navigate' ||
     (request.headers.get('accept') || '').includes('text/html');
-  // Katalog artikel berubah tiap ada postingan baru: network-first seperti halaman
-  const isArticleFeed = url.pathname.endsWith('/articles.json');
+  // Katalog artikel & game berubah tiap ada postingan/jadwal: network-first seperti halaman
+  const isArticleFeed = url.pathname.endsWith('/articles.json') ||
+    url.pathname.endsWith('/articles-index.json') ||
+    url.pathname.endsWith('/games.json');
 
   if (isPage || isArticleFeed) {
     // Halaman & feed artikel: network-first agar konten selalu terbaru, fallback ke cache saat offline

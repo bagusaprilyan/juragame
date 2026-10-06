@@ -93,38 +93,25 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <!-- Fonts: Inter -->
+    <!-- Fonts: Inter (preload agar tidak render-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap"></noscript>
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS (STATIS — dibuild, bukan JIT runtime; hemat ~400KB JS) -->
+    <link rel="stylesheet" href="/css/tailwind.css?v=2">
     
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Lucide Icons (versi dipin + defer agar tidak memblokir render) -->
+    <script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js" defer></script>
 
     <!-- GOOGLE ADSENSE SCRIPT (AUTO ADS & CORE) -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1947710883450076" crossorigin="anonymous"></script>
 
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#6366f1',
-                        secondary: '#ec4899',
-                        dark: '#0f172a',
-                        darker: '#020617',
-                        card: '#1e293b'
-                    }
-                }
-            }
-        }
+        // Konfigurasi Tailwind kini di-build statis (lihat tailwind.config.js + /css/tailwind.css)
+        // Runtime JIT CDN dihapus untuk performa. Variabel warna dipakai via CSS variables.
     </script>
 
     <style>
@@ -148,18 +135,18 @@
         }
 
         .glass-modal {
-            background: rgba(2, 6, 23, 0.98);
+            background: rgba(7, 11, 24, 0.98);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
         }
 
         .game-card {
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            transition: transform 0.25s cubic-bezier(.2,.7,.3,1), border-color 0.25s ease, box-shadow 0.25s ease;
             transform: translateZ(0);
             will-change: transform;
         }
         .game-card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-4px);
         }
         
         .no-scrollbar::-webkit-scrollbar {
@@ -171,8 +158,8 @@
         }
 
         body {
-            background-color: #020617;
-            color: #f8fafc;
+            background-color: #070b18;
+            color: #eef2ff;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -190,18 +177,18 @@
             left: -9999px;
             top: 0;
             z-index: 9999;
-            background: #6366f1;
-            color: #fff;
+            background: linear-gradient(135deg, #ffb020, #ff8a00);
+            color: #1a1206;
             padding: 8px 16px;
             border-radius: 0 0 8px 0;
             font-size: 13px;
-            font-weight: 700;
+            font-weight: 800;
         }
         .skip-link:focus { left: 0; }
 
         /* Indikator fokus yang jelas untuk kartu game (navigasi keyboard) */
         .game-card:focus-visible {
-            outline: 2px solid #818cf8;
+            outline: 2px solid #ffb020;
             outline-offset: 3px;
             border-radius: 12px;
         }
@@ -226,7 +213,7 @@
         .game-card:hover .play-overlay { opacity: 1; }
         .game-card .game-thumb { transition: transform .4s cubic-bezier(.22,.8,.3,1); }
         .game-card:hover .game-thumb { transform: scale(1.08); }
-        .game-card:hover .game-frame { border-color: rgba(129,140,248,.55); box-shadow: 0 8px 28px -8px rgba(99,102,241,.45); }
+        .game-card:hover .game-frame { border-color: rgba(124,92,255,.55); box-shadow: 0 18px 40px -18px rgba(124,92,255,.65); }
         .game-card .game-frame { transition: border-color .25s ease, box-shadow .25s ease; }
     </style>
 </head>
@@ -237,40 +224,40 @@
     <!-- Background Gradient Grids -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
         <div class="absolute inset-0 bg-[#020617]"></div>
-        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-indigo-600/15 rounded-full filter blur-[100px]"></div>
-        <div class="absolute top-[40%] right-[-10%] w-[45vw] h-[45vw] bg-pink-600/10 rounded-full filter blur-[100px]"></div>
+        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-violet-600/15 rounded-full filter blur-[100px]"></div>
+        <div class="absolute top-[40%] right-[-10%] w-[45vw] h-[45vw] bg-blue-600/10 rounded-full filter blur-[100px]"></div>
     </div>
 
-    <header class="glass sticky top-0 z-40 border-b border-indigo-500/10">
+    <header class="glass sticky top-0 z-40 border-b border-violet-500/10">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 flex justify-between items-center gap-2">
             
             <a href="#" onclick="switchView('home'); return false;" class="flex items-center gap-2 sm:gap-2.5 cursor-pointer group flex-shrink-0">
                 <div class="relative flex items-center justify-center">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl blur-sm opacity-70 group-hover:opacity-100 transition duration-300"></div>
+                    <div class="absolute -inset-1 bg-gradient-to-r from-violet-500 via-violet-500 to-blue-500 rounded-2xl blur-sm opacity-70 group-hover:opacity-100 transition duration-300"></div>
                     <div class="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-900 border border-slate-700/80 flex items-center justify-center text-white shadow-xl group-hover:scale-105 transition-transform duration-300">
-                        <i data-lucide="gamepad-2" class="w-5 h-5 text-indigo-400 group-hover:text-pink-400 transition-colors"></i>
+                        <i data-lucide="gamepad-2" class="w-5 h-5 text-violet-400 group-hover:text-blue-400 transition-colors"></i>
                         <span class="absolute -top-1 -right-1 flex h-2.5 w-2.5">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500"></span>
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
                         </span>
                     </div>
                 </div>
                 <div class="flex items-center gap-1">
-                    <h1 class="text-lg sm:text-2xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">
-                        Jura<span class="text-pink-500">Game</span>
+                    <h1 class="text-lg sm:text-2xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-violet-300 to-blue-400">
+                        Jura<span class="text-blue-500">Game</span>
                     </h1>
-                    <span class="px-1.5 py-0.5 text-[8px] sm:text-[9px] font-black tracking-wider uppercase bg-gradient-to-r from-indigo-600 to-pink-600 text-white rounded-md shadow-sm border border-indigo-400/30">HQ</span>
+                    <span class="px-1.5 py-0.5 text-[8px] sm:text-[9px] font-black tracking-wider uppercase bg-gradient-to-r from-violet-600 to-blue-600 text-white rounded-md shadow-sm border border-violet-400/30">HQ</span>
                 </div>
             </a>
             
             <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
-                <a href="blog/index.html" class="min-w-[44px] min-h-[44px] inline-flex items-center justify-center p-2 sm:px-3 sm:py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 text-xs font-bold flex items-center gap-1.5 shadow-sm">
-                    <i data-lucide="book-open" class="w-4 h-4 text-indigo-400 flex-shrink-0"></i>
+                <a href="/blog" class="min-w-[44px] min-h-[44px] inline-flex items-center justify-center p-2 sm:px-3 sm:py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 text-xs font-bold flex items-center gap-1.5 shadow-sm">
+                    <i data-lucide="book-open" class="w-4 h-4 text-violet-400 flex-shrink-0"></i>
                     <span id="blog-nav-label" class="hidden sm:inline">Blog & Tips</span>
                 </a>
 
                 <button onclick="toggleLanguage()" aria-label="Ganti bahasa" class="min-h-[44px] px-2.5 py-2 sm:px-3 sm:py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 text-xs font-bold flex items-center gap-1.5 shadow-sm">
-                    <i data-lucide="globe" class="w-4 h-4 text-indigo-400 flex-shrink-0"></i>
+                    <i data-lucide="globe" class="w-4 h-4 text-violet-400 flex-shrink-0"></i>
                     <span id="lang-label">ID</span>
                 </button>
 
@@ -284,7 +271,7 @@
         <div id="search-container" class="hidden absolute top-full left-0 w-full glass-modal border-b border-slate-800 p-4 z-30 shadow-2xl">
             <div class="max-w-3xl mx-auto relative flex items-center">
                 <i data-lucide="search" class="w-5 h-5 absolute left-4 text-slate-400"></i>
-                <input type="text" id="search-input" onkeyup="handleSearch(event)" placeholder="Cari game..." class="w-full bg-slate-900/90 border border-slate-700 rounded-xl py-3 pl-12 pr-10 text-white focus:outline-none focus:border-indigo-500 text-sm">
+                <input type="text" id="search-input" onkeyup="handleSearch(event)" placeholder="Cari game..." class="w-full bg-slate-900/90 border border-slate-700 rounded-xl py-3 pl-12 pr-10 text-white focus:outline-none focus:border-violet-500 text-sm">
                 <button onclick="clearSearch()" id="clear-search-btn" aria-label="Hapus pencarian" class="hidden absolute right-4 text-slate-400 hover:text-rose-400 transition-colors">
                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
@@ -297,17 +284,18 @@
         <div id="view-home" class="space-y-6 w-full">
             <!-- Hero Banner -->
             <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-2 w-full">
-                <div class="reveal relative rounded-3xl overflow-hidden bg-[#0a0f1e] border border-indigo-500/30 shadow-2xl">
+                <div class="reveal relative rounded-3xl overflow-hidden bg-[#0a0f22] border border-violet-500/30 shadow-2xl">
                     <!-- Dekorasi latar: orb gradien + pola grid -->
                     <div class="absolute inset-0 pointer-events-none">
-                        <div class="absolute -top-24 -left-24 w-96 h-96 bg-indigo-600/25 rounded-full blur-[100px] animate-pulse"></div>
-                        <div class="absolute -bottom-32 -right-16 w-[28rem] h-[28rem] bg-pink-600/20 rounded-full blur-[110px]"></div>
-                        <div class="absolute inset-0 opacity-[0.13]" style="background-image:linear-gradient(rgba(129,140,248,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(129,140,248,.5) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 90% 80% at 50% 20%,black 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 90% 80% at 50% 20%,black 30%,transparent 75%);"></div>
+                        <div class="absolute -top-24 -left-24 w-96 h-96 bg-violet-600/30 rounded-full blur-[100px] animate-pulse"></div>
+                        <div class="absolute -bottom-32 -right-16 w-[28rem] h-[28rem] bg-blue-600/25 rounded-full blur-[110px]"></div>
+                        <div class="absolute top-1/3 left-1/2 w-72 h-72 bg-amber-500/10 rounded-full blur-[120px]"></div>
+                        <div class="absolute inset-0 opacity-[0.13]" style="background-image:linear-gradient(rgba(124,92,255,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(124,92,255,.5) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 90% 80% at 50% 20%,black 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 90% 80% at 50% 20%,black 30%,transparent 75%);"></div>
                     </div>
                     <div class="relative z-10 p-5 sm:p-8 lg:p-10 flex flex-col lg:flex-row items-center gap-8 lg:gap-6">
                         <div class="max-w-xl space-y-4 flex-1 w-full">
                             <div class="flex flex-wrap items-center gap-2">
-                                <span id="hero-badge" class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold uppercase tracking-wider border border-indigo-500/30">
+                                <span id="hero-badge" class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full bg-violet-500/20 text-violet-200 text-xs font-bold uppercase tracking-wider border border-violet-500/30">
                                     <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i> <span id="hero-badge-txt">Portal Game Gratis</span>
                                 </span>
                                 <span class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold border border-emerald-500/30">
@@ -316,17 +304,17 @@
                                 </span>
                             </div>
                             <h2 id="hero-title" class="text-3xl sm:text-4xl lg:text-[2.75rem] font-black text-white leading-[1.12] tracking-tight">
-                                Mainkan Game HTML5 Terbaik <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400">Langsung di Browser</span>
+                                Mainkan Game HTML5 Terbaik <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-blue-300 to-amber-300">Langsung di Browser</span>
                             </h2>
                             <p id="hero-desc" class="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-lg">Nikmati pengalaman bermain ratusan game kasual seru langsung dari HP atau PC. Cepat, ringan, dan 100% gratis tanpa install!</p>
 
                             <!-- CTA -->
                             <div class="flex flex-wrap items-center gap-3 pt-1">
-                                <button onclick="document.getElementById('popular-section').scrollIntoView({behavior:'smooth'})" class="group inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-pink-600 text-white text-sm font-black shadow-lg shadow-indigo-600/40 hover:shadow-pink-600/40 hover:scale-[1.03] active:scale-95 transition-all">
+                                <button onclick="document.getElementById('popular-section').scrollIntoView({behavior:'smooth'})" class="group inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-gradient-to-r from-amber-400 to-orange-500 text-[#1a1206] text-sm font-black shadow-lg shadow-amber-500/40 hover:shadow-orange-500/50 hover:scale-[1.03] active:scale-95 transition-all">
                                     <i data-lucide="play" class="w-4 h-4 fill-current"></i> <span id="cta-play">Mainkan Sekarang</span>
                                 </button>
-                                <a href="/blog/" class="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-slate-800/70 border border-slate-700 text-slate-200 text-sm font-bold hover:bg-slate-700/80 hover:border-indigo-500/50 transition-all">
-                                    <i data-lucide="book-open" class="w-4 h-4 text-indigo-400"></i> <span id="cta-blog">Blog &amp; Tips</span>
+                                <a href="/blog/" class="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-slate-800/70 border border-slate-700 text-slate-200 text-sm font-bold hover:bg-slate-700/80 hover:border-violet-500/50 transition-all">
+                                    <i data-lucide="book-open" class="w-4 h-4 text-violet-400"></i> <span id="cta-blog">Blog &amp; Tips</span>
                                 </a>
                             </div>
 
@@ -345,11 +333,11 @@
 
                         <!-- Kolase visual: kartu game melayang -->
                         <div class="hidden lg:flex flex-1 items-center justify-center relative min-h-[320px] w-full" aria-hidden="true">
-                            <div class="hero-float absolute w-44 h-56 rounded-3xl bg-gradient-to-br from-indigo-600/90 to-purple-700/90 border border-white/20 shadow-2xl shadow-indigo-900/60 -translate-x-24 translate-y-4 flex flex-col items-center justify-center gap-3" style="--tilt:-10deg;animation-delay:0s">
+                            <div class="hero-float absolute w-44 h-56 rounded-3xl bg-gradient-to-br from-violet-600/90 to-violet-700/90 border border-white/20 shadow-2xl shadow-violet-900/60 -translate-x-24 translate-y-4 flex flex-col items-center justify-center gap-3" style="--tilt:-10deg;animation-delay:0s">
                                 <span class="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center"><i data-lucide="puzzle" class="w-7 h-7 text-white"></i></span>
                                 <span class="text-white/90 text-xs font-black tracking-wide">PUZZLE</span>
                             </div>
-                            <div class="hero-float absolute w-48 h-60 rounded-3xl bg-gradient-to-br from-pink-600/90 to-rose-700/90 border border-white/20 shadow-2xl shadow-pink-900/60 translate-x-16 -translate-y-6 flex flex-col items-center justify-center gap-3 z-10" style="--tilt:6deg;animation-delay:1.2s">
+                            <div class="hero-float absolute w-48 h-60 rounded-3xl bg-gradient-to-br from-blue-600/90 to-rose-700/90 border border-white/20 shadow-2xl shadow-blue-900/60 translate-x-16 -translate-y-6 flex flex-col items-center justify-center gap-3 z-10" style="--tilt:6deg;animation-delay:1.2s">
                                 <span class="w-16 h-16 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center"><i data-lucide="gamepad-2" class="w-8 h-8 text-white"></i></span>
                                 <span class="text-white/90 text-xs font-black tracking-wide">ACTION</span>
                                 <span class="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-amber-400 flex items-center justify-center shadow-lg"><i data-lucide="trophy" class="w-5 h-5 text-amber-900"></i></span>
@@ -358,7 +346,7 @@
                                 <span class="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center"><i data-lucide="car" class="w-7 h-7 text-white"></i></span>
                                 <span class="text-white/90 text-xs font-black tracking-wide">RACING</span>
                             </div>
-                            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-72 h-16 bg-indigo-500/30 blur-3xl rounded-full"></div>
+                            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-72 h-16 bg-violet-500/30 blur-3xl rounded-full"></div>
                         </div>
                     </div>
                 </div>
@@ -368,8 +356,8 @@
             <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-2">
                 <div class="reveal grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 flex gap-3 items-start">
-                        <div class="w-9 h-9 shrink-0 rounded-xl bg-indigo-600/20 flex items-center justify-center">
-                            <i data-lucide="zap" class="w-4 h-4 text-indigo-400"></i>
+                        <div class="w-9 h-9 shrink-0 rounded-xl bg-violet-600/20 flex items-center justify-center">
+                            <i data-lucide="zap" class="w-4 h-4 text-violet-400"></i>
                         </div>
                         <div>
                             <h3 id="vp1-title" class="text-white font-bold text-xs">Tanpa Install &amp; Tanpa Tunggu</h3>
@@ -377,8 +365,8 @@
                         </div>
                     </div>
                     <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-4 flex gap-3 items-start">
-                        <div class="w-9 h-9 shrink-0 rounded-xl bg-pink-600/20 flex items-center justify-center">
-                            <i data-lucide="smartphone" class="w-4 h-4 text-pink-400"></i>
+                        <div class="w-9 h-9 shrink-0 rounded-xl bg-blue-600/20 flex items-center justify-center">
+                            <i data-lucide="smartphone" class="w-4 h-4 text-blue-400"></i>
                         </div>
                         <div>
                             <h3 id="vp2-title" class="text-white font-bold text-xs">Ringan untuk HP Kentang</h3>
@@ -400,14 +388,14 @@
                     <h2 id="portal-title" class="text-white font-black text-base sm:text-lg mb-2">Portal Game HTML5 Gratis untuk Semua</h2>
                     <p id="portal-p1" class="text-slate-300 text-xs sm:text-sm leading-relaxed">
                         <strong class="text-white">Jura Game</strong> menghadirkan ratusan permainan HTML5 pilihan yang bisa langsung dimainkan tanpa hambatan.
-                        Mulai dari <a href="#" onclick="filterByCategory('Puzzle'); switchView('home'); return false;" class="text-indigo-400 hover:underline">puzzle</a>,
-                        <a href="#" onclick="filterByCategory('Action'); switchView('home'); return false;" class="text-indigo-400 hover:underline">action</a>,
-                        <a href="#" onclick="filterByCategory('Racing'); switchView('home'); return false;" class="text-indigo-400 hover:underline">balapan</a>,
-                        hingga <a href="#" onclick="filterByCategory('Strategy'); switchView('home'); return false;" class="text-indigo-400 hover:underline">strategi</a> — semuanya tersusun rapi agar Anda cepat menemukan permainan favorit.
+                        Mulai dari <a href="#" onclick="filterByCategory('Puzzle'); switchView('home'); return false;" class="text-violet-400 hover:underline">puzzle</a>,
+                        <a href="#" onclick="filterByCategory('Action'); switchView('home'); return false;" class="text-violet-400 hover:underline">action</a>,
+                        <a href="#" onclick="filterByCategory('Racing'); switchView('home'); return false;" class="text-violet-400 hover:underline">balapan</a>,
+                        hingga <a href="#" onclick="filterByCategory('Strategy'); switchView('home'); return false;" class="text-violet-400 hover:underline">strategi</a> — semuanya tersusun rapi agar Anda cepat menemukan permainan favorit.
                     </p>
                     <p id="portal-p2" class="text-slate-300 text-xs sm:text-sm leading-relaxed mt-3">
                         Baru mulai bermain game browser? Baca panduan dan daftar rekomendasi kami di
-                        <a href="/blog/" class="text-indigo-400 hover:underline font-semibold">Blog &amp; Tips</a> —
+                        <a href="/blog/" class="text-violet-400 hover:underline font-semibold">Blog &amp; Tips</a> —
                         kami rutin menulis ulasan serta tips memilih game yang sesuai untuk anak maupun orang dewasa.
                     </p>
                 </div>
@@ -420,7 +408,7 @@
                 <section id="recent-section" class="reveal hidden space-y-3">
                     <div class="flex justify-between items-center">
                         <h3 id="txt-recent" class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
-                            <i data-lucide="history" class="w-4 h-4 text-indigo-400"></i> Game Terakhir Dimainkan
+                            <i data-lucide="history" class="w-4 h-4 text-violet-400"></i> Game Terakhir Dimainkan
                         </h3>
                         <button onclick="clearHistory()" id="txt-clear" class="text-xs text-slate-400 hover:text-rose-400 transition">Hapus Riwayat</button>
                     </div>
@@ -441,7 +429,7 @@
                 <section id="popular-section" class="reveal space-y-3">
                     <div class="flex justify-between items-center">
                         <h3 id="txt-popular" class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
-                            <i data-lucide="trending-up" class="w-4 h-4 text-pink-400"></i> Game Terpopuler
+                            <i data-lucide="trending-up" class="w-4 h-4 text-blue-400"></i> Game Terpopuler
                         </h3>
                     </div>
                     <div id="popular-grid" class="flex gap-3 overflow-x-auto pb-2 no-scrollbar scroll-smooth"></div>
@@ -451,12 +439,109 @@
                 <section class="space-y-3 pt-2 border-t border-slate-800/50">
                     <div class="flex justify-between items-end pb-1">
                         <h3 id="section-title" class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
-                            <i data-lucide="gamepad-2" class="w-4 h-4 text-indigo-400"></i> Semua Game
+                            <i data-lucide="gamepad-2" class="w-4 h-4 text-violet-400"></i> Semua Game
                         </h3>
                     </div>
                     
                     <div id="skeleton-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
-                    <div id="games-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 hidden"></div>
+                    <div id="games-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+<div class="game-card group cursor-pointer space-y-1.5" role="button" tabindex="0" aria-label="Mainkan Prism Match 3D" onclick="openGame('https://play.gamepix.com/prism-match-3d/embed?sid=MUGAR', 'Prism Match 3D', 'match-3', 'https://img.gamepix.com/games/prism-match-3d/icon/prism-match-3d.png?w=105', 'Dive%20into%20a%20mesmerizing%203D%20cube%20universe%20where%20vibrant%20prisms%20challenge%20your%20logic%20and%20timing.%20Rotate%20and%20explore%20intricately%20designed%20levels%20while%20re')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
+    <div class="game-frame relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800">
+        <img src="https://img.gamepix.com/games/prism-match-3d/icon/prism-match-3d.png?w=105" alt="Mainkan Prism Match 3D gratis di Jura Game" loading="lazy" decoding="async" class="game-thumb absolute inset-0 w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/1e293b/818cf8?text=Jura+Game';">
+        <span class="play-overlay absolute inset-0 hidden sm:flex items-center justify-center"><span class="w-12 h-12 rounded-full bg-white/95 shadow-xl shadow-violet-900/50 flex items-center justify-center"><i data-lucide="play" class="w-5 h-5 text-violet-700 fill-current ml-0.5"></i></span></span>
+        <span class="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded text-[10px] font-black bg-slate-950/80 text-slate-300 border border-slate-700 shadow-md">GP</span>
+    </div>
+    <div><h4 class="text-xs font-bold text-slate-200 group-hover:text-white leading-snug line-clamp-2 min-h-[2rem] transition-colors" title="Prism Match 3D">Prism Match 3D</h4></div>
+</div>
+<div class="game-card group cursor-pointer space-y-1.5" role="button" tabindex="0" aria-label="Mainkan Drop Planets" onclick="openGame('https://play.gamepix.com/drop-planets/embed?sid=MUGAR', 'Drop Planets', 'puzzle', 'https://img.gamepix.com/games/drop-planets/icon/drop-planets.png?w=105', '')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
+    <div class="game-frame relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800">
+        <img src="https://img.gamepix.com/games/drop-planets/icon/drop-planets.png?w=105" alt="Mainkan Drop Planets gratis di Jura Game" loading="lazy" decoding="async" class="game-thumb absolute inset-0 w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/1e293b/818cf8?text=Jura+Game';">
+        <span class="play-overlay absolute inset-0 hidden sm:flex items-center justify-center"><span class="w-12 h-12 rounded-full bg-white/95 shadow-xl shadow-violet-900/50 flex items-center justify-center"><i data-lucide="play" class="w-5 h-5 text-violet-700 fill-current ml-0.5"></i></span></span>
+        <span class="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded text-[10px] font-black bg-slate-950/80 text-slate-300 border border-slate-700 shadow-md">GP</span>
+    </div>
+    <div><h4 class="text-xs font-bold text-slate-200 group-hover:text-white leading-snug line-clamp-2 min-h-[2rem] transition-colors" title="Drop Planets">Drop Planets</h4></div>
+</div>
+<div class="game-card group cursor-pointer space-y-1.5" role="button" tabindex="0" aria-label="Mainkan Defend the Castle" onclick="openGame('https://play.gamepix.com/defend-the-castle/embed?sid=MUGAR', 'Defend the Castle', 'strategy', 'https://img.gamepix.com/games/defend-the-castle/icon/defend-the-castle.png?w=105', 'Fortify%20your%20kingdom%20in%20Defend%20the%20Castle!%20Strategically%20build%20and%20upgrade%20defenses%20with%20gold%20and%20wood%20to%20resist%20relentless%20enemy%20waves.%20Deploy%20cunnin')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
+    <div class="game-frame relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800">
+        <img src="https://img.gamepix.com/games/defend-the-castle/icon/defend-the-castle.png?w=105" alt="Mainkan Defend the Castle gratis di Jura Game" loading="lazy" decoding="async" class="game-thumb absolute inset-0 w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/1e293b/818cf8?text=Jura+Game';">
+        <span class="play-overlay absolute inset-0 hidden sm:flex items-center justify-center"><span class="w-12 h-12 rounded-full bg-white/95 shadow-xl shadow-violet-900/50 flex items-center justify-center"><i data-lucide="play" class="w-5 h-5 text-violet-700 fill-current ml-0.5"></i></span></span>
+        <span class="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded text-[10px] font-black bg-slate-950/80 text-slate-300 border border-slate-700 shadow-md">GP</span>
+    </div>
+    <div><h4 class="text-xs font-bold text-slate-200 group-hover:text-white leading-snug line-clamp-2 min-h-[2rem] transition-colors" title="Defend the Castle">Defend the Castle</h4></div>
+</div>
+<div class="game-card group cursor-pointer space-y-1.5" role="button" tabindex="0" aria-label="Mainkan Garden Master" onclick="openGame('https://play.gamepix.com/garden-master/embed?sid=MUGAR', 'Garden Master', 'farming', 'https://img.gamepix.com/games/garden-master/icon/garden-master.png?w=105', 'Step%20into%20the%20shoes%20of%20a%20industrious%20gnome%20in%20Garden%20Master!%20Nurture%20your%20plants%20with%20care,%20fend%20off%20mischievous%20gophers,%20and%20gather%20golden%20seeds%20to%20u')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
+    <div class="game-frame relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800">
+        <img src="https://img.gamepix.com/games/garden-master/icon/garden-master.png?w=105" alt="Mainkan Garden Master gratis di Jura Game" loading="lazy" decoding="async" class="game-thumb absolute inset-0 w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/1e293b/818cf8?text=Jura+Game';">
+        <span class="play-overlay absolute inset-0 hidden sm:flex items-center justify-center"><span class="w-12 h-12 rounded-full bg-white/95 shadow-xl shadow-violet-900/50 flex items-center justify-center"><i data-lucide="play" class="w-5 h-5 text-violet-700 fill-current ml-0.5"></i></span></span>
+        <span class="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded text-[10px] font-black bg-slate-950/80 text-slate-300 border border-slate-700 shadow-md">GP</span>
+    </div>
+    <div><h4 class="text-xs font-bold text-slate-200 group-hover:text-white leading-snug line-clamp-2 min-h-[2rem] transition-colors" title="Garden Master">Garden Master</h4></div>
+</div>
+<div class="game-card group cursor-pointer space-y-1.5" role="button" tabindex="0" aria-label="Mainkan Quarantine Zombies" onclick="openGame('https://play.gamepix.com/quarantine-zombies/embed?sid=MUGAR', 'Quarantine Zombies', 'zombie', 'https://img.gamepix.com/games/quarantine-zombies/icon/quarantine-zombies.png?w=105', '')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
+    <div class="game-frame relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800">
+        <img src="https://img.gamepix.com/games/quarantine-zombies/icon/quarantine-zombies.png?w=105" alt="Mainkan Quarantine Zombies gratis di Jura Game" loading="lazy" decoding="async" class="game-thumb absolute inset-0 w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/1e293b/818cf8?text=Jura+Game';">
+        <span class="play-overlay absolute inset-0 hidden sm:flex items-center justify-center"><span class="w-12 h-12 rounded-full bg-white/95 shadow-xl shadow-violet-900/50 flex items-center justify-center"><i data-lucide="play" class="w-5 h-5 text-violet-700 fill-current ml-0.5"></i></span></span>
+        <span class="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded text-[10px] font-black bg-slate-950/80 text-slate-300 border border-slate-700 shadow-md">GP</span>
+    </div>
+    <div><h4 class="text-xs font-bold text-slate-200 group-hover:text-white leading-snug line-clamp-2 min-h-[2rem] transition-colors" title="Quarantine Zombies">Quarantine Zombies</h4></div>
+</div>
+<div class="game-card group cursor-pointer space-y-1.5" role="button" tabindex="0" aria-label="Mainkan Stack Rocket" onclick="openGame('https://play.gamepix.com/stack-rocket/embed?sid=MUGAR', 'Stack Rocket', 'building', 'https://img.gamepix.com/games/stack-rocket/icon/stack-rocket.png?w=105', '')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
+    <div class="game-frame relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800">
+        <img src="https://img.gamepix.com/games/stack-rocket/icon/stack-rocket.png?w=105" alt="Mainkan Stack Rocket gratis di Jura Game" loading="lazy" decoding="async" class="game-thumb absolute inset-0 w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/1e293b/818cf8?text=Jura+Game';">
+        <span class="play-overlay absolute inset-0 hidden sm:flex items-center justify-center"><span class="w-12 h-12 rounded-full bg-white/95 shadow-xl shadow-violet-900/50 flex items-center justify-center"><i data-lucide="play" class="w-5 h-5 text-violet-700 fill-current ml-0.5"></i></span></span>
+        <span class="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded text-[10px] font-black bg-slate-950/80 text-slate-300 border border-slate-700 shadow-md">GP</span>
+    </div>
+    <div><h4 class="text-xs font-bold text-slate-200 group-hover:text-white leading-snug line-clamp-2 min-h-[2rem] transition-colors" title="Stack Rocket">Stack Rocket</h4></div>
+</div>
+<div class="game-card group cursor-pointer space-y-1.5" role="button" tabindex="0" aria-label="Mainkan Nova Hop" onclick="openGame('https://play.gamepix.com/nova-hop/embed?sid=MUGAR', 'Nova Hop', 'hyper-casual', 'https://img.gamepix.com/games/nova-hop/icon/nova-hop.png?w=105', '')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
+    <div class="game-frame relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800">
+        <img src="https://img.gamepix.com/games/nova-hop/icon/nova-hop.png?w=105" alt="Mainkan Nova Hop gratis di Jura Game" loading="lazy" decoding="async" class="game-thumb absolute inset-0 w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/1e293b/818cf8?text=Jura+Game';">
+        <span class="play-overlay absolute inset-0 hidden sm:flex items-center justify-center"><span class="w-12 h-12 rounded-full bg-white/95 shadow-xl shadow-violet-900/50 flex items-center justify-center"><i data-lucide="play" class="w-5 h-5 text-violet-700 fill-current ml-0.5"></i></span></span>
+        <span class="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded text-[10px] font-black bg-slate-950/80 text-slate-300 border border-slate-700 shadow-md">GP</span>
+    </div>
+    <div><h4 class="text-xs font-bold text-slate-200 group-hover:text-white leading-snug line-clamp-2 min-h-[2rem] transition-colors" title="Nova Hop">Nova Hop</h4></div>
+</div>
+<div class="game-card group cursor-pointer space-y-1.5" role="button" tabindex="0" aria-label="Mainkan Boost Balloon" onclick="openGame('https://play.gamepix.com/boost-balloon/embed?sid=MUGAR', 'Boost Balloon', 'casual', 'https://img.gamepix.com/games/boost-balloon/icon/boost-balloon.png?w=105', '')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
+    <div class="game-frame relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800">
+        <img src="https://img.gamepix.com/games/boost-balloon/icon/boost-balloon.png?w=105" alt="Mainkan Boost Balloon gratis di Jura Game" loading="lazy" decoding="async" class="game-thumb absolute inset-0 w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/1e293b/818cf8?text=Jura+Game';">
+        <span class="play-overlay absolute inset-0 hidden sm:flex items-center justify-center"><span class="w-12 h-12 rounded-full bg-white/95 shadow-xl shadow-violet-900/50 flex items-center justify-center"><i data-lucide="play" class="w-5 h-5 text-violet-700 fill-current ml-0.5"></i></span></span>
+        <span class="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded text-[10px] font-black bg-slate-950/80 text-slate-300 border border-slate-700 shadow-md">GP</span>
+    </div>
+    <div><h4 class="text-xs font-bold text-slate-200 group-hover:text-white leading-snug line-clamp-2 min-h-[2rem] transition-colors" title="Boost Balloon">Boost Balloon</h4></div>
+</div>
+<div class="game-card group cursor-pointer space-y-1.5" role="button" tabindex="0" aria-label="Mainkan Billiards on Ice" onclick="openGame('https://play.gamepix.com/billiards-on-ice/embed?sid=MUGAR', 'Billiards on Ice', 'sports', 'https://img.gamepix.com/games/billiards-on-ice/icon/billiards-on-ice.png?w=105', '')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
+    <div class="game-frame relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800">
+        <img src="https://img.gamepix.com/games/billiards-on-ice/icon/billiards-on-ice.png?w=105" alt="Mainkan Billiards on Ice gratis di Jura Game" loading="lazy" decoding="async" class="game-thumb absolute inset-0 w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/1e293b/818cf8?text=Jura+Game';">
+        <span class="play-overlay absolute inset-0 hidden sm:flex items-center justify-center"><span class="w-12 h-12 rounded-full bg-white/95 shadow-xl shadow-violet-900/50 flex items-center justify-center"><i data-lucide="play" class="w-5 h-5 text-violet-700 fill-current ml-0.5"></i></span></span>
+        <span class="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded text-[10px] font-black bg-slate-950/80 text-slate-300 border border-slate-700 shadow-md">GP</span>
+    </div>
+    <div><h4 class="text-xs font-bold text-slate-200 group-hover:text-white leading-snug line-clamp-2 min-h-[2rem] transition-colors" title="Billiards on Ice">Billiards on Ice</h4></div>
+</div>
+<div class="game-card group cursor-pointer space-y-1.5" role="button" tabindex="0" aria-label="Mainkan Combat Landing" onclick="openGame('https://play.gamepix.com/combat-landing/embed?sid=MUGAR', 'Combat Landing', 'airplane', 'https://img.gamepix.com/games/combat-landing/icon/combat-landing.png?w=105', '')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
+    <div class="game-frame relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800">
+        <img src="https://img.gamepix.com/games/combat-landing/icon/combat-landing.png?w=105" alt="Mainkan Combat Landing gratis di Jura Game" loading="lazy" decoding="async" class="game-thumb absolute inset-0 w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/1e293b/818cf8?text=Jura+Game';">
+        <span class="play-overlay absolute inset-0 hidden sm:flex items-center justify-center"><span class="w-12 h-12 rounded-full bg-white/95 shadow-xl shadow-violet-900/50 flex items-center justify-center"><i data-lucide="play" class="w-5 h-5 text-violet-700 fill-current ml-0.5"></i></span></span>
+        <span class="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded text-[10px] font-black bg-slate-950/80 text-slate-300 border border-slate-700 shadow-md">GP</span>
+    </div>
+    <div><h4 class="text-xs font-bold text-slate-200 group-hover:text-white leading-snug line-clamp-2 min-h-[2rem] transition-colors" title="Combat Landing">Combat Landing</h4></div>
+</div>
+<div class="game-card group cursor-pointer space-y-1.5" role="button" tabindex="0" aria-label="Mainkan Vegan Quest" onclick="openGame('https://play.gamepix.com/vegan-quest/embed?sid=MUGAR', 'Vegan Quest', 'arcade', 'https://img.gamepix.com/games/vegan-quest/icon/vegan-quest.png?w=105', 'Guide%20your%20vegan%20hero%20through%20a%20cascade%20of%20food%20in%20Vegan%20Quest!%20Collect%20delicious%20vegan%20treats%20to%20boost%20your%20score,%20while%20dodging%20non-vegan%20pitfalls.%20')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
+    <div class="game-frame relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800">
+        <img src="https://img.gamepix.com/games/vegan-quest/icon/vegan-quest.png?w=105" alt="Mainkan Vegan Quest gratis di Jura Game" loading="lazy" decoding="async" class="game-thumb absolute inset-0 w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/1e293b/818cf8?text=Jura+Game';">
+        <span class="play-overlay absolute inset-0 hidden sm:flex items-center justify-center"><span class="w-12 h-12 rounded-full bg-white/95 shadow-xl shadow-violet-900/50 flex items-center justify-center"><i data-lucide="play" class="w-5 h-5 text-violet-700 fill-current ml-0.5"></i></span></span>
+        <span class="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded text-[10px] font-black bg-slate-950/80 text-slate-300 border border-slate-700 shadow-md">GP</span>
+    </div>
+    <div><h4 class="text-xs font-bold text-slate-200 group-hover:text-white leading-snug line-clamp-2 min-h-[2rem] transition-colors" title="Vegan Quest">Vegan Quest</h4></div>
+</div>
+<div class="game-card group cursor-pointer space-y-1.5" role="button" tabindex="0" aria-label="Mainkan Kobadoo Emojis" onclick="openGame('https://play.gamepix.com/kobadoo-emojis/embed?sid=MUGAR', 'Kobadoo Emojis', 'trivia', 'https://img.gamepix.com/games/kobadoo-emojis/icon/kobadoo-emojis.png?w=105', 'Kobadoo%20Emojis%20invites%20you%20into%20a%20delightful%20memory%20challenge%20with%20amusing%20emojis%20to%20sequence.%20As%20you%20advance,%20the%20complexity%20grows,%20enhancing%20your%20co')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
+    <div class="game-frame relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800">
+        <img src="https://img.gamepix.com/games/kobadoo-emojis/icon/kobadoo-emojis.png?w=105" alt="Mainkan Kobadoo Emojis gratis di Jura Game" loading="lazy" decoding="async" class="game-thumb absolute inset-0 w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/1e293b/818cf8?text=Jura+Game';">
+        <span class="play-overlay absolute inset-0 hidden sm:flex items-center justify-center"><span class="w-12 h-12 rounded-full bg-white/95 shadow-xl shadow-violet-900/50 flex items-center justify-center"><i data-lucide="play" class="w-5 h-5 text-violet-700 fill-current ml-0.5"></i></span></span>
+        <span class="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded text-[10px] font-black bg-slate-950/80 text-slate-300 border border-slate-700 shadow-md">GP</span>
+    </div>
+    <div><h4 class="text-xs font-bold text-slate-200 group-hover:text-white leading-snug line-clamp-2 min-h-[2rem] transition-colors" title="Kobadoo Emojis">Kobadoo Emojis</h4></div>
+</div>
+</div>
                     
                     <div class="flex justify-center pt-4">
                         <button id="load-more-btn" onclick="loadMore()" class="hidden px-6 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl text-white font-semibold transition-all text-xs">
@@ -475,7 +560,7 @@
 
         <!-- STATIC PAGES VIEW (Template) -->
         <div id="view-page" class="hidden max-w-3xl mx-auto px-4 py-8 w-full space-y-4 text-slate-300 text-sm">
-            <button onclick="switchView('home')" class="inline-flex items-center gap-2 text-xs font-bold text-indigo-400">
+            <button onclick="switchView('home')" class="inline-flex items-center gap-2 text-xs font-bold text-violet-400">
                 <i data-lucide="arrow-left" class="w-4 h-4"></i> Kembali
             </button>
             <div id="static-page-content" class="bg-slate-900/80 border border-slate-800 p-6 rounded-2xl space-y-3"></div>
@@ -487,7 +572,7 @@
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
             <div class="space-y-2">
                 <div class="flex items-center gap-2">
-                    <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-indigo-600 to-pink-500 flex items-center justify-center text-white font-black text-xs">J</div>
+                    <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-violet-600 to-blue-500 flex items-center justify-center text-white font-black text-xs">J</div>
                     <span class="text-white font-black text-sm">Jura Game</span>
                 </div>
                 <p class="text-slate-500 text-[11px]">Koleksi game gratis terbesar. Mainkan ratusan judul game HTML5 terbaik langsung di browser Anda.</p>
@@ -526,15 +611,15 @@
     </footer>
 
     <!-- GAME PLAYER MODAL -->
-    <div id="game-modal" class="fixed inset-0 z-50 hidden flex-col glass-modal transition-all duration-300 opacity-0 overflow-y-auto">
+    <div id="game-modal" role="dialog" aria-modal="true" aria-labelledby="modal-game-title" class="fixed inset-0 z-50 hidden flex-col glass-modal transition-all duration-300 opacity-0 overflow-y-auto">
         <div class="glass sticky top-0 z-40 px-4 py-3 flex justify-between items-center border-b border-slate-800/80 shadow-lg">
             <div class="flex items-center gap-3 overflow-hidden">
-                <button onclick="closeGame()" aria-label="Tutup game" class="p-2.5 bg-slate-800 hover:bg-indigo-600 rounded-xl text-white transition-colors">
+                <button onclick="closeGame()" data-modal-close aria-label="Tutup game" class="p-3 min-w-[44px] min-h-[44px] bg-slate-800 hover:bg-violet-600 rounded-xl text-white transition-colors">
                     <i data-lucide="arrow-left" class="w-4 h-4"></i>
                 </button>
                 <div class="overflow-hidden">
                     <h3 id="modal-game-title" class="text-sm sm:text-base font-bold text-white truncate max-w-[45vw] sm:max-w-xs">Memuat...</h3>
-                    <p id="modal-game-cat" class="text-[10px] text-indigo-300 font-semibold truncate"></p>
+                    <p id="modal-game-cat" class="text-[10px] text-violet-300 font-semibold truncate"></p>
                 </div>
             </div>
             <div class="flex items-center gap-2">
@@ -549,12 +634,12 @@
 
         <div id="modal-content" class="max-w-5xl mx-auto w-full p-3 sm:p-6 flex-grow space-y-4 transition-all duration-300 scale-[.98]">
             <!-- Game Canvas Wrapper -->
-            <div id="game-wrapper" class="w-full aspect-[4/3] md:aspect-[16/9] bg-black rounded-3xl overflow-hidden relative shadow-2xl shadow-indigo-950/50 border border-slate-700/60 ring-1 ring-indigo-500/20">
+            <div id="game-wrapper" class="w-full aspect-[4/3] md:aspect-[16/9] bg-black rounded-3xl overflow-hidden relative shadow-2xl shadow-violet-950/50 border border-slate-700/60 ring-1 ring-violet-500/20">
                 <button onclick="toggleFullScreen()" aria-label="Mode layar penuh" class="absolute top-3 right-3 z-30 px-2.5 py-1.5 bg-slate-900/80 text-white rounded-xl text-xs font-bold flex items-center gap-1 border border-slate-700">
-                    <i id="icon-fullscreen" data-lucide="maximize" class="w-3.5 h-3.5 text-indigo-400"></i> <span id="btn-fullscreen-txt">Fullscreen</span>
+                    <i id="icon-fullscreen" data-lucide="maximize" class="w-3.5 h-3.5 text-violet-400"></i> <span id="btn-fullscreen-txt">Fullscreen</span>
                 </button>
                 <div id="iframe-loader" class="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 z-20 gap-2">
-                    <div class="w-8 h-8 border-3 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+                    <div class="w-8 h-8 border-3 border-violet-500 border-t-transparent rounded-full animate-spin"></div>
                     <span id="txt-loading" class="text-slate-400 text-xs">Memuat Game...</span>
                 </div>
                 <div id="iframe-container" class="absolute inset-0 z-10 w-full h-full"></div>
@@ -581,7 +666,7 @@
 
             <section class="space-y-3 pt-2">
                 <h4 class="text-white font-bold text-xs sm:text-sm flex items-center gap-2">
-                    <i data-lucide="layers" class="w-4 h-4 text-indigo-400"></i> <span id="txt-similar-grid">Game Serupa</span>
+                    <i data-lucide="layers" class="w-4 h-4 text-violet-400"></i> <span id="txt-similar-grid">Game Serupa</span>
                 </h4>
                 <div id="modal-similar-grid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3"></div>
             </section>
@@ -613,11 +698,11 @@
                 vp3t: '100% Gratis & Aman',
                 vp3d: 'Tidak ada biaya tersembunyi dan tidak ada pemasangan mencurigakan. Cukup buka, pilih game, dan main.',
                 portalTitle: 'Portal Game HTML5 Gratis untuk Semua',
-                portalP1: '<strong class="text-white">Jura Game</strong> menghadirkan ratusan permainan HTML5 pilihan yang bisa langsung dimainkan tanpa hambatan. Mulai dari <a href="#" onclick="filterByCategory(\'Puzzle\'); switchView(\'home\'); return false;" class="text-indigo-400 hover:underline">puzzle</a>, <a href="#" onclick="filterByCategory(\'Action\'); switchView(\'home\'); return false;" class="text-indigo-400 hover:underline">action</a>, <a href="#" onclick="filterByCategory(\'Racing\'); switchView(\'home\'); return false;" class="text-indigo-400 hover:underline">balapan</a>, hingga <a href="#" onclick="filterByCategory(\'Strategy\'); switchView(\'home\'); return false;" class="text-indigo-400 hover:underline">strategi</a> — semuanya tersusun rapi agar Anda cepat menemukan permainan favorit.',
-                portalP2: 'Baru mulai bermain game browser? Baca panduan dan daftar rekomendasi kami di <a href="/blog/" class="text-indigo-400 hover:underline font-semibold">Blog &amp; Tips</a> — kami rutin menulis ulasan serta tips memilih game yang sesuai untuk anak maupun orang dewasa.',
+                portalP1: '<strong class="text-white">Jura Game</strong> menghadirkan ratusan permainan HTML5 pilihan yang bisa langsung dimainkan tanpa hambatan. Mulai dari <a href="#" onclick="filterByCategory(\'Puzzle\'); switchView(\'home\'); return false;" class="text-violet-400 hover:underline">puzzle</a>, <a href="#" onclick="filterByCategory(\'Action\'); switchView(\'home\'); return false;" class="text-violet-400 hover:underline">action</a>, <a href="#" onclick="filterByCategory(\'Racing\'); switchView(\'home\'); return false;" class="text-violet-400 hover:underline">balapan</a>, hingga <a href="#" onclick="filterByCategory(\'Strategy\'); switchView(\'home\'); return false;" class="text-violet-400 hover:underline">strategi</a> — semuanya tersusun rapi agar Anda cepat menemukan permainan favorit.',
+                portalP2: 'Baru mulai bermain game browser? Baca panduan dan daftar rekomendasi kami di <a href="/blog/" class="text-violet-400 hover:underline font-semibold">Blog &amp; Tips</a> — kami rutin menulis ulasan serta tips memilih game yang sesuai untuk anak maupun orang dewasa.',
                 footExplore: 'Jelajahi',
                 footInfo: 'Informasi',
-                heroTitle: 'Mainkan Game HTML5 Terbaik <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">Langsung di Browser</span>',
+                heroTitle: 'Mainkan Game HTML5 Terbaik <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-blue-400">Langsung di Browser</span>',
                 heroDesc: 'Nikmati pengalaman bermain ratusan game kasual seru langsung dari HP atau PC. Cepat, ringan, dan 100% gratis tanpa install!',
                 searchPlaceholder: 'Cari game...',
                 recentTitle: 'Game Terakhir Dimainkan',
@@ -649,11 +734,11 @@
                 vp3t: '100% Free & Safe',
                 vp3d: 'No hidden fees and no shady installs. Just open, pick a game, and play.',
                 portalTitle: 'Free HTML5 Game Portal for Everyone',
-                portalP1: '<strong class="text-white">Jura Game</strong> brings you hundreds of hand-picked HTML5 games you can play instantly, no hurdles. From <a href="#" onclick="filterByCategory(\'Puzzle\'); switchView(\'home\'); return false;" class="text-indigo-400 hover:underline">puzzle</a>, <a href="#" onclick="filterByCategory(\'Action\'); switchView(\'home\'); return false;" class="text-indigo-400 hover:underline">action</a>, <a href="#" onclick="filterByCategory(\'Racing\'); switchView(\'home\'); return false;" class="text-indigo-400 hover:underline">racing</a>, to <a href="#" onclick="filterByCategory(\'Strategy\'); switchView(\'home\'); return false;" class="text-indigo-400 hover:underline">strategy</a> — neatly organized so you find your favorites fast.',
-                portalP2: 'New to browser games? Read our guides and recommendations at <a href="/blog/" class="text-indigo-400 hover:underline font-semibold">Blog &amp; Tips</a> — we regularly publish reviews and tips for picking games for kids and adults alike.',
+                portalP1: '<strong class="text-white">Jura Game</strong> brings you hundreds of hand-picked HTML5 games you can play instantly, no hurdles. From <a href="#" onclick="filterByCategory(\'Puzzle\'); switchView(\'home\'); return false;" class="text-violet-400 hover:underline">puzzle</a>, <a href="#" onclick="filterByCategory(\'Action\'); switchView(\'home\'); return false;" class="text-violet-400 hover:underline">action</a>, <a href="#" onclick="filterByCategory(\'Racing\'); switchView(\'home\'); return false;" class="text-violet-400 hover:underline">racing</a>, to <a href="#" onclick="filterByCategory(\'Strategy\'); switchView(\'home\'); return false;" class="text-violet-400 hover:underline">strategy</a> — neatly organized so you find your favorites fast.',
+                portalP2: 'New to browser games? Read our guides and recommendations at <a href="/blog/" class="text-violet-400 hover:underline font-semibold">Blog &amp; Tips</a> — we regularly publish reviews and tips for picking games for kids and adults alike.',
                 footExplore: 'Explore',
                 footInfo: 'Information',
-                heroTitle: 'Play Best HTML5 Games <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">Directly in Browser</span>',
+                heroTitle: 'Play Best HTML5 Games <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-blue-400">Directly in Browser</span>',
                 heroDesc: 'Enjoy top casual HTML5 games instantly from smartphone or PC. Fast, lightweight, and 100% free!',
                 searchPlaceholder: 'Search games...',
                 recentTitle: 'Recently Played',
@@ -787,7 +872,7 @@
         let allGamesData = [];
         let filteredGames = [];
         let displayedCount = 12; 
-        const itemsPerPage = 12;
+        const itemsPerPage = 24;
         let currentCategory = 'ALL';
         let activeGameObj = null;
 
@@ -833,93 +918,140 @@
             skelGrid.innerHTML = html;
         }
 
+        // Fetch dengan batas waktu agar UI tidak menggantung bila API lambat
+        async function fetchWithTimeout(url, ms = 6000) {
+            const ctrl = new AbortController();
+            const t = setTimeout(() => ctrl.abort(), ms);
+            try {
+                return await fetch(url, { signal: ctrl.signal });
+            } finally {
+                clearTimeout(t);
+            }
+        }
+
+        function mapGamePix(items) {
+            return (items || []).map(g => ({
+                id: g.id || slugify(g.title),
+                title: decodeEntities(g.title) || 'Game',
+                url: g.url || '',
+                category: g.category || 'Arcade',
+                thumb: getSafeThumbnail(g),
+                description: decodeEntities(g.description),
+                source: 'GP'
+            }));
+        }
+
+        function mapGameMonetize(hits) {
+            return (hits || []).map(g => ({
+                id: g.id || slugify(g.title),
+                title: decodeEntities(g.title) || 'Game',
+                url: g.url || '',
+                category: g.category || 'Arcade',
+                thumb: getSafeThumbnail(g),
+                description: decodeEntities(g.description),
+                source: 'GM'
+            }));
+        }
+
+        let gamesCatalog = []; // katalog game (dari games.json atau API)
+
         async function fetchGames() {
             renderSkeletons(12);
-            
-            // Limit 12 agar performa HP kencang seperti Poki
-            const gpUrl = 'https://feeds.gamepix.com/v2/json?sid=MUGAR&pagination=12&page=1';
-            const gmUrl = 'https://rss.gamemonetize.com/rssfeed.php?format=json&category=All&type=html5&amount=12';
-            
-            let listGP = [], listGM = [];
 
+            // 1) Coba katalog cache server (instan, tanpa tunggu API eksternal)
             try {
-                const resGP = await fetch(gpUrl);
-                if (resGP.ok) {
-                    const dataGP = await resGP.json();
-                    let items = dataGP.items || dataGP.data || [];
-                    listGP = items.map(g => ({
-                        id: g.id || slugify(g.title),
-                        title: decodeEntities(g.title) || 'Game',
-                        url: g.url || '',
-                        category: g.category || 'Arcade',
-                        thumb: getSafeThumbnail(g),
-                        description: decodeEntities(g.description),
-                        source: 'GP'
-                    }));
+                const resCache = await fetchWithTimeout('/games.json', 3000);
+                if (resCache.ok) {
+                    const data = await resCache.json();
+                    gamesCatalog = Array.isArray(data) ? data : (data.games || []);
                 }
-            } catch (e) {
-                console.error("GamePix Fetch Error:", e);
+            } catch (e) { /* cache belum ada — fallback ke API */ }
+
+            // 2) Jika cache kosong, ambil dari 2 API SECARA PARALEL (bukan berurutan)
+            if (gamesCatalog.length === 0) {
+                // Limit awal kecil agar load pertama tetap ringan (render bertahap)
+                const gpUrl = 'https://feeds.gamepix.com/v2/json?sid=MUGAR&pagination=24&page=1';
+                const gmUrl = 'https://rss.gamemonetize.com/rssfeed.php?format=json&category=All&type=html5&amount=24';
+
+                const [gpRes, gmRes] = await Promise.allSettled([
+                    fetchWithTimeout(gpUrl, 7000),
+                    fetchWithTimeout(gmUrl, 7000)
+                ]);
+
+                let listGP = [], listGM = [];
+                try {
+                    if (gpRes.status === 'fulfilled' && gpRes.value.ok) {
+                        const dGP = await gpRes.value.json();
+                        listGP = mapGamePix(dGP.items || dGP.data || []);
+                    }
+                } catch (e) { console.error("GamePix error:", e); }
+
+                try {
+                    if (gmRes.status === 'fulfilled' && gmRes.value.ok) {
+                        const dGM = await gmRes.value.json();
+                        const hits = Array.isArray(dGM) ? dGM : (dGM.segments?.[0]?.hits || []);
+                        listGM = mapGameMonetize(hits);
+                    }
+                } catch (e) { console.error("GameMonetize error:", e); }
+
+                if (listGP.length === 0) listGP = fallbackGamePixItems.map(g => ({ ...g,
+                    title: decodeEntities(g.title), description: decodeEntities(g.description) }));
+
+                gamesCatalog = [...listGP, ...listGM];
             }
 
-            if (listGP.length === 0) listGP = fallbackGamePixItems.map(g => ({...g,
-                title: decodeEntities(g.title), description: decodeEntities(g.description)}));
-
-            try {
-                const resGM = await fetch(gmUrl);
-                if (resGM.ok) {
-                    const dataGM = await resGM.json();
-                    let hits = Array.isArray(dataGM) ? dataGM : (dataGM.segments?.[0]?.hits || []);
-                    listGM = hits.map(g => ({
-                        id: g.id || slugify(g.title),
-                        title: decodeEntities(g.title) || 'Game',
-                        url: g.url || '',
-                        category: g.category || 'Arcade',
-                        thumb: getSafeThumbnail(g),
-                        description: decodeEntities(g.description),
-                        source: 'GM'
-                    }));
-                }
-            } catch (e) {
-                console.error("GameMonetize Fetch Error:", e);
-            }
-
-            allGamesData = [...listGP, ...listGM].sort(() => Math.random() - 0.5);
+            allGamesData = gamesCatalog.slice().sort(() => Math.random() - 0.5);
 
             renderPopularSection(allGamesData.slice(0, 6));
-            renderRecentSection(); 
-            renderRecommendedSection(); 
+            renderRecentSection();
+            renderRecommendedSection();
             filterByCategory('ALL');
+        }
+
+        // Escape teks untuk disisipkan ke HTML (anti-XSS dari feed pihak ketiga)
+        function escHtml(s) {
+            return String(s == null ? '' : s)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
         }
 
         function createGameCardHtml(game, isHorizontal = false) {
             const rawTitle = game.title && game.title !== 'Game' ? game.title : 'Play Game';
-            const escapeTitle = rawTitle.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+            // Escaped untuk konteks HTML & atribut (aman dari kutip/tag)
+            const safeTitle = escHtml(rawTitle);
             const cardWidth = isHorizontal ? 'flex-shrink-0 w-32 sm:w-36' : '';
-            const category = game.category || 'Arcade';
-            
-            const thumbUrl = game.thumb || `https://placehold.co/400x300/1e293b/818cf8?text=Game`;
-            const source = game.source || 'Jura';
-            
+            const safeCategory = escHtml(game.category || 'Arcade');
+            const safeSource = escHtml(game.source || 'Jura');
+
+            // Validasi URL: hanya http(s) yang diizinkan (cegah javascript: / data:)
+            const rawThumb = game.thumb || '';
+            const thumbUrl = /^https?:\/\//i.test(rawThumb)
+                ? escHtml(rawThumb)
+                : `https://placehold.co/400x300/1e293b/818cf8?text=Game`;
+            const rawUrl = game.url || '';
+            const safeUrl = /^https?:\/\//i.test(rawUrl) ? escHtml(rawUrl) : '#';
+            const safeDesc = encodeURIComponent(game.description || '').replace(/'/g, '%27');
+
             return `
                 <div class="game-card group cursor-pointer space-y-1.5 ${cardWidth}" role="button" tabindex="0"
-                     aria-label="Mainkan ${escapeTitle}"
-                     onclick="openGame('${game.url}', '${escapeTitle}', '${category}', '${thumbUrl}', '${encodeURIComponent(game.description || '')}')"
+                     aria-label="Mainkan ${safeTitle}"
+                     onclick="openGame('${safeUrl}', '${safeTitle}', '${safeCategory}', '${thumbUrl}', '${safeDesc}')"
                      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
                     <div class="game-frame relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 border border-slate-800">
-                        <img src="${thumbUrl}" alt="Mainkan ${escapeTitle} gratis di Jura Game" 
+                        <img src="${thumbUrl}" alt="Mainkan ${safeTitle} gratis di Jura Game" 
                              loading="lazy" decoding="async"
                              class="game-thumb absolute inset-0 w-full h-full object-cover"
                              onerror="this.onerror=null; this.src='https://placehold.co/400x300/1e293b/818cf8?text=Jura+Game';">
                         <span class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                         <span class="play-overlay absolute inset-0 hidden sm:flex items-center justify-center">
-                            <span class="w-12 h-12 rounded-full bg-white/95 shadow-xl shadow-indigo-900/50 flex items-center justify-center scale-90 group-hover:scale-100 transition-transform duration-300">
-                                <i data-lucide="play" class="w-5 h-5 text-indigo-700 fill-current ml-0.5"></i>
+                            <span class="w-12 h-12 rounded-full bg-white/95 shadow-xl shadow-violet-900/50 flex items-center justify-center scale-90 group-hover:scale-100 transition-transform duration-300">
+                                <i data-lucide="play" class="w-5 h-5 text-violet-700 fill-current ml-0.5"></i>
                             </span>
                         </span>
-                        <span class="absolute top-1.5 right-1.5 px-1 py-0.5 rounded text-[8px] font-black bg-slate-950/80 text-slate-300 border border-slate-700 shadow-md">${source}</span>
+                        <span class="absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded text-[10px] font-black bg-slate-950/80 text-slate-300 border border-slate-700 shadow-md">${safeSource}</span>
                     </div>
                     <div>
-                        <h4 class="text-xs font-bold text-slate-200 group-hover:text-white leading-snug line-clamp-2 min-h-[2rem] transition-colors" title="${escapeTitle}">${escapeTitle}</h4>
+                        <h4 class="text-xs font-bold text-slate-200 group-hover:text-white leading-snug line-clamp-2 min-h-[2rem] transition-colors" title="${safeTitle}">${safeTitle}</h4>
                     </div>
                 </div>
             `;
@@ -966,12 +1098,23 @@
             }
 
             const gamesToShow = filteredGames.slice(0, displayedCount);
-            document.getElementById('games-grid').innerHTML = gamesToShow.map(game => createGameCardHtml(game)).join('');
+            // Render bertahap via DocumentFragment agar tidak memicu banyak reflow
+            const grid = document.getElementById('games-grid');
+            grid.textContent = '';
+            const frag = document.createDocumentFragment();
+            const wrapper = document.createElement('div');
+            wrapper.innerHTML = gamesToShow.map(game => createGameCardHtml(game)).join('');
+            while (wrapper.firstChild) frag.appendChild(wrapper.firstChild);
+            grid.appendChild(frag);
 
+            // Tombol "Muat Lagi": tampilkan sisa jumlah game
+            const btn = document.getElementById('load-more-btn');
             if (displayedCount < filteredGames.length) {
-                document.getElementById('load-more-btn').classList.remove('hidden');
+                const remaining = filteredGames.length - displayedCount;
+                btn.classList.remove('hidden');
+                btn.innerHTML = `<i data-lucide="chevron-down" class="inline w-3.5 h-3.5 mr-1"></i> ${i18n[currentLang].loadMore} (${Math.min(remaining, itemsPerPage)})`;
             } else {
-                document.getElementById('load-more-btn').classList.add('hidden');
+                btn.classList.add('hidden');
             }
             if (window.lucide) lucide.createIcons();
         }
@@ -1043,7 +1186,7 @@
         function clearHistory() {
             try { localStorage.removeItem('jura_recent_games'); } catch(e) {}
             document.getElementById('recent-section').classList.add('hidden');
-            document.getElementById('recommended-section').classList.add('hidden');
+            // Catatan: rekomendasi TIDAK disembunyikan — hanya riwayat yang dihapus
         }
 
         function renderRecommendedSection() {
@@ -1074,10 +1217,14 @@
             const modal = document.getElementById('game-modal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
+            // Simpan elemen fokus terakhir, lalu fokuskan tombol tutup (a11y)
+            window._lastFocused = document.activeElement;
             setTimeout(() => { modal.classList.remove('opacity-0'); modal.classList.add('opacity-100'); }, 10);
             const modalContent = document.getElementById('modal-content');
             if (modalContent) { modalContent.classList.remove('scale-[.98]'); modalContent.classList.add('scale-100'); }
             document.body.style.overflow = 'hidden';
+            const closeBtn = modal.querySelector('[data-modal-close]');
+            if (closeBtn) closeBtn.focus();
             
             document.getElementById('desc-game-title').textContent = title;
             document.getElementById('desc-game-text').textContent = description || 'Mainkan game seru ini langsung di browser kamu secara gratis tanpa download.';
@@ -1112,8 +1259,24 @@
                 modal.classList.remove('flex');
                 document.getElementById('iframe-container').innerHTML = '';
                 document.body.style.overflow = 'auto';
+                // Kembalikan fokus ke elemen sebelumnya (a11y)
+                if (window._lastFocused && window._lastFocused.focus) { try { window._lastFocused.focus(); } catch(e){} }
             }, 300);
         }
+
+        // Esc menutup modal (a11y) + sederhana focus-trap Tab
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('game-modal');
+            if (!modal || modal.classList.contains('hidden')) return;
+            if (e.key === 'Escape') { closeGame(); return; }
+            if (e.key === 'Tab') {
+                const focusables = modal.querySelectorAll('a[href], button:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])');
+                if (focusables.length === 0) return;
+                const first = focusables[0], last = focusables[focusables.length - 1];
+                if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+                else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+            }
+        });
 
         function toggleFullScreen() {
             const container = document.getElementById('game-wrapper');
@@ -1205,7 +1368,7 @@
             chipsContainer.innerHTML = cats.map(c => {
                 const isActive = c.id === activeCat;
                 const activeStyle = isActive 
-                    ? 'bg-gradient-to-r from-indigo-600 to-pink-600 text-white font-bold border-indigo-400' 
+                    ? 'bg-gradient-to-r from-violet-600 to-blue-600 text-white font-bold border-violet-400' 
                     : 'bg-slate-800/80 text-slate-300 border-slate-700';
                 return `<button onclick="filterByCategory('${c.id}')" class="px-3 py-1.5 rounded-xl border text-xs font-semibold transition-all ${activeStyle}"><span>${c.label}</span></button>`;
             }).join('');
@@ -1215,7 +1378,7 @@
             const t = i18n[currentLang];
             const secTitle = document.getElementById('section-title');
             if (secTitle) {
-                secTitle.innerHTML = `<i data-lucide="gamepad-2" class="w-4 h-4 text-indigo-400"></i> ${currentCategory === 'ALL' ? t.allGames : t.categoryLabel + currentCategory}`;
+                secTitle.innerHTML = `<i data-lucide="gamepad-2" class="w-4 h-4 text-violet-400"></i> ${currentCategory === 'ALL' ? t.allGames : t.categoryLabel + currentCategory}`;
             }
         }
 
@@ -1247,10 +1410,10 @@
             setHtml('portal-p1', t.portalP1); setHtml('portal-p2', t.portalP2);
             setText('foot-explore', t.footExplore); setText('foot-info', t.footInfo);
             document.getElementById('search-input').placeholder = t.searchPlaceholder;
-            document.getElementById('txt-recent').innerHTML = `<i data-lucide="history" class="w-4 h-4 text-indigo-400"></i> ${t.recentTitle}`;
+            document.getElementById('txt-recent').innerHTML = `<i data-lucide="history" class="w-4 h-4 text-violet-400"></i> ${t.recentTitle}`;
             document.getElementById('txt-clear').textContent = t.clearHistory;
             document.getElementById('txt-recommended').innerHTML = `<i data-lucide="flame" class="w-4 h-4 text-amber-400"></i> ${t.recommendedTitle}`;
-            document.getElementById('txt-popular').innerHTML = `<i data-lucide="trending-up" class="w-4 h-4 text-pink-400"></i> ${t.popularTitle}`;
+            document.getElementById('txt-popular').innerHTML = `<i data-lucide="trending-up" class="w-4 h-4 text-blue-400"></i> ${t.popularTitle}`;
             document.getElementById('load-more-btn').textContent = t.loadMore;
             document.getElementById('txt-loading').textContent = t.loading;
             document.getElementById('txt-similar-grid').textContent = t.similarGridTitle;
@@ -1305,20 +1468,21 @@
             const onScroll = () => {
                 const sc = window.scrollY > 12;
                 header.classList.toggle('shadow-2xl', sc);
-                header.classList.toggle('shadow-indigo-950/40', sc);
+                header.classList.toggle('shadow-violet-950/40', sc);
             };
             window.addEventListener('scroll', onScroll, { passive: true });
             onScroll();
         }
 
-        window.onload = () => {
+        window.addEventListener('DOMContentLoaded', () => {
             init();
-            if (window.lucide) lucide.createIcons();
             // Daftarkan Service Worker untuk PWA (offline + installable)
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/sw.js').catch(() => {});
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/sw.js').catch(() => {});
+                });
             }
-        };
+        });
     </script>
 </body>
 </html>

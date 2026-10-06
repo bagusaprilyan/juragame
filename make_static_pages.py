@@ -34,7 +34,7 @@ HEAD = """<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/css/tailwind.css">
 <style>
   body{{background:#020617;color:#e2e8f0;font-family:'Inter',system-ui,sans-serif;line-height:1.75}}
   .prose h2{{color:#fff;font-weight:800;font-size:1.35rem;margin:1.8rem 0 .6rem}}

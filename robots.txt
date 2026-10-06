@@ -3,7 +3,10 @@ Allow: /
 
 # Blokir area internal / berkas sensitif
 Disallow: /api/
-Disallow: /*.json$
+
+# articles.json & games.json adalah data inti (dipakai blog & katalog) — HARUS bisa diakses crawler
+Allow: /articles.json
+Allow: /games.json
 
 # ──────────────────────────────────────────────────────────
 #  AI / GEO CRAWLERS — Diizinkan agar konten dikutip AI
