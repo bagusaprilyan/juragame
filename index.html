@@ -42,7 +42,10 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.webmanifest">
 
     <!-- Structured Data: WebSite + SearchAction + Organization -->
     <script type="application/ld+json">
@@ -195,6 +198,13 @@
             font-weight: 700;
         }
         .skip-link:focus { left: 0; }
+
+        /* Indikator fokus yang jelas untuk kartu game (navigasi keyboard) */
+        .game-card:focus-visible {
+            outline: 2px solid #818cf8;
+            outline-offset: 3px;
+            border-radius: 12px;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col relative overflow-x-hidden">
@@ -762,8 +772,10 @@
             const source = game.source || 'Jura';
             
             return `
-                <div class="game-card group cursor-pointer space-y-1.5 ${cardWidth}" 
-                     onclick="openGame('${game.url}', '${escapeTitle}', '${category}', '${thumbUrl}', '${encodeURIComponent(game.description || '')}')">
+                <div class="game-card group cursor-pointer space-y-1.5 ${cardWidth}" role="button" tabindex="0"
+                     aria-label="Mainkan ${escapeTitle}"
+                     onclick="openGame('${game.url}', '${escapeTitle}', '${category}', '${thumbUrl}', '${encodeURIComponent(game.description || '')}')"
+                     onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
                     <div class="relative aspect-[4/3] rounded-xl overflow-hidden bg-slate-900 border border-slate-800">
                         <img src="${thumbUrl}" alt="Mainkan ${escapeTitle} gratis di Jura Game" 
                              loading="lazy" decoding="async"
@@ -1091,6 +1103,10 @@
         window.onload = () => {
             init();
             if (window.lucide) lucide.createIcons();
+            // Daftarkan Service Worker untuk PWA (offline + installable)
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            }
         };
     </script>
 </body>

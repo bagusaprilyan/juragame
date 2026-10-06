@@ -91,13 +91,18 @@ def md_to_html(md_text):
     """Konversi markdown-lite ke HTML sederhana."""
     lines = md_text.strip().split('\n')
     html_parts = []
-    in_list = False
+    in_list = None  # None | 'ul' | 'ol'
+
+    def close_list():
+        nonlocal in_list
+        if in_list:
+            html_parts.append(f'</{in_list}>')
+            in_list = None
+
     for line in lines:
         line = line.strip()
         if not line:
-            if in_list:
-                html_parts.append('</ul>')
-                in_list = False
+            close_list()
             continue
         # Heading
         if line.startswith('### '):
@@ -108,23 +113,22 @@ def md_to_html(md_text):
             html_parts.append(f'<h2>{line[2:]}</h2>')
         # List item
         elif line.startswith('- ') or line.startswith('* '):
-            if not in_list:
+            if in_list != 'ul':
+                close_list()
                 html_parts.append('<ul>')
-                in_list = True
+                in_list = 'ul'
             html_parts.append(f'<li>{line[2:]}</li>')
         elif re.match(r'^\d+\.\s', line):
-            if not in_list:
+            if in_list != 'ol':
+                close_list()
                 html_parts.append('<ol>')
-                in_list = True
+                in_list = 'ol'
             item_text = re.sub(r'^\d+\.\s', '', line)
             html_parts.append('<li>' + item_text + '</li>')
         else:
-            if in_list:
-                html_parts.append('</ul>')
-                in_list = False
+            close_list()
             html_parts.append(f'<p>{line}</p>')
-    if in_list:
-        html_parts.append('</ul>')
+    close_list()
 
     html = '\n'.join(html_parts)
     # Bold & italic

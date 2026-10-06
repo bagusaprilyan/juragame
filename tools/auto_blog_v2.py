@@ -249,24 +249,33 @@ def slugify(s):
 
 def md_to_html(md):
     parts = []
-    in_list = False
+    in_list = None  # None | 'ul' | 'ol'
+    def close_list():
+        nonlocal in_list
+        if in_list:
+            parts.append(f'</{in_list}>')
+            in_list = None
     for line in md.strip().split('\n'):
         line = line.strip()
         if not line:
-            if in_list: parts.append('</ul>'); in_list = False
+            close_list()
             continue
         if line.startswith('### '): parts.append(f'<h3>{line[4:]}</h3>')
         elif line.startswith('## '): parts.append(f'<h2>{line[3:]}</h2>')
         elif line.startswith('# '): parts.append(f'<h2>{line[2:]}</h2>')
         elif line.startswith(('- ', '* ')):
-            if not in_list: parts.append('<ul>'); in_list = True
+            if in_list != 'ul':
+                close_list()
+                parts.append('<ul>'); in_list = 'ul'
             parts.append(f'<li>{line[2:]}</li>')
         elif re.match(r'^\d+\.\s', line):
-            if not in_list: parts.append('<ol>'); in_list = True
+            if in_list != 'ol':
+                close_list()
+                parts.append('<ol>'); in_list = 'ol'
             item = re.sub(r'^\d+\.\s', '', line)
             parts.append(f'<li>{item}</li>')
         else:
-            if in_list: parts.append('</ul>'); in_list = False
+            close_list()
             parts.append(f'<p>{line}</p>')
     if in_list: parts.append('</ul>')
     html = '\n'.join(parts)
@@ -277,7 +286,7 @@ def md_to_html(md):
 def build_article(mode, title, body_md, cover, slug, category, tags, description, date_str,
                   source_name=None, source_url=None):
     read_time = max(2, len(body_md.split()) // 150)
-    url = f"{BASE}/blog/{slug}.html"
+    url = f"{BASE}/blog/{slug}"
     keywords = ", ".join(KEYWORDS[mode] + tags)
     content_html = md_to_html(body_md)
     tags_html = " ".join([f'<a href="{BASE}/blog/?tag={t}" class="px-2 py-1 rounded-md bg-slate-800 text-indigo-300 text-xs">#{t}</a>' for t in tags])
@@ -313,6 +322,9 @@ def build_article(mode, title, body_md, cover, slug, category, tags, description
 <html lang="id" class="dark">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#020617">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>{title} - Jura Game Blog</title>
 <meta name="description" content="{description}">
 <meta name="keywords" content="{keywords}">
@@ -391,7 +403,8 @@ body{{font-family:'Inter',sans-serif;background:#020617;color:#f8fafc}}
 </div>
 <p class="text-center">&copy; 2026 Jura Game. Portal game HTML5 gratis &amp; blog berita game.</p>
 </div></footer>
-<script>if(window.lucide)lucide.createIcons();</script></body></html>'''
+<script>if(window.lucide)lucide.createIcons();</script>
+<script>if('serviceWorker' in navigator){{window.addEventListener('load',function(){{navigator.serviceWorker.register('/sw.js').catch(function(){{}})}})}}</script></body></html>'''
 
 # ── Main ─────────────────────────────────────────────────────────
 
@@ -443,11 +456,11 @@ def post(mode, custom_topic=None):
 
         urls = [f'  <url><loc>{BASE}/</loc><priority>1.0</priority></url>',
                 f'  <url><loc>{BASE}/blog/</loc><priority>0.8</priority></url>']
-        urls += [f'  <url><loc>{BASE}/blog/{a.get("slug", slugify(a["title"]))}.html</loc><priority>0.7</priority></url>' for a in arr]
+        urls += [f'  <url><loc>{BASE}/blog/{a.get("slug", slugify(a["title"]))}</loc><priority>0.7</priority></url>' for a in arr]
         sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(urls) + '\n</urlset>'
         gh_put("sitemap.xml", sitemap, "Update sitemap")
 
-        url = f"{BASE}/blog/{slug}.html"
+        url = f"{BASE}/blog/{slug}"
         msg = f"✅ BLOG POSTED\n\n📝 {topic}\n📂 {category}\n🔗 {url}\n\n_(Vercel deploy ~1-2 menit)_"
         print(f"Live: {url}")
         tg_notify(msg)
@@ -516,7 +529,7 @@ def post_berita():
         _rebuild_sitemap(arr)
         nf.mark_used(item["link"], item["title"])
 
-        url = f"{BASE}/blog/{slug}.html"
+        url = f"{BASE}/blog/{slug}"
         msg = (f"✅ BERITA POSTED\n\n📝 {title}\n📰 Sumber: {item['source']}\n"
                f"📂 {category}\n🔗 {url}\n\n_(Vercel deploy ~1-2 menit)_")
         print(f"Live: {url}")
@@ -533,7 +546,7 @@ def _rebuild_sitemap(articles):
             f'  <url><loc>{BASE}/blog/</loc><priority>0.8</priority></url>']
     for p in ["about", "contact", "privacy", "disclaimer", "terms"]:
         urls.append(f'  <url><loc>{BASE}/{p}.html</loc><priority>0.5</priority></url>')
-    urls += [f'  <url><loc>{BASE}/blog/{a.get("slug", slugify(a["title"]))}.html</loc><priority>0.7</priority></url>' for a in articles]
+    urls += [f'  <url><loc>{BASE}/blog/{a.get("slug", slugify(a["title"]))}</loc><priority>0.7</priority></url>' for a in articles]
     sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                + '\n'.join(urls) + '\n</urlset>')
