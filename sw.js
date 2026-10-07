@@ -1,7 +1,7 @@
 /* Jura Game Service Worker — offline-first untuk aset & halaman same-origin.
    Konten pihak ketiga (embed game GamePix/GameMonetize, iklan, analytics)
    TIDAK di-cache agar selalu segar dan tidak melanggar kebijakan mereka. */
-const CACHE_VERSION = 'jura-v3';
+const CACHE_VERSION = 'jura-v4';
 const CORE_ASSETS = [
   '/',
   '/css/tailwind.css',
@@ -11,6 +11,7 @@ const CORE_ASSETS = [
   '/manifest.webmanifest',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
+  '/icons/icon-512-maskable.png',
   '/apple-touch-icon.png',
   '/favicon.svg'
 ];

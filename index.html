@@ -143,6 +143,12 @@
     </script>
 
     <style>
+        /* Animasi denyut sekali untuk tombol pasang PWA */
+        @keyframes pulseOnce {
+            0%,100% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+        }
+        .animate-pulse-once { animation: pulseOnce 1.1s ease-in-out 3; }
         ::-webkit-scrollbar {
             height: 4px;
             width: 4px;
@@ -307,6 +313,12 @@
 
                 <button onclick="toggleSearch()" aria-label="Cari game" class="min-w-[44px] min-h-[44px] inline-flex items-center justify-center p-2 sm:p-2.5 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl transition-all border border-slate-700/60 focus:outline-none shadow-sm">
                     <i data-lucide="search" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                </button>
+
+                <!-- Tombol Pasang Aplikasi (PWA) — muncul otomatis jika browser mendukung & belum terpasang -->
+                <button id="pwa-install-btn" onclick="promptPwaInstall()" aria-label="Pasang aplikasi" class="hidden min-h-[44px] px-2.5 py-2 sm:px-3 sm:py-2 bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-500 hover:to-blue-500 text-white rounded-xl transition-all border border-violet-400/40 text-xs font-bold items-center gap-1.5 shadow-lg shadow-violet-900/30 animate-pulse-once">
+                    <i data-lucide="download" class="w-4 h-4 flex-shrink-0"></i>
+                    <span class="hidden sm:inline">Pasang App</span>
                 </button>
             </div>
         </div>
@@ -1585,6 +1597,110 @@
             onScroll();
         }
 
+        // ===== PWA INSTALLER =====
+        let _deferredInstallPrompt = null;
+        const PWA_DISMISS_KEY = 'jura_pwa_dismiss_until';
+        const PWA_INSTALLED_KEY = 'jura_pwa_installed';
+
+        function isStandalone() {
+            return window.matchMedia('(display-mode: standalone)').matches ||
+                   window.navigator.standalone === true ||
+                   document.referrer.includes('android-app://');
+        }
+        function isIOS() {
+            return /iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+        }
+        // Browser dalam aplikasi (WA/IG/FB/TikTok) tidak bisa pasang PWA -> tampilkan panduan manual
+        function isInAppBrowser() {
+            const ua = navigator.userAgent || '';
+            return /FBAN|FBAV|Instagram|Line\/|WhatsApp|Twitter|TikTok/i.test(ua);
+        }
+
+        // 1) Tangkap event install otomatis (Chrome/Edge/Android)
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            _deferredInstallPrompt = e;
+            if (!isStandalone()) showPwaInstallButton();
+        });
+
+        // 2) Saat sudah terpasang
+        window.addEventListener('appinstalled', () => {
+            try { localStorage.setItem(PWA_INSTALLED_KEY, '1'); } catch (e) {}
+            hidePwaInstallButton();
+            hidePwaBanner();
+            _deferredInstallPrompt = null;
+        });
+
+        function showPwaInstallButton() {
+            const btn = document.getElementById('pwa-install-btn');
+            if (btn) { btn.classList.remove('hidden'); btn.classList.add('inline-flex'); }
+        }
+        function hidePwaInstallButton() {
+            const btn = document.getElementById('pwa-install-btn');
+            if (btn) { btn.classList.add('hidden'); btn.classList.remove('inline-flex'); }
+        }
+        function hidePwaBanner() {
+            const b = document.getElementById('pwa-install-banner');
+            if (b) { b.classList.add('hidden'); }
+        }
+
+        // 3) Klik tombol: pakai prompt bawaan, kalau tidak ada -> tampilkan panduan manual
+        async function promptPwaInstall() {
+            if (_deferredInstallPrompt) {
+                _deferredInstallPrompt.prompt();
+                const { outcome } = await _deferredInstallPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    try { localStorage.setItem(PWA_INSTALLED_KEY, '1'); } catch (e) {}
+                    hidePwaBanner();
+                    hidePwaInstallButton();
+                }
+                _deferredInstallPrompt = null;
+            } else {
+                showPwaManualGuide();
+            }
+        }
+
+        // 4) Banner otomatis muncul di bawah (sekali saja, bisa ditutup)
+        function maybeShowPwaBanner() {
+            if (isStandalone()) return;
+            try {
+                if (localStorage.getItem(PWA_INSTALLED_KEY) === '1') return;
+                const until = parseInt(localStorage.getItem(PWA_DISMISS_KEY) || '0', 10);
+                if (Date.now() < until) return;
+            } catch (e) {}
+            // Tampilkan hanya jika browser bisa pasang (Chrome/Edge/Android) ATAU iOS (panduan manual)
+            if (!_deferredInstallPrompt && !isIOS()) return;
+            const b = document.getElementById('pwa-install-banner');
+            if (b) { b.classList.remove('hidden'); }
+        }
+        function dismissPwaBanner() {
+            hidePwaBanner();
+            try { localStorage.setItem(PWA_DISMISS_KEY, String(Date.now() + 7 * 24 * 60 * 60 * 1000)); } catch (e) {}
+        }
+
+        // 5) Panduan manual (iOS Safari / browser dalam aplikasi)
+        function showPwaManualGuide() {
+            const isIos = isIOS();
+            const inApp = isInAppBrowser();
+            const msg = inApp
+                ? 'Untuk memasang aplikasi: buka dulu situs ini di <b>browser</b> (Chrome/Safari), lalu pilih <b>Menu → Pasang aplikasi / Tambahkan ke Layar Utama</b>.'
+                : (isIos
+                    ? 'Untuk memasang di iPhone/iPad: ketuk tombol <b>Bagikan (Share)</b> di bawah, lalu pilih <b>"Tambahkan ke Layar Utama"</b>.'
+                    : 'Untuk memasang aplikasi: buka <b>Menu browser (⋮)</b> lalu pilih <b>"Pasang aplikasi"</b> atau <b>"Tambahkan ke Layar Utama"</b>.');
+            let el = document.getElementById('pwa-guide-toast');
+            if (!el) {
+                el = document.createElement('div');
+                el.id = 'pwa-guide-toast';
+                el.className = 'fixed bottom-4 left-1/2 -translate-x-1/2 z-[9999] max-w-sm w-[92%] glass-modal border border-violet-500/40 rounded-2xl p-4 shadow-2xl';
+                document.body.appendChild(el);
+            }
+            el.innerHTML = '<div class="flex items-start gap-3"><i data-lucide="smartphone" class="w-5 h-5 text-violet-400 flex-shrink-0 mt-0.5"></i>' +
+                '<p class="text-slate-200 text-xs leading-relaxed flex-1">' + msg + '</p>' +
+                '<button onclick="this.closest(\'#pwa-guide-toast\').remove()" aria-label="Tutup" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button></div>';
+            if (window.lucide) lucide.createIcons();
+            setTimeout(() => { const t = document.getElementById('pwa-guide-toast'); if (t) t.remove(); }, 12000);
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             init();
             // Daftarkan Service Worker untuk PWA (offline + installable)
@@ -1593,7 +1709,25 @@
                     navigator.serviceWorker.register('/sw.js').catch(() => {});
                 });
             }
+            // PWA: tampilkan banner setelah beberapa detik jelajah
+            setTimeout(maybeShowPwaBanner, 6000);
         });
     </script>
+
+    <!-- Banner Pasang Aplikasi (PWA) — muncul otomatis, bisa ditutup -->
+    <div id="pwa-install-banner" class="hidden fixed bottom-3 left-1/2 -translate-x-1/2 z-[9998] w-[94%] max-w-md">
+        <div class="glass-modal border border-violet-500/40 rounded-2xl p-3.5 shadow-2xl shadow-violet-950/50">
+            <div class="flex items-center gap-3">
+                <img src="/icons/icon-192.png" alt="Jura Game" width="44" height="44" class="w-11 h-11 rounded-xl flex-shrink-0 border border-slate-700">
+                <div class="flex-1 min-w-0">
+                    <p class="text-white font-bold text-sm leading-tight">Pasang Jura Game</p>
+                    <p class="text-slate-400 text-[11px] leading-tight mt-0.5">Main lebih cepat & bisa diakses offline — tanpa perlu download dari Play Store.</p>
+                </div>
+                <button onclick="promptPwaInstall()" class="min-h-[40px] px-3.5 py-2 bg-gradient-to-r from-violet-600 to-blue-600 hover:from-violet-500 hover:to-blue-500 text-white rounded-xl text-xs font-bold flex-shrink-0 transition-all">Pasang</button>
+                <button onclick="dismissPwaBanner()" aria-label="Tutup" class="text-slate-500 hover:text-white flex-shrink-0 p-1"><i data-lucide="x" class="w-4 h-4"></i></button>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

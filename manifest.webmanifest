@@ -1,1 +1,42 @@
-{"background_color":"#0a0f22","description":"Portal game gratis: mainkan ratusan game kasual langsung di browser tanpa install.","dir":"ltr","display":"standalone","icons":[{"sizes":"192x192","src":"/icons/icon-192.png","type":"image/png"},{"sizes":"512x512","src":"/icons/icon-512.png","type":"image/png"},{"purpose":"maskable","sizes":"512x512","src":"/icons/icon-512-maskable.png","type":"image/png"}],"lang":"id-ID","name":"Jura Game — Mainkan Game Gratis","orientation":"any","scope":"/","short_name":"JuraGame","start_url":"/?utm_source=pwa","theme_color":"#0a0f22"}
+{
+  "id": "/?source=pwa",
+  "name": "Jura Game — Mainkan Game Gratis",
+  "short_name": "JuraGame",
+  "description": "Portal game gratis: mainkan ratusan game kasual langsung di browser tanpa install.",
+  "start_url": "/?utm_source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#0a0f22",
+  "theme_color": "#0a0f22",
+  "lang": "id-ID",
+  "dir": "ltr",
+  "categories": ["games", "entertainment"],
+  "prefer_related_applications": false,
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Game Baru",
+      "short_name": "Baru",
+      "url": "/?view=new",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Kategori Game",
+      "short_name": "Kategori",
+      "url": "/game/arcade",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Blog & Tips",
+      "short_name": "Blog",
+      "url": "/blog/",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
