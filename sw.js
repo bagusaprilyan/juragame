@@ -1,10 +1,11 @@
 /* Jura Game Service Worker — offline-first untuk aset & halaman same-origin.
    Konten pihak ketiga (embed game GamePix/GameMonetize, iklan, analytics)
    TIDAK di-cache agar selalu segar dan tidak melanggar kebijakan mereka. */
-const CACHE_VERSION = 'jura-v2';
+const CACHE_VERSION = 'jura-v3';
 const CORE_ASSETS = [
   '/',
   '/css/tailwind.css',
+  '/games-home.json',
   '/games.json',
   '/articles-index.json',
   '/manifest.webmanifest',
