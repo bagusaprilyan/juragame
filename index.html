@@ -99,11 +99,13 @@
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap"></noscript>
-    
+
     <!-- Tailwind CSS (STATIS — dibuild, bukan JIT runtime; hemat ~400KB JS) -->
+    <link rel="preload" as="style" href="/css/tailwind.css?v=2">
     <link rel="stylesheet" href="/css/tailwind.css?v=2">
-    
+
     <!-- Lucide Icons (versi dipin + defer agar tidak memblokir render) -->
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js" defer></script>
 
     <!-- GOOGLE ADSENSE SCRIPT (AUTO ADS & CORE) -->
@@ -120,7 +122,7 @@
             width: 4px;
         }
         ::-webkit-scrollbar-track {
-            background: #020617; 
+            background: #0a0f22; 
         }
         ::-webkit-scrollbar-thumb {
             background: #334155; 
@@ -223,7 +225,7 @@
 
     <!-- Background Gradient Grids -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
-        <div class="absolute inset-0 bg-[#020617]"></div>
+        <div class="absolute inset-0 bg-[#0a0f22]"></div>
         <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-violet-600/15 rounded-full filter blur-[100px]"></div>
         <div class="absolute top-[40%] right-[-10%] w-[45vw] h-[45vw] bg-blue-600/10 rounded-full filter blur-[100px]"></div>
     </div>
@@ -955,17 +957,53 @@
 
         let gamesCatalog = []; // katalog game (dari games.json atau API)
 
+        // Muat katalog PENUH (421 game) di background setelah halaman idle.
+        // Dipakai untuk melengkapi "Muat Lebih Banyak" + search, tanpa membebani load awal.
+        let fullCatalogLoaded = false;
+        function loadFullCatalogInBackground() {
+            if (fullCatalogLoaded) return;
+            const run = () => {
+                fetchWithTimeout('/games.json', 8000)
+                    .then(r => r.ok ? r.json() : null)
+                    .then(data => {
+                        if (!data) return;
+                        const full = Array.isArray(data) ? data : (data.games || []);
+                        if (full.length > gamesCatalog.length) {
+                            gamesCatalog = full;
+                            allGamesData = full.slice().sort(() => Math.random() - 0.5);
+                            fullCatalogLoaded = true;
+                            // re-render agar tombol "Muat Lebih Banyak" muncul utk sisa game
+                            try { filterByCategory(currentCategory || 'ALL'); } catch (e) {}
+                        }
+                    })
+                    .catch(() => {});
+            };
+            if ('requestIdleCallback' in window) requestIdleCallback(run, { timeout: 3000 });
+            else setTimeout(run, 1500);
+        }
+
         async function fetchGames() {
             renderSkeletons(12);
 
-            // 1) Coba katalog cache server (instan, tanpa tunggu API eksternal)
+            // 1) Katalog RINGAN (72 game, ~25KB) — render awal secepat mungkin
             try {
-                const resCache = await fetchWithTimeout('/games.json', 3000);
+                const resCache = await fetchWithTimeout('/games-home.json', 3000);
                 if (resCache.ok) {
                     const data = await resCache.json();
                     gamesCatalog = Array.isArray(data) ? data : (data.games || []);
                 }
             } catch (e) { /* cache belum ada — fallback ke API */ }
+
+            // 2) Jika cache kosong, coba katalog penuh sebagai cadangan cepat
+            if (gamesCatalog.length === 0) {
+                try {
+                    const resFull = await fetchWithTimeout('/games.json', 3000);
+                    if (resFull.ok) {
+                        const data = await resFull.json();
+                        gamesCatalog = Array.isArray(data) ? data : (data.games || []);
+                    }
+                } catch (e) { /* lanjut ke API */ }
+            }
 
             // 2) Jika cache kosong, ambil dari 2 API SECARA PARALEL (bukan berurutan)
             if (gamesCatalog.length === 0) {
@@ -1006,6 +1044,10 @@
             renderRecentSection();
             renderRecommendedSection();
             filterByCategory('ALL');
+
+            // Setelah render awal tampil, muat katalog penuh di background (idle)
+            // agar "Muat Lebih Banyak" + search punya semua 421 game — tanpa blokir LCP.
+            loadFullCatalogInBackground();
         }
 
         // Escape teks untuk disisipkan ke HTML (anti-XSS dari feed pihak ketiga)
