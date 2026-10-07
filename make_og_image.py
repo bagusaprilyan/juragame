@@ -66,7 +66,7 @@ d.text((bx + pad_x, by + pad_y - 2), badge_txt, font=f_badge, fill="#ffffff")
 d.text((80, 160), "Jura Game", font=f_logo, fill="#818cf8")
 
 # ── Judul utama (2 baris) ──
-d.text((80, 300), "Mainkan Game HTML5", font=f_h1, fill="#ffffff")
+d.text((80, 300), "Mainkan Game Gratis", font=f_h1, fill="#ffffff")
 d.text((80, 378), "Gratis di Browser", font=f_h1, fill="#f0abfc")
 
 # ── Subjudul ──

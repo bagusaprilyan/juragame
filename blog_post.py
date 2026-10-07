@@ -145,7 +145,7 @@ ARTICLE_TEMPLATE = '''<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title} - Jura Game Blog</title>
     <meta name="description" content="{description}">
-    <meta name="keywords" content="{keywords}, jura game, game html5, game gratis">
+    <meta name="keywords" content="{keywords}, jura game, game gratis">
     <meta name="author" content="Admin Jura Game">
     <meta property="og:type" content="article">
     <meta property="og:title" content="{title}">
@@ -255,7 +255,7 @@ ARTICLE_TEMPLATE = '''<!DOCTYPE html>
 
             <!-- CTA -->
             <div class="my-6 p-6 rounded-2xl bg-gradient-to-r from-indigo-950/80 to-purple-950/80 border border-indigo-500/30 text-center space-y-3">
-                <h3 class="text-lg font-bold text-white">Ingin Mencoba Game HTML5 Gratis?</h3>
+                <h3 class="text-lg font-bold text-white">Ingin Mencoba Game Gratis?</h3>
                 <p class="text-xs text-slate-300">Jelajahi ratusan koleksi game balapan, puzzle, dan aksi terbaik di Jura Game.</p>
                 <a href="/" class="inline-block px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-indigo-600/40">Mainkan Game Sekarang</a>
             </div>
@@ -281,7 +281,7 @@ ARTICLE_TEMPLATE = '''<!DOCTYPE html>
                 <a href="../disclaimer.html" class="hover:text-slate-300 transition">Disclaimer</a>
                 <a href="../terms.html" class="hover:text-slate-300 transition">Syarat &amp; Ketentuan</a>
             </div>
-            <p>Jura Game — portal game HTML5 gratis yang bisa dimainkan langsung di browser tanpa install.</p>
+            <p>Jura Game — portal game gratis yang bisa dimainkan langsung di browser tanpa install.</p>
             <p>&copy; 2026 Jura Game. Portal Game Gratis Online &amp; Blog Informasi.</p>
         </div>
     </footer>

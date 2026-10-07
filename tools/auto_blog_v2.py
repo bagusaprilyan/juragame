@@ -76,7 +76,7 @@ TOPICS = {
 }
 
 KEYWORDS = {
-    "game": ["game html5", "game gratis", "game online", "jura game", "game tanpa download"],
+    "game": ["game gratis", "game online", "game gratis tanpa download", "jura game", "game tanpa download"],
     "review": ["review game", "ulasan game", "jura game review", "game terbaik"],
     "film": ["review film", "rekomendasi film", "film terbaik", "ulasan film"],
     "berita": ["berita game", "kabar game", "update game", "game terbaru", "jura game news"],
@@ -411,7 +411,7 @@ body{{font-family:'Inter',sans-serif;background:#020617;color:#f8fafc}}
 <a href="../disclaimer.html" class="hover:text-white transition">Disclaimer</a>
 <a href="../terms.html" class="hover:text-white transition">Syarat &amp; Ketentuan</a>
 </div>
-<p class="text-center">&copy; 2026 Jura Game. Portal game HTML5 gratis &amp; blog berita game.</p>
+<p class="text-center">&copy; 2026 Jura Game. Portal game gratis &amp; blog berita game.</p>
 </div></footer>
 <script>if(window.lucide)lucide.createIcons();</script>
 <script>

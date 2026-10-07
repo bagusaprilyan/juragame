@@ -53,8 +53,8 @@ HEAD = """<!DOCTYPE html>
     <nav style="display:flex;gap:16px;font-size:.85rem">
       <a href="/" style="color:#94a3b8;text-decoration:none">Beranda</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none">Blog</a>
-      <a href="/about.html" style="color:#94a3b8;text-decoration:none">Tentang</a>
-      <a href="/contact.html" style="color:#94a3b8;text-decoration:none">Kontak</a>
+      <a href="/about" style="color:#94a3b8;text-decoration:none">Tentang</a>
+      <a href="/contact" style="color:#94a3b8;text-decoration:none">Kontak</a>
     </nav>
   </div>
 </header>
@@ -71,13 +71,13 @@ FOOT = """  </article>
     <div style="display:flex;flex-wrap:wrap;gap:18px;margin-bottom:14px">
       <a href="/" style="color:#94a3b8;text-decoration:none">Beranda</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none">Blog &amp; Tips</a>
-      <a href="/about.html" style="color:#94a3b8;text-decoration:none">Tentang Kami</a>
-      <a href="/contact.html" style="color:#94a3b8;text-decoration:none">Kontak</a>
-      <a href="/privacy.html" style="color:#94a3b8;text-decoration:none">Kebijakan Privasi</a>
-      <a href="/disclaimer.html" style="color:#94a3b8;text-decoration:none">Disclaimer</a>
-      <a href="/terms.html" style="color:#94a3b8;text-decoration:none">Syarat &amp; Ketentuan</a>
+      <a href="/about" style="color:#94a3b8;text-decoration:none">Tentang Kami</a>
+      <a href="/contact" style="color:#94a3b8;text-decoration:none">Kontak</a>
+      <a href="/privacy" style="color:#94a3b8;text-decoration:none">Kebijakan Privasi</a>
+      <a href="/disclaimer" style="color:#94a3b8;text-decoration:none">Disclaimer</a>
+      <a href="/terms" style="color:#94a3b8;text-decoration:none">Syarat &amp; Ketentuan</a>
     </div>
-    <p>© {year} Jura Game. Portal game HTML5 gratis — mainkan langsung di browser tanpa install.</p>
+    <p>© {year} Jura Game. Portal game gratis — mainkan langsung di browser tanpa install.</p>
   </div>
 </footer>
 </body>
@@ -97,13 +97,13 @@ PAGES = {}
 PAGES["about.html"] = render(
     "about.html",
     "Tentang Kami",
-    "Jura Game adalah portal game HTML5 gratis yang menyediakan ratusan game berkualitas untuk dimainkan langsung di browser tanpa install.",
+    "Jura Game adalah portal game gratis yang menyediakan ratusan game berkualitas untuk dimainkan langsung di browser tanpa install.",
     "Tentang Jura Game",
     """
-    <p><strong>Jura Game</strong> adalah portal game HTML5 gratis yang lahir dari satu keyakinan sederhana: bermain game tidak harus rumit, mahal, atau memakan ruang penyimpanan. Kami menyediakan koleksi game kasual berkualitas yang bisa langsung dimainkan di browser — baik di HP maupun komputer — tanpa perlu mengunduh atau memasang aplikasi apa pun.</p>
+    <p><strong>Jura Game</strong> adalah portal game gratis yang lahir dari satu keyakinan sederhana: bermain game tidak harus rumit, mahal, atau memakan ruang penyimpanan. Kami menyediakan koleksi game kasual berkualitas yang bisa langsung dimainkan di browser — baik di HP maupun komputer — tanpa perlu mengunduh atau memasang aplikasi apa pun.</p>
 
     <h2>Apa yang Kami Sediakan</h2>
-    <p>Kami mengumpulkan dan mengurasi game HTML5 dari berbagai penyedia resmi, lalu menyajikannya dalam satu tempat yang rapi, cepat, dan bebas gangguan. Kategori yang tersedia mencakup:</p>
+    <p>Kami mengumpulkan dan mengurasi game berkualitas dari berbagai penyedia resmi, lalu menyajikannya dalam satu tempat yang rapi, cepat, dan bebas gangguan. Kategori yang tersedia mencakup:</p>
     <ul>
       <li><strong>Puzzle &amp; Logika</strong> — melatih otak sekaligus mengisi waktu luang.</li>
       <li><strong>Action &amp; Arcade</strong> — permainan cepat dengan tempo tinggi.</li>
@@ -116,13 +116,13 @@ PAGES["about.html"] = render(
     <p>Misi kami adalah menjadikan hiburan digital berkualitas bisa diakses siapa saja — termasuk pengguna dengan perangkat sederhana, koneksi terbatas, atau mereka yang tidak ingin menyimpan banyak aplikasi di perangkatnya. Kami percaya game yang baik adalah game yang bisa dinikmati tanpa hambatan teknis.</p>
 
     <h2>Bagaimana Kami Bekerja</h2>
-    <p>Setiap game di Jura Game dijalankan langsung di browser Anda melalui teknologi HTML5. Artinya permainan berlangsung di perangkat Anda sendiri dan tidak memerlukan pemasangan. Kami juga secara rutin menambahkan judul baru serta menulis panduan dan tips di <a href="/blog/">blog kami</a> untuk membantu pemain menemukan game yang paling sesuai dengan selera mereka.</p>
+    <p>Setiap game di Jura Game dijalankan langsung di browser Anda. Artinya permainan berlangsung di perangkat Anda sendiri dan tidak memerlukan pemasangan. Kami juga secara rutin menambahkan judul baru serta menulis panduan dan tips di <a href="/blog/">blog kami</a> untuk membantu pemain menemukan game yang paling sesuai dengan selera mereka.</p>
 
     <h2>Konten &amp; Ulasan</h2>
     <p>Selain bermain, kami menulis artikel yang benar-benar berguna: daftar rekomendasi game berdasarkan tema, panduan untuk pemula, dan tips memilih game yang cocok untuk anak-anak. Setiap artikel kami susun dengan riset dan ditulis ulang dengan gaya kami sendiri agar memberi informasi yang jujur dan bermanfaat bagi pembaca.</p>
 
     <h2>Hubungi Kami</h2>
-    <p>Punya pertanyaan, masukan, atau ingin bekerja sama? Kami senang mendengar dari Anda. Silakan kunjungi halaman <a href="/contact.html">Kontak</a> atau kirim surel ke <a href="mailto:halo@juragame.com"><a href="mailto:halo@juragame.com"><strong>halo@juragame.com</strong></a></a>.</p>
+    <p>Punya pertanyaan, masukan, atau ingin bekerja sama? Kami senang mendengar dari Anda. Silakan kunjungi halaman <a href="/contact">Kontak</a> atau kirim surel ke <a href="mailto:halo@juragame.com"><a href="mailto:halo@juragame.com"><strong>halo@juragame.com</strong></a></a>.</p>
 
     <p>Terima kasih telah bermain di Jura Game. Selamat bersenang-senang! 🎮</p>
     """,
@@ -177,7 +177,7 @@ PAGES["privacy.html"] = render(
     <p>Situs kami tidak ditujukan untuk anak di bawah usia 13 tahun dan kami tidak dengan sengaja mengumpulkan data pribadi dari anak-anak. Jika Anda yakin seorang anak telah memberikan informasi pribadi kepada kami, silakan hubungi kami untuk menghapusnya.</p>
 
     <h2>9. Hak Anda</h2>
-    <p>Anda berhak untuk meminta akses, koreksi, atau penghapusan data pribadi yang kami miliki tentang Anda. Untuk menggunakan hak tersebut, silakan hubungi kami melalui halaman <a href="/contact.html">Kontak</a>.</p>
+    <p>Anda berhak untuk meminta akses, koreksi, atau penghapusan data pribadi yang kami miliki tentang Anda. Untuk menggunakan hak tersebut, silakan hubungi kami melalui halaman <a href="/contact">Kontak</a>.</p>
 
     <h2>10. Perubahan Kebijakan</h2>
     <p>Kami dapat memperbarui Kebijakan Privasi ini dari waktu ke waktu. Perubahan akan ditampilkan di halaman ini dengan tanggal pembaruan terbaru. Kami menyarankan Anda meninjau halaman ini secara berkala.</p>
@@ -223,7 +223,7 @@ PAGES["disclaimer.html"] = render(
     <p>Kami dapat mengubah Disclaimer ini kapan saja. Versi terbaru akan selalu ditampilkan di halaman ini.</p>
 
     <h2>8. Kontak</h2>
-    <p>Pertanyaan mengenai Disclaimer ini dapat disampaikan ke <a href="mailto:halo@juragame.com"><a href="mailto:halo@juragame.com"><strong>halo@juragame.com</strong></a></a> atau melalui halaman <a href="/contact.html">Kontak</a>.</p>
+    <p>Pertanyaan mengenai Disclaimer ini dapat disampaikan ke <a href="mailto:halo@juragame.com"><a href="mailto:halo@juragame.com"><strong>halo@juragame.com</strong></a></a> atau melalui halaman <a href="/contact">Kontak</a>.</p>
     """,
 )
 
@@ -237,10 +237,10 @@ PAGES["terms.html"] = render(
     <p>Selamat datang di <strong>Jura Game</strong>. Dengan mengakses dan menggunakan situs ini, Anda dianggap telah membaca, memahami, dan menyetujui Syarat &amp; Ketentuan berikut. Jika Anda tidak setuju, mohon untuk tidak menggunakan situs ini.</p>
 
     <h2>1. Penerimaan Ketentuan</h2>
-    <p>Penggunaan situs juragame.com berarti Anda menyetujui seluruh ketentuan yang tercantum di halaman ini beserta <a href="/privacy.html">Kebijakan Privasi</a> dan <a href="/disclaimer.html">Disclaimer</a> kami.</p>
+    <p>Penggunaan situs juragame.com berarti Anda menyetujui seluruh ketentuan yang tercantum di halaman ini beserta <a href="/privacy">Kebijakan Privasi</a> dan <a href="/disclaimer">Disclaimer</a> kami.</p>
 
     <h2>2. Penggunaan Layanan</h2>
-    <p>Jura Game menyediakan portal game HTML5 gratis. Anda setuju untuk:</p>
+    <p>Jura Game menyediakan portal game gratis. Anda setuju untuk:</p>
     <ul>
       <li>Menggunakan situs hanya untuk tujuan pribadi dan non-komersial yang sah.</li>
       <li>Tidak menyalin, menggandakan, atau mendistribusikan ulang konten situs tanpa izin.</li>
@@ -270,7 +270,7 @@ PAGES["terms.html"] = render(
     <p>Syarat &amp; Ketentuan ini diatur oleh hukum yang berlaku di Indonesia. Segala perselisihan akan diselesaikan secara musyawarah terlebih dahulu.</p>
 
     <h2>10. Kontak</h2>
-    <p>Untuk pertanyaan mengenai Syarat &amp; Ketentuan ini, hubungi kami di <a href="mailto:halo@juragame.com"><a href="mailto:halo@juragame.com"><strong>halo@juragame.com</strong></a></a> atau melalui halaman <a href="/contact.html">Kontak</a>.</p>
+    <p>Untuk pertanyaan mengenai Syarat &amp; Ketentuan ini, hubungi kami di <a href="mailto:halo@juragame.com"><a href="mailto:halo@juragame.com"><strong>halo@juragame.com</strong></a></a> atau melalui halaman <a href="/contact">Kontak</a>.</p>
     """,
 )
 
