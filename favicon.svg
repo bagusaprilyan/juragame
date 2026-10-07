@@ -1,11 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="JuraGame">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#6366f1"/>
-      <stop offset="1" stop-color="#ec4899"/>
+    <linearGradient id="jg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8b6bff"/>
+      <stop offset="0.55" stop-color="#5b6cff"/>
+      <stop offset="1" stop-color="#2f8bff"/>
+    </linearGradient>
+    <linearGradient id="ja" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd15c"/>
+      <stop offset="1" stop-color="#ff8a00"/>
     </linearGradient>
   </defs>
-  <rect width="64" height="64" rx="14" fill="url(#g)"/>
-  <text x="32" y="45" font-family="Inter,Arial,sans-serif" font-size="38" font-weight="900"
-        fill="#ffffff" text-anchor="middle">J</text>
+  <rect width="64" height="64" rx="15" fill="url(#jg)"/>
+  <!-- huruf J tebal & besar, digeser sedikit ke kiri-bawah agar ada ruang pojok kanan-atas -->
+  <path d="M39 12 H22 v7.5 h8.5 v21 c0 3.2 -2 5.2 -5.5 5.2 -3.2 0 -5.7 -1.9 -6.8 -4.8 l-6.3 3 c1.9 5.6 7 9.1 13.6 9.1 8.8 0 14.5 -5.4 14.5 -13.8 V19.5 H39 Z"
+        fill="#ffffff"/>
+  <!-- titik aksen amber — di pojok kanan-atas, terpisah jelas dari J -->
+  <circle cx="49" cy="15" r="6.5" fill="url(#ja)"/>
 </svg>
