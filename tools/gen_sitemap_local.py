@@ -32,9 +32,17 @@ entries.append((f"{BASE}/", "1.0", "daily", mtime_iso(os.path.join(ROOT, "index.
 entries.append((f"{BASE}/blog/", "0.8", "daily", mtime_iso(os.path.join(ROOT, "blog", "index.html"))))
 
 # Halaman statis
-for p in ["about", "contact", "privacy", "disclaimer", "terms"]:
+for p in ["about", "redaksi", "contact", "privacy", "disclaimer", "terms"]:
     f = os.path.join(ROOT, f"{p}.html")
     entries.append((f"{BASE}/{p}", "0.5", "monthly", mtime_iso(f)))
+
+# Halaman penulis (E-E-A-T) — /penulis/<slug>
+pen_dir = os.path.join(ROOT, "penulis")
+if os.path.isdir(pen_dir):
+    for fn in sorted(os.listdir(pen_dir)):
+        if fn.endswith(".html"):
+            f = os.path.join(pen_dir, fn)
+            entries.append((f"{BASE}/penulis/{fn[:-5]}", "0.5", "monthly", mtime_iso(f)))
 
 # Artikel blog (dari articles-index.json / articles.json)
 arts_path = os.path.join(ROOT, "articles-index.json")

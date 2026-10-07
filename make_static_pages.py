@@ -54,6 +54,7 @@ HEAD = """<!DOCTYPE html>
       <a href="/" style="color:#94a3b8;text-decoration:none">Beranda</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none">Blog</a>
       <a href="/about" style="color:#94a3b8;text-decoration:none">Tentang</a>
+      <a href="/redaksi" style="color:#94a3b8;text-decoration:none">Redaksi</a>
       <a href="/contact" style="color:#94a3b8;text-decoration:none">Kontak</a>
     </nav>
   </div>
@@ -72,6 +73,7 @@ FOOT = """  </article>
       <a href="/" style="color:#94a3b8;text-decoration:none">Beranda</a>
       <a href="/blog/" style="color:#94a3b8;text-decoration:none">Blog &amp; Tips</a>
       <a href="/about" style="color:#94a3b8;text-decoration:none">Tentang Kami</a>
+      <a href="/redaksi" style="color:#94a3b8;text-decoration:none">Redaksi</a>
       <a href="/contact" style="color:#94a3b8;text-decoration:none">Kontak</a>
       <a href="/privacy" style="color:#94a3b8;text-decoration:none">Kebijakan Privasi</a>
       <a href="/disclaimer" style="color:#94a3b8;text-decoration:none">Disclaimer</a>
@@ -86,7 +88,8 @@ FOOT = """  </article>
 
 
 def render(slug, title, desc, h1, body_html):
-    return (HEAD.format(title=title, desc=desc, slug=slug, site=SITE, now=NOW, h1=h1)
+    canon = slug[:-5] if slug.endswith(".html") else slug  # canonical tanpa .html
+    return (HEAD.format(title=title, desc=desc, slug=canon, site=SITE, now=NOW, h1=h1)
             + body_html
             + FOOT.format(year=datetime.datetime.now().year))
 
@@ -120,6 +123,17 @@ PAGES["about.html"] = render(
 
     <h2>Konten &amp; Ulasan</h2>
     <p>Selain bermain, kami menulis artikel yang benar-benar berguna: daftar rekomendasi game berdasarkan tema, panduan untuk pemula, dan tips memilih game yang cocok untuk anak-anak. Setiap artikel kami susun dengan riset dan ditulis ulang dengan gaya kami sendiri agar memberi informasi yang jujur dan bermanfaat bagi pembaca.</p>
+
+    <h2>Tim di Balik Jura Game</h2>
+    <div style="background:#0f172a;border:1px solid #1e293b;border-radius:16px;padding:20px;margin:16px 0;display:flex;gap:16px;align-items:flex-start">
+      <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#3b82f6);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:1.5rem;flex-shrink:0">BA</div>
+      <div>
+        <h3 style="color:#fff;margin:0 0 2px;font-size:1.1rem"><a href="/penulis/bagus-aprilyan" style="color:#fff;text-decoration:none">Bagus Aprilyan</a></h3>
+        <div style="color:#a78bfa;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em">Pendiri &amp; Editor</div>
+        <p style="margin:.6rem 0 0">Bagus Aprilyan adalah pendiri Jura Game. Ia menekuni dunia game kasual berbasis browser sejak lama dan fokus membahas game yang ringan, gratis, serta bisa langsung dimainkan tanpa install. Selain menulis, ia mengurus kurasi katalog game dan memastikan setiap judul yang tampil layak dimainkan.</p>
+        <p style="margin:.5rem 0 0"><a href="/redaksi">Lihat halaman Redaksi &rarr;</a></p>
+      </div>
+    </div>
 
     <h2>Hubungi Kami</h2>
     <p>Punya pertanyaan, masukan, atau ingin bekerja sama? Kami senang mendengar dari Anda. Silakan kunjungi halaman <a href="/contact">Kontak</a> atau kirim surel ke <a href="mailto:halo@juragame.com"><a href="mailto:halo@juragame.com"><strong>halo@juragame.com</strong></a></a>.</p>

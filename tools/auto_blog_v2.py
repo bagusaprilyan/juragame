@@ -331,7 +331,7 @@ def build_article(mode, title, body_md, cover, slug, category, tags, description
 <title>{title_attr} - Jura Game Blog</title>
 <meta name="description" content="{desc_attr}">
 <meta name="keywords" content="{keywords}">
-<meta name="author" content="Admin Jura Game">
+<meta name="author" content="Bagus Aprilyan">
 <meta name="robots" content="index, follow">
 <meta name="article:published_time" content="{date_str}">
 <meta name="article:section" content="{category}">
@@ -560,7 +560,7 @@ def _rebuild_sitemap(articles):
     urls = [f'  <url><loc>{BASE}/</loc><priority>1.0</priority></url>',
             f'  <url><loc>{BASE}/blog/</loc><priority>0.8</priority></url>']
     for p in ["about", "contact", "privacy", "disclaimer", "terms"]:
-        urls.append(f'  <url><loc>{BASE}/{p}.html</loc><priority>0.5</priority></url>')
+        urls.append(f'  <url><loc>{BASE}/{p}</loc><priority>0.5</priority></url>')
     urls += [f'  <url><loc>{BASE}/blog/{a.get("slug", slugify(a["title"]))}</loc><priority>0.7</priority></url>' for a in articles]
     sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
