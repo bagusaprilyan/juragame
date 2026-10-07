@@ -113,7 +113,7 @@ def render(cat, games):
         title = esc(g.get("title", ""))
         url = g.get("url", "")
         cards.append(
-            f'<a class="card" href="/index.html?open={esc(g.get("id",""))}" data-game-url="{esc(url)}">'
+            f'<a class="card" href="/?open={esc(g.get("id",""))}" data-game-url="{esc(url)}">'
             f'<img src="{thumb}" alt="{title} - game online gratis" loading="lazy" decoding="async" width="150" height="150" '
             f'onerror="this.style.background=\'#1e293b\';this.removeAttribute(\'src\')">'
             f'<div class="t">{title}</div></a>'
@@ -131,7 +131,7 @@ def render(cat, games):
                 "@type": "CollectionPage",
                 "name": cat["title"],
                 "description": cat["desc"],
-                "url": f"{BASE}/game/{cat['slug']}.html",
+                "url": f"{BASE}/game/{cat['slug']}",
                 "inLanguage": "id",
                 "isPartOf": {"@type": "WebSite", "name": "Jura Game", "url": f"{BASE}/"},
             },
@@ -145,14 +145,14 @@ def render(cat, games):
                 "@type": "BreadcrumbList",
                 "itemListElement": [
                     {"@type": "ListItem", "position": 1, "name": "Beranda", "item": f"{BASE}/"},
-                    {"@type": "ListItem", "position": 2, "name": cat["h1"], "item": f"{BASE}/game/{cat['slug']}.html"},
+                    {"@type": "ListItem", "position": 2, "name": cat["h1"], "item": f"{BASE}/game/{cat['slug']}"},
                 ],
             },
         ],
     }
 
     tags_html = "\n".join(
-        f'<a href="/game/{c["slug"]}.html">{esc(c["h1"])}</a>'
+        f'<a href="/game/{c["slug"]}">{esc(c["h1"])}</a>'
         for c in CATEGORIES if c["slug"] != cat["slug"]
     )
 
@@ -164,13 +164,13 @@ def render(cat, games):
 <title>{esc(cat["title"])} | Jura Game</title>
 <meta name="description" content="{esc(cat["desc"])}">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<link rel="canonical" href="{BASE}/game/{cat['slug']}.html">
+<link rel="canonical" href="{BASE}/game/{cat['slug']}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{esc(cat["h1"])}">
 <meta property="og:description" content="{esc(cat["desc"])}">
-<meta property="og:url" content="{BASE}/game/{cat['slug']}.html">
+<meta property="og:url" content="{BASE}/game/{cat['slug']}">
 <meta property="og:site_name" content="Jura Game">
 <meta name="theme-color" content="#0a0f22">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
@@ -182,8 +182,8 @@ def render(cat, games):
   <nav class="nav">
     <a href="/">Beranda</a>
     <a href="/blog/">Blog</a>
-    <a href="/about.html">Tentang</a>
-    <a href="/contact.html">Kontak</a>
+    <a href="/about">Tentang</a>
+    <a href="/contact">Kontak</a>
   </nav>
 </header>
 <main class="wrap">
@@ -200,7 +200,7 @@ def render(cat, games):
 </main>
 <footer>
   <p>&copy; {datetime.datetime.utcnow().year} Jura Game — Main game online gratis tanpa download, langsung di browser.</p>
-  <p><a href="/privacy.html">Kebijakan Privasi</a> · <a href="/terms.html">Syarat</a> · <a href="/contact.html">Kontak</a></p>
+  <p><a href="/privacy">Kebijakan Privasi</a> · <a href="/terms">Syarat</a> · <a href="/contact">Kontak</a></p>
 </footer>
 </body>
 </html>

@@ -34,7 +34,7 @@ entries.append((f"{BASE}/blog/", "0.8", "daily", mtime_iso(os.path.join(ROOT, "b
 # Halaman statis
 for p in ["about", "contact", "privacy", "disclaimer", "terms"]:
     f = os.path.join(ROOT, f"{p}.html")
-    entries.append((f"{BASE}/{p}.html", "0.5", "monthly", mtime_iso(f)))
+    entries.append((f"{BASE}/{p}", "0.5", "monthly", mtime_iso(f)))
 
 # Artikel blog (dari articles-index.json / articles.json)
 arts_path = os.path.join(ROOT, "articles-index.json")
@@ -54,7 +54,7 @@ for a in articles:
         continue
     seen.add(s)
     f = os.path.join(ROOT, "blog", f"{s}.html")
-    entries.append((f"{BASE}/blog/{s}.html", "0.7", "weekly", mtime_iso(f)))
+    entries.append((f"{BASE}/blog/{s}", "0.7", "weekly", mtime_iso(f)))
 
 # Halaman kategori (kalau ada)
 cat_dir = os.path.join(ROOT, "game")
@@ -62,7 +62,7 @@ if os.path.isdir(cat_dir):
     for fn in sorted(os.listdir(cat_dir)):
         if fn.endswith(".html"):
             f = os.path.join(cat_dir, fn)
-            entries.append((f"{BASE}/game/{fn}", "0.8", "weekly", mtime_iso(f)))
+            entries.append((f"{BASE}/game/{fn[:-5]}", "0.8", "weekly", mtime_iso(f)))
 
 lines = ['<?xml version="1.0" encoding="UTF-8"?>',
          '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
